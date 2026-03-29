@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environment & Multimedia | Lee Wen Tyng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Environment Design 专属样式 */
+        .project-hero {
+            padding: 160px 24px 80px;
+            background: #07090a;
+            color: var(--text-white);
+            text-align: center;
+            position: relative;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.08) 0%, transparent 70%); /* 青蓝色调，代表空间感 */
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .case-study-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* 沉浸式宽屏展示 */
+        .wide-showcase {
+            margin: 60px 0;
+            position: relative;
+        }
+
+        .wide-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            filter: brightness(0.9);
+            border: 1px solid var(--border);
+        }
+
+        .wide-content {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+        }
+
+        .env-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255,255,255,0.03);
+            border-left: 3px solid #2dd4bf;
+        }
+
+        .env-stats span {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        .env-stats strong {
+            display: block;
+            color: var(--text-white);
+            font-size: 1rem;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .wide-content { grid-template-columns: 1fr; }
+            .wide-img { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header" class="scrolled"> 
+        <nav class="navbar">
+            <a href="index.html" class="logo">WT<span class="dot">.</span></a>
+            <a href="index.html#projects" class="btn btn-outline" style="padding: 8px 20px;">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="section-container">
+                <p class="section-label" style="color: #2dd4bf;">Multimedia Production</p>
+                <h1 class="hero-text" style="font-size: 3.5rem; color: white;">Spatial <em>Aesthetics</em></h1>
+                <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">通过灯光、构图与环境叙事，构建具有情绪共鸣的数字空间。</p>
+            </div>
+        </section>
+
+        <section class="case-study-container">
+            
+            <div class="reveal">
+                <h2 class="section-heading">Cinematic <em>Environments</em></h2>
+                <div class="wide-showcase">
+                    <img src="assets/images/image1.jpeg" alt="Environment Showcase" class="wide-img">
+                    <div class="wide-content">
+                        <div class="env-stats">
+                            <div><span>Software</span><strong>Unreal Engine 5 / Octane</strong></div>
+                            <div><span>Focus</span><strong>Lighting & Atmosphere</strong></div>
+                            <div><span>Role</span><strong>Environment Artist</strong></div>
+                        </div>
+                        <div class="about-content">
+                            <h3>光影叙事：废墟中的新生</h3>
+                            <p>该项目重点在于通过**实时全局光照 (Lumen)** 表现自然光在室内空间的散射效果。我设计了整套材质系统，利用纹理细节来传达环境的历史感与叙事深度。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
+
+            <div class="reveal">
+                <h2 class="section-heading">Multimedia <em>Workflow</em></h2>
+                <div class="tech-stack-grid">
+                    <div class="tech-item">
+                        <i class="fas fa-camera-retro" style="color: #2dd4bf;"></i>
+                        <p>Cinematography</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-mountain" style="color: #2dd4bf;"></i>
+                        <p>Terrain Design</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-lightbulb" style="color: #2dd4bf;"></i>
+                        <p>Lighting Art</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-video" style="color: #2dd4bf;"></i>
+                        <p>Post-Production</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="section section-dark reveal" style="text-align: center;">
+            <div class="section-container">
+                <h2 class="section-heading">Ready to build a <em>new world</em>?</h2>
+                <p style="margin-bottom: 30px;">无论是虚拟展厅、影视场景还是互动多媒体装置。</p>
+                <a href="index.html#contact" class="btn btn-primary">Let's Collaborate <i class="fas fa-paper-plane"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Lee Wen Tyng. Environment Design Portfolio.</p>
+    </footer>
+
+    <script>
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
