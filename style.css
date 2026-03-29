@@ -964,3 +964,41 @@ blockquote {
     color: #f59e0b !important; /* 步骤数字也换成金色 */
     opacity: 0.5;
 }
+
+.side-nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 1000;
+        }
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.523);
+            border-radius: 50%;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-dot::after {
+            content: attr(data-name);
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+        .nav-dot:hover::after { opacity: 1; }
+        .nav-dot:hover, .nav-dot.active {
+            background: #60a5fa;
+            transform: scale(1.3);
+        }

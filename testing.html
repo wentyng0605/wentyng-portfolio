@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Dev & XR | Lee Wen Tyng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 侧边悬浮导航样式 */
+        .side-nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 1000;
+        }
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-dot::after {
+            content: attr(data-name);
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+        .nav-dot:hover::after { opacity: 1; }
+        .nav-dot:hover, .nav-dot.active {
+            background: #60a5fa;
+            transform: scale(1.3);
+        }
+
+        /* 布局微调 */
+        .project-hero {
+            padding: 160px 24px 80px;
+            background: #05070a;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        .case-study-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        .project-section {
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .demo-video {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+        }
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .tech-item {
+            padding: 20px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            text-align: center;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .side-nav { display: none; }
+        }
+    </style>
+</head>
+<body style="background: #05070a; color: #ccc;">
+
+    <aside class="side-nav">
+        <a href="#project-1" class="nav-dot active" data-name="The X-Project"></a>
+        <a href="#project-2" class="nav-dot" data-name="FYP Game"></a>
+        <a href="#project-3" class="nav-dot" data-name="Game Jam 2025"></a>
+        <a href="#project-4" class="nav-dot" data-name="Unreal Exploration"></a>
+        <a href="#project-5" class="nav-dot" data-name="VR Interaction"></a>
+        <a href="#project-6" class="nav-dot" data-name="AR Prototype"></a>
+    </aside>
+
+    <header id="header" class="scrolled"> 
+        <nav class="navbar">
+            <a href="index.html" class="logo">WT<span class="dot">.</span></a>
+            <a href="index.html#projects" class="btn btn-outline" style="padding: 8px 20px;">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="section-container">
+                <p class="section-label" style="color: #60a5fa;">Game Development</p>
+                <h1 class="hero-text" style="font-size: 3.5rem;">Immersive <br><em>Digital Realms</em></h1>
+                <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">融合了我在 Xhinobi 实习期间积累的 Unity 经验与交互逻辑。</p>
+            </div>
+        </section>
+
+        <div class="case-study-container">
+            
+            <section id="project-1" class="project-section reveal">
+                <h2 class="section-heading" style="color: white;">Featured: <em>The X-Project</em></h2>
+                <img src="assets/images/image1.jpeg" alt="Game Demo" class="demo-video">
+                <div class="about-content">
+                    <h3>项目概览</h3>
+                    <p>在 <strong>Xhinobi Studio</strong> 实习期间负责核心玩法开发。</p>
+                    <ul>
+                        <li>使用 Unity C# 编写交互逻辑。</li>
+                        <li>优化 Draw Calls 以适配硬件性能。</li>
+                    </ul>
+                </div>
+                <div class="tech-stack-grid">
+                    <div class="tech-item"><i class="fab fa-unity fa-2x"></i><p>Unity 3D</p></div>
+                    <div class="tech-item"><i class="fas fa-code fa-2x"></i><p>C# Scripting</p></div>
+                </div>
+            </section>
+
+            <section id="project-2" class="project-section reveal">
+                <h2 class="section-heading" style="color: white;">Major: <em>FYP Thesis Game</em></h2>
+                <div class="about-content">
+                    <p>这是我的毕业设计项目，探索了深度的叙事与机制融合。</p>
+                </div>
+            </section>
+
+            <section id="project-3" class="project-section reveal">
+                <h2 class="section-heading" style="color: white;">Rapid: <em>Game Jam 2025</em></h2>
+                <p>在 48 小时内完成的可玩原型，专注于压力下的团队协作。</p>
+            </section>
+
+            <section id="project-4" class="project-section reveal">
+                <h2 class="section-heading" style="color: white;">Engine: <em>Unreal Exploration</em></h2>
+                <p>使用 Unreal Engine 进行的关卡设计与蓝图交互实验。</p>
+            </section>
+
+            <section id="project-5" class="project-section reveal">
+                <h2 class="section-heading" style="color: white;">Immersive: <em>VR Interaction</em></h2>
+                <p>基于 OpenXR 的虚拟现实空间交互设计。</p>
+            </section>
+
+            <section id="project-6" class="project-section reveal">
+                <h2 class="section-heading" style="color: white;">Spatial: <em>AR Prototype</em></h2>
+                <p>探索增强现实中的空间布局策略。</p>
+            </section>
+
+        </div>
+
+        <section class="section section-dark reveal" style="text-align: center;">
+            <div class="section-container">
+                <h2 class="section-heading">Have a game idea?</h2>
+                <a href="index.html#contact" class="btn btn-primary">Let's Talk <i class="fas fa-paper-plane"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Lee Wen Tyng. Game Dev Portfolio.</p>
+    </footer>
+
+    <script>
+        // 滚动揭示动画
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 侧边导航滚动追踪逻辑
+        window.addEventListener('scroll', () => {
+            let current = "";
+            const sections = document.querySelectorAll('section[id]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-dot').forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.getAttribute('href') === `#${current}`) {
+                    dot.classList.add('active');
+                }
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('.nav-dot').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
