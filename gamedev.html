@@ -15,6 +15,18 @@
             color: var(--text-white);
             text-align: center;
         }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(51, 54, 234, 0.12) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
         .case-study-container {
             max-width: 900px;
             margin: 0 auto;
@@ -63,7 +75,7 @@
     <main>
         <section class="project-hero">
             <div class="section-container">
-                <p class="section-label" style="color: #60a5fa;">Game Development & XR</p>
+                <p class="section-label" style="color: #60a5fa;">Game Development</p>
                 <h1 class="hero-text" style="font-size: 3.5rem; color: white;">Immersive <br><em>Digital Realms</em></h1>
                 <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">融合了我在 Xhinobi 实习期间积累的 Unity 经验与交互逻辑，打造高性能的虚拟体验。</p>
             </div>

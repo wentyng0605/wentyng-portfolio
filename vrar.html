@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XR & Immersive | Lee Wen Tyng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> <style>
+        /* ===== VR/AR 专属补充样式 ===== */
+
+        /* 顶部 Hero 区：使用深色背景，模拟“虚拟现实”的感觉 */
+        :root {
+        --accent: rgb(146, 51, 234);
+        --bg: #f4f7f6;
+        --text: #1f2937;
+        --border: rgba(0,0,0,0.05);
+        }
+
+        
+        .project-hero {
+            padding: 160px 24px 100px;
+            background: #05070a; /* 极深的背景 */
+            color: var(--text-white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 加上一个淡淡的紫色调径向渐变，更有 XR 科技感 */
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.12) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        /* 案例研究容器：控制阅读宽度 */
+        .case-study-container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        /* 媒体展示（视频/图片）：XR 案例强烈建议用视频 */
+        .project-media {
+            width: 100%;
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 48px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+
+        .project-media img, .project-media video {
+            width: 100%;
+            display: block;
+        }
+
+        /* XR 关键技术栈：展示核心硬件和软件 SDK */
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin: 40px 0;
+        }
+
+        .tech-item {
+            padding: 24px 16px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .tech-item:hover {
+            border-color: #9333ea; /* 悬浮时变成紫色（VR 主色调） */
+            transform: translateY(-4px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .tech-item i {
+            font-size: 1.8rem;
+            color: #9333ea; /* VR 主色调 */
+            margin-bottom: 12px;
+        }
+
+        .tech-item p {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* 获奖/高光时刻 */
+        .award-banner {
+            background: rgba(37, 99, 235, 0.04);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            padding: 20px;
+            border-radius: var(--radius-sm);
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .award-banner i { color: #f59e0b; font-size: 1.5rem; }
+
+        /* 移动端微调 */
+        @media (max-width: 768px) {
+            .project-hero h1 { font-size: 2.5rem; }
+            .case-study-container { padding: 48px 24px; }
+            .tech-stack-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header" class="scrolled"> <nav class="navbar">
+            <a href="index.html" class="logo">WT<span class="dot">.</span></a>
+            <a href="index.html#projects" class="btn btn-outline" style="padding: 8px 20px;">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="section-container">
+                <p class="section-label" style="color: #c084fc;">Extended Reality (XR)</p>
+                <h1 class="hero-text" style="font-size: 3.5rem; color: white;">XR & Immersive <br><em>Interaction</em></h1>
+                <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">利用空间计算与创新的交互范式，打破数字世界与现实世界的边界。</p>
+            </div>
+        </section>
+
+        <section class="case-study-container">
+            
+            <div class="reveal">
+                <h2 class="section-heading">Featured: <em>The Award-Winning VR Project</em></h2>
+                
+                <div class="award-banner">
+                    <i class="fas fa-trophy"></i>
+                    <div>
+                        <strong>Recipient of Best FYP Award</strong>
+                        <p style="margin: 0; font-size: 0.9rem;">Recognized for innovation in VR interaction design.</p>
+                    </div>
+                </div>
+
+                <div class="project-media">
+                    <img src="assets/images/image1.jpeg" alt="VR Interaction Demo">
+                </div>
+                
+                <div class="about-content">
+                    <h3>项目概览</h3>
+                    <p>我的毕业设计致力于解决当前虚拟现实中**用户界面（UI）空间深度感**的问题。我设计并实现了一套基于空间计算的 3D 交互界面，优化了用户在长时间使用后的视觉疲劳。</p>
+                    
+                    <h3>关键创新</h3>
+                    <ul>
+                        <li>使用 **OpenXR** 实现跨平台手部追踪（Hand Tracking）。</li>
+                        <li>引入了“自适应空间深度（Adaptive Depth）”概念，使界面元素根据用户视线实时调整距离。</li>
+                        <li>通过用户测试验证，该方法显著降低了视觉疲劳度，同时提高了 15% 的操作效率。</li>
+                    </ul>
+                </div>
+
+                <div class="tech-stack-grid">
+                    <div class="tech-item">
+                        <i class="fab fa-unity"></i>
+                        <p>Unity 3D</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-vr-cardboard"></i>
+                        <p>OpenXR / MRTP</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-hands"></i>
+                        <p>Hand Tracking</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <p>AR Foundation</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
+
+            <div class="reveal">
+                <h2 class="section-heading">AR Exploration: <em>Spatial UI</em></h2>
+                <p>探索增强现实中的空间布局策略，利用 AR Foundation 实现物体在现实环境中的锚定与交互。</p>
+            </div>
+
+        </section>
+
+        <section class="section section-dark reveal" style="text-align: center;">
+            <div class="section-container">
+                <h2 class="section-heading">Building a virtual future?</h2>
+                <p style="margin-bottom: 30px;">无论你是需要一个技术原型，还是一个完整的 XR 解决方案，我都准备好迎接挑战。</p>
+                <a href="index.html#contact" class="btn btn-primary">Let's Talk <i class="fas fa-paper-plane"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Lee Wen Tyng. XR Portfolio.</p>
+    </footer>
+
+    <script>
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

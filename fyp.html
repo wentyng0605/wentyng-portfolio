@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Year Project | Lee Wen Tyng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* FYP 专属样式：更侧重于图文排版与过程展示 */
+        :root {
+        --accent:  #f59e0b;
+        --bg: #fdfcfb;
+        --text: #111827;
+        --border: rgba(0,0,0,0.05);
+        }
+
+        .fyp-hero {
+            padding: 160px 24px 80px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/images/fyp-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        .case-study-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .award-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .step-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--accent);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        .tech-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .tech-list li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .tech-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header" class="scrolled">
+        <nav class="navbar">
+            <a href="index.html" class="logo">WT<span class="dot">.</span></a>
+            <a href="index.html#projects" class="btn btn-outline" style="padding: 8px 20px;">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="fyp-hero">
+            <div class="section-container">
+                <div class="award-tag"><i class="fas fa-crown"></i> 1st Place - Best FYP Award</div>
+                <h1 style="font-size: 3.5rem; font-family: 'Playfair Display', serif;">Interactive Storytelling <br><em>in Virtual Spaces</em></h1>
+                <p style="max-width: 600px; margin: 20px auto; opacity: 0.9;">
+                    在厦门大学马来西亚分校获得肯定的力作，融合了 UI/UX 设计与实时开发技术。
+                </p>
+            </div>
+        </section>
+
+        <section class="case-study-content reveal">
+            <h2 class="section-heading">The <em>Challenge</em></h2>
+            <p>作为互动媒体设计专业的学生，我的毕业设计致力于解决虚拟现实中[这里填入你的研究方向]的问题。这不仅是一次技术挑战，更是一次深入的用户体验探索。</p>
+            
+            <div class="process-grid">
+                <div>
+                    <span class="step-number">01.</span>
+                    <h3>Research</h3>
+                    <p>通过对潜在用户的深度调研，我确立了项目的核心交互逻辑与视觉基调。</p>
+                </div>
+                <div>
+                    <span class="step-number">02.</span>
+                    <h3>Prototyping</h3>
+                    <p>利用 Unity 进行了多轮迭代，确保交互的流畅性与视觉的一致性。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-dark" style="padding: 80px 0;">
+            <div class="section-container" style="max-width: 1000px; margin: 0 auto; padding: 0 24px;">
+                <div class="project-media">
+                    <img src="assets/images/fyp-award.jpg" alt="FYP Showcase" style="width: 100%; border-radius: var(--radius);">
+                </div>
+                <p class="image-caption">本项目荣获厦门大学马来西亚分校最佳毕业设计奖。</p>
+            </div>
+        </section>
+
+        <section class="case-study-content reveal">
+            <h2 class="section-heading">Technical <em>Stack</em></h2>
+            <p>我独立完成了从美术资源生产到代码逻辑实现的全部环节，充分展示了跨学科的设计与工程能力：</p>
+            <ul class="tech-list">
+                <li><strong>核心引擎：</strong> Unity 3D & C# Scripting</li>
+                <li><strong>美术资产：</strong> Maya & Substance Painter</li>
+                <li><strong>交互框架：</strong> OpenXR Interaction Toolkit</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Lee Wen Tyng. Designed with Care。</p>
+    </footer>
+
+    <script>
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

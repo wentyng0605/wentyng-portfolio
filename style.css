@@ -927,3 +927,40 @@ blockquote {
     .case-study-container { padding: 48px 24px; }
     .tech-stack-grid { grid-template-columns: 1fr 1fr; }
 }
+
+/*uiux html/
+/* 给 UI/UX 注入灵魂的 CSS 补丁 */
+.uiux-hero {
+    background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.05), #fff);
+    border-bottom: none;
+}
+.step-card:hover {
+    border-color: var(--accent);
+    background: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
+}
+.iphone-frame {
+    border: 12px solid #1e293b; /* 更有质感的边框 */
+    box-shadow: 0 50px 100px -20px rgba(2, 6, 23, 0.3);
+}
+
+/*fyp html*/
+/* FYP 皇冠明珠版 CSS 补丁 */
+.fyp-hero {
+    background: #020617; /* 深海蓝 */
+    position: relative;
+}
+.fyp-hero h1 em {
+    color: #f59e0b !important; /* 金色 */
+    text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+.award-tag {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.05));
+    border-color: #f59e0b;
+    color: #fbbf24;
+}
+.step-number {
+    color: #f59e0b !important; /* 步骤数字也换成金色 */
+    opacity: 0.5;
+}

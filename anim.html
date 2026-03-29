@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation & Motion | Lee Wen Tyng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Animation 页面专属样式 */
+        .project-hero {
+            padding: 160px 24px 80px;
+            background: #0a0a0a;
+            color: var(--text-white);
+            text-align: center;
+            position: relative;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(244, 63, 94, 0.1) 0%, transparent 70%); /* 采用粉红/红色调区分动画频道 */
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .case-study-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* 视频/作品展示网格 */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .showcase-item {
+            background: #fff;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .showcase-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+
+        .video-placeholder i {
+            font-size: 3rem;
+            opacity: 0.8;
+        }
+
+        .anim-meta {
+            padding: 20px;
+        }
+
+        .anim-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #f43f5e;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .showcase-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header" class="scrolled"> 
+        <nav class="navbar">
+            <a href="index.html" class="logo">WT<span class="dot">.</span></a>
+            <a href="index.html#projects" class="btn btn-outline" style="padding: 8px 20px;">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="section-container">
+                <p class="section-label" style="color: #fb7185;">Motion Graphics</p>
+                <h1 class="hero-text" style="font-size: 3.5rem; color: white;">Moving <em>Stories</em></h1>
+                <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">从角色建模到动态图形，通过帧与帧之间的艺术赋予数字生命。</p>
+            </div>
+        </section>
+
+        <section class="case-study-container">
+            
+            <div class="reveal">
+                <h2 class="section-heading">3D Modeling & <em>Rigging</em></h2>
+                <div class="showcase-grid">
+                    <div class="showcase-item">
+                        <div class="video-placeholder">
+                            <i class="fas fa-play-circle"></i>
+                            </div>
+                        <div class="anim-meta">
+                            <span class="anim-tag">Character Animation</span>
+                            <h3>Maya Rigging Project</h3>
+                            <p>负责完整的角色骨骼绑定与权重分配，实现流畅的肢体动作。</p>
+                        </div>
+                    </div>
+                    <div class="showcase-item">
+                        <div class="video-placeholder">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <div class="anim-meta">
+                            <span class="anim-tag">Environment Design</span>
+                            <h3>Low-Poly World</h3>
+                            <p>使用 Maya 和 Substance Painter 制作的低多边形游戏场景模型。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
+
+            <div class="reveal">
+                <h2 class="section-heading">2D Motion <em>Design</em></h2>
+                <div class="showcase-grid">
+                    <div class="showcase-item">
+                        <div class="video-placeholder">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div class="anim-meta">
+                            <span class="anim-tag">After Effects</span>
+                            <h3>Explainer Video</h3>
+                            <p>利用形状图层动画解释复杂的 UI 交互逻辑。</p>
+                        </div>
+                    </div>
+                    <div class="showcase-item">
+                        <div class="video-placeholder">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="anim-meta">
+                            <span class="anim-tag">Frame by Frame</span>
+                            <h3>Hand-Drawn Effects</h3>
+                            <p>在数字作品中融合传统逐帧动画带来的视觉张力。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="section section-dark reveal" style="text-align: center;">
+            <div class="section-container">
+                <h2 class="section-heading">The Creative <em>Toolbox</em></h2>
+                <div class="skill-tags" style="justify-content: center; font-size: 1.2rem;">
+                    <span>Autodesk Maya</span>
+                    <span>Blender</span>
+                    <span>After Effects</span>
+                    <span>Premiere Pro</span>
+                </div>
+                <div style="margin-top: 50px;">
+                    <a href="index.html#contact" class="btn btn-primary">Start a Project <i class="fas fa-paper-plane"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Lee Wen Tyng. Animation Portfolio.</p>
+    </footer>
+
+    <script>
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
