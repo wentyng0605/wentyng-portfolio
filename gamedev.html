@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Dev & XR | Lee Wen Tyng</title>
+    <title>Game Development | Lee Wen Tyng</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -65,8 +65,8 @@
 <body>
 
     <aside class="side-nav">
-        <a href="#project-1" class="nav-dot active" data-name="The X-Project"></a>
-        <a href="#project-2" class="nav-dot" data-name="FYP Game"></a>
+        <a href="#project-1" class="nav-dot active" data-name="Unity Game"></a>
+        <a href="#project-2" class="nav-dot" data-name="Unreal Engine"></a>
         <a href="#project-3" class="nav-dot" data-name="Game Jam 2025"></a>
         <a href="#project-4" class="nav-dot" data-name="Unreal Exploration"></a>
         <a href="#project-5" class="nav-dot" data-name="VR Interaction"></a>
@@ -82,28 +82,34 @@
     </header>
 
     <main>
+
         <section class="project-hero">
             <div class="section-container">
                 <p class="section-label" style="color: #60a5fa;">Game Development</p>
-                <h1 class="hero-text" style="font-size: 3.5rem; color: white;">Immersive <br><em>Digital Realms</em></h1>
-                <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">融合了我在 Xhinobi 实习期间积累的 Unity 经验与交互逻辑，打造高性能的虚拟体验。</p>
+                <h1 class="hero-text" style="font-size: 3.5rem; color: white;">Building <br><em>Virtual Universes</em></h1>
+                <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">Bridging technical logic with immersive storytelling to build high-performance virtual experiences</p>
             </div>
         </section>
+
+        
 
         <section class="case-study-container">
             
             <section id="project-1" class="project-section reveal">
-                <h2 class="section-heading">Featured: <em>The X-Project</em></h2>
+                <p class="section-label">Game Programming & Development</p>
+                <h2 class="section-heading">Featured: <em>The Fallen Olympus</em></h2>
                 <img src="assets/images/image1.jpeg" alt="Game Demo" class="demo-video">
                 
                 <div class="about-content">
-                    <h3>项目概览</h3>
-                    <p>这是一个为高流量公共展会设计的交互式软件。在 <strong>Xhinobi Studio</strong> 实习期间，我负责了核心玩法开发与 UI 组件的构建。</p>
+                    <h3>Project Overview</h3>
+                    <p>The Fallen Olympus is a mythological action-adventure built in Unity, where players step into the role of Ares, the fallen God of War. 
+                        Unbeknownst to Ares, he is a pawn in a grander scheme: Cronus, the Titan King, is secretly manipulating his journey to seize the Emblem’s power for his own dark ambitions.</p>
                     
-                    <h3>我的角色</h3>
+                    <h3>My Role</h3>
                     <ul>
-                        <li>使用 <strong>Unity C#</strong> 编写交互逻辑，确保在实时展出中达到 100% 的稳定性。</li>
-                        <li>进行性能优化，优化 Draw Calls 以适配中端硬件性能。</li>
+                        <li>I managed team coordination and streamlined the development workflow, ensuring a cohesive vision across all departments.</li>
+                        <li>Designed and implemented interactive puzzle and interaction mechanics.</li>
+                        <li>Created intuitive HUDs, menus, and UI interactions.</li>
                     </ul>
                 </div>
 
@@ -136,9 +142,11 @@
         </section>
         </section>
 
-        <section class="case-study-container">
             
-            <section id="project-2" class="project-section reveal">
+            
+            <section id="project-2" class="section section-dark reveal">
+
+                <section class="case-study-container">
                 <h2 class="section-heading">Featured: <em>The X-Project</em></h2>
                 <img src="assets/images/image1.jpeg" alt="Game Demo" class="demo-video">
                 
@@ -171,6 +179,19 @@
 
             <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
 
+            <section class="hub-selection reveal" style="padding: 100px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1000px; margin: 0 auto;">
+            <a href="gamedev-logic.html" class="hub-card" style="text-align: center; border: 1px solid rgba(255,255,255,0.1); padding: 60px; border-radius: 16px; text-decoration: none; color: white; transition: 0.3s; background: rgba(255,255,255,0.02);">
+                <i class="fas fa-code fa-3x" style="color: #60a5fa; margin-bottom: 20px;"></i>
+                <h2>Game Development</h2>
+                <p style="opacity: 0.6;">Programming & Logic</p>
+            </a>
+            <a href="gamedev-env.html" class="hub-card" style="text-align: center; border: 1px solid rgba(255,255,255,0.1); padding: 60px; border-radius: 16px; text-decoration: none; color: white; transition: 0.3s; background: rgba(255,255,255,0.02);">
+                <i class="fas fa-mountain fa-3x" style="color: #2dd4bf; margin-bottom: 20px;"></i>
+                <h2>Environment Design</h2>
+                <p style="opacity: 0.6;">Level & World Building</p>
+            </a>
+        </section>
+
             <div class="reveal">
                 <h2 class="section-heading">Rapid Prototyping: <em>Game Jam 2025</em></h2>
                 <p>在 48 小时内，我作为 Art Team 成员，在压力下完成了这款可玩原型。</p>
@@ -178,8 +199,7 @@
                     "快速解决问题、团队协作、以及在资源有限的情况下保证核心体验。"
                 </blockquote>
             </div>
-            
-        </section>
+            </section>
         </section>
 
         <section class="section section-dark reveal" style="text-align: center;">
