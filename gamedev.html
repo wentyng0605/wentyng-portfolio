@@ -108,6 +108,23 @@
     top: 0; left: 0; width: 100%; height: 100%;
 }
 
+.skill-tags {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 6px;
+}
+
+.skill-tags span {
+ font-size: 0.72rem;
+ padding: 4px 10px;
+ background: rgba(37, 99, 235, 0.1);
+ color: var(--accent);
+ border-radius: 50px;
+ font-weight: 500;
+}
+
+
+
 /* 3. 手机端适配逻辑 (核心修复) */
 @media (max-width: 768px) {
     .project-hero {
@@ -160,6 +177,11 @@
                 <h1 class="hero-text" style="font-size: 3.5rem; color: white;">Building <br><em>Virtual Universes</em></h1>
                 <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">Bridging technical logic with immersive storytelling to build high-performance virtual experiences</p>
             </div>
+            <div class="skill-tags" style="justify-content: center; font-size: 1.2rem;">
+                    <span>Unity C#</span>
+                    <span>Unreal Engine C++</span>
+                    <span>Autodesk Maya</span>
+                </div>
         </section>
         
 
@@ -415,7 +437,7 @@
                                 </iframe>
                             </div>
                             <div class="anim-meta">
-                                <span class="anim-tag" style="color: #f43f5e;">ENVIRONMENT DESIGN</span>
+                                <span class="anim-tag" style="color: #60a5fa;">ENVIRONMENT DESIGN</span>
                                 <h3>The Sakura Skyhouse</h3>
                                 <p>Wonder how it feels living above the cloud? This virtual environment -- Sakura Skyhouse is built high above the clouds. 
                                     It is designed to evoke the feeling of "a hidden paradise beyond the world", allows users to immerse themselves in a tranquil, floating sanctuary.</p>
@@ -437,7 +459,7 @@
                                 </iframe>
                             </div>
                             <div class="anim-meta">
-                                <span class="anim-tag" style="color: #f43f5e;">ENVIRONMENT DESIGN</span>
+                                <span class="anim-tag" style="color: #60a5fa;">ENVIRONMENT DESIGN</span>
                                 <h3>Moonlit Jing Guan Temple</h3>
                                 <p>A reimagined environment, envisioned as a peaceful sanctuary hidden away from the ordinary world. 
                                     The scene takes place on the full moon of fifteenth night of the lunar month.</p>
@@ -464,7 +486,7 @@
                                 </iframe>
                             </div>
                             <div class="anim-meta">
-                                <span class="anim-tag" style="color: #f43f5e;">ENVIRONMENT DESIGN</span>
+                                <span class="anim-tag" style="color: #60a5fa;">ENVIRONMENT DESIGN</span>
                                 <h3>The Isolated Island</h3>
                                 <p>Inspired by Ancient Greek mythology, This Athena-themed island is inspired by Ancient Greek mythology. 
                                     The mountain is sculpted using terrain tool, and the island is surrounded by a vast ocean. 
@@ -488,7 +510,7 @@
                                 </iframe>
                             </div>
                             <div class="anim-meta">
-                                <span class="anim-tag" style="color: #f43f5e;">ENVIRONMENT DESIGN</span>
+                                <span class="anim-tag" style="color:#60a5fa;">ENVIRONMENT DESIGN</span>
                                 <h3>Mayan Temple</h3>
                                 <p>The Mayan-themed battleground utilised a dark, atmospheric setting. 
                                     The overall atmosphere and aesthetic is enhanced by flames and torches, casting eerie light across ancient stone structures. 
@@ -522,11 +544,7 @@
         <section class="section reveal" style="text-align: center;">
             <div class="section-container">
                 <h2 class="section-heading">Have a game idea?</h2>
-                <div class="skill-tags" style="justify-content: center; font-size: 1.2rem;">
-                    <span>Unity C#</span>
-                    <span>Unreal Engine C++</span>
-                    <span>Autodesk Maya</span>
-                </div>
+                
                 <a href="index.html#contact" class="btn btn-primary">Let's Talk <i class="fas fa-paper-plane"></i></a>
             </div>
         </section>
