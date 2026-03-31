@@ -1046,6 +1046,29 @@ blockquote {
     grid-column: span 1;
 }
 
+/* 1. 调整 Hero 文字大小 */
+    .hero-text {
+        font-size: 2.5rem !important; /* 缩小标题防止折行过多 */
+    }
+
+    /* 2. 隐藏侧边点状导航 */
+    .side-nav {
+        display: none; /* 手机端侧边点容易误触，建议隐藏 */
+    }
+
+    /* 3. 将所有 Grid 改为单列 */
+    .tech-stack-grid, 
+    .gallery-grid, 
+    .case-intro-grid {
+        grid-template-columns: 1fr !important; /* 强制单列排列 */
+        gap: 20px;
+    }
+
+    /* 4. 调整容器间距 */
+    .case-study-container {
+        padding: 40px 20px; /* 减小内边距，留给内容更多空间 */
+    }
+    
 }
 
 @media (max-width: 480px) {
