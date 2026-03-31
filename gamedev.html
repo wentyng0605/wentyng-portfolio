@@ -83,40 +83,43 @@
     transform: translateY(-5px);
 }
 
-/* 视频包装器 */
+/* 视频容器保持 16:9 */
 .video-wrapper {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #000;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 比例 */
+    height: 0;
     overflow: hidden;
+    background: #000;
+    display: block; /* 消除块级元素下的额外空隙 */
 }
 
-.video-wrapper video {
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;
+    border: none;
+    display: block; /* 核心：防止 iframe 产生底部的幽灵空位 */
 }
 
-/* 文字描述区域 */
+/* 压缩文字区域的间距 */
 .anim-meta {
-    padding: 24px;
+    padding: 24px; /* 保持左右和底部的间距 */
+    padding-top: 12px; /* 核心：将顶部间距减半，让文字紧贴视频 */
     text-align: left;
 }
 
 .anim-tag {
+    margin-top: 0; /* 消除标签顶部的默认间距 */
+    margin-bottom: 6px;
     font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 1px;
     display: block;
-    margin-bottom: 8px;
 }
 
 .anim-meta h3 {
-    font-size: 1.25rem;
-    color: #1a1a1a;
-    margin-bottom: 10px;
-    font-family: 'Inter', sans-serif;
+    margin-top: 0; /* 确保标题不被推开 */
 }
 
 .anim-meta p {
@@ -416,9 +419,10 @@
                         <div class="showcase-item">
                             <div class="video-wrapper">
                                 <iframe 
-                                    src="https://www.youtube.com/embed/1vEILyL2mDc" 
+                                    src="https://www.youtube.com/embed/VIDEO_ID" 
+                                    title="YouTube video player" 
                                     frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     allowfullscreen>
                                 </iframe>
                             </div>
