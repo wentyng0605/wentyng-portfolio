@@ -83,74 +83,19 @@
     transform: translateY(-5px);
 }
 
-/* 视频包装器 */
-/* 视频容器保持 16:9 */
-.video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 比例 */
-    height: 0;
-    overflow: hidden;
-    background: #000;
-    display: block; /* 消除块级元素下的额外空隙 */
-}
 
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block; /* 核心：防止 iframe 产生底部的幽灵空位 */
-}
-
-/* 文字描述区域 */
-.anim-meta {
-    padding: 24px; /* 保持左右和底部的间距 */
-    padding-top: 12px; /* 核心：将顶部间距减半，让文字紧贴视频 */
-    text-align: left;
-}
-
-.anim-tag {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    display: block;
-    margin-top: 0; /* 消除标签顶部的默认间距 */
-    margin-bottom: 6px;
-}
-
-.anim-meta h3 {
-    font-size: 1.25rem;
-    color: #1a1a1a;
-    margin-bottom: 10px;
-    font-family: 'Inter', sans-serif;
-    margin-top: 0;
-}
-
-.anim-meta p {
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.5;
-}
 
 /* 手机端适配：改为单列显示 */
 @media (max-width: 768px) {
-    .showcase-grid {
-        grid-template-columns: 1fr;
-    }
+    
 }
     </style>
 </head>
 <body>
 
     <aside class="side-nav">
-        <a href="#project-1" class="nav-dot active" data-name="Unity Game"></a>
-        <a href="#project-2" class="nav-dot" data-name="Unreal Engine"></a>
-        <a href="#project-3" class="nav-dot" data-name="Game Jam 2025"></a>
-        <a href="#project-4" class="nav-dot" data-name="Unreal Exploration"></a>
-        <a href="#project-5" class="nav-dot" data-name="VR Interaction"></a>
-        <a href="#project-6" class="nav-dot" data-name="AR Prototype"></a>
+        <a href="#project-1" class="nav-dot active" data-name="Game Development"></a>
+        <a href="#project-2" class="nav-dot" data-name="Environment Design"></a>
     </aside>
 
     <header id="header" class="scrolled"> <nav class="navbar">
@@ -170,12 +115,12 @@
                 <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">Bridging technical logic with immersive storytelling to build high-performance virtual experiences</p>
             </div>
         </section>
-
         
 
+        
+    <section id="project-1" class="project-section reveal">
         <section class="case-study-container">
             
-            <section id="project-1" class="project-section reveal">
                 <p class="section-label">Game Programming & Development</p>
                 <h2 class="section-heading">Action-Adventure: <em>The Fallen Olympus</em></h2>
                 <div class="video-responsive">
@@ -246,11 +191,6 @@
 
             <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
 
-            
-            
-        </section>
-
-        <section id="solaria" class="project-section reveal">
                 <p class="section-label">Game Programming & Development</p>
                 <h2 class="section-heading">First-Person Shooting Game: <em>The Solaria</em></h2>
                 <div class="video-responsive">
@@ -337,9 +277,7 @@
             </div>
 
             <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
-        </section>
 
-        <section id="solaria" class="project-section reveal">
                 <p class="section-label">Game Programming & Development</p>
                 <h2 class="section-heading">Mobile Endless Runner Game: <em>Zi Xuan In The Wonderland</em></h2>
                 <div class="video-responsive">
@@ -408,11 +346,8 @@
                     </div>
                 </div>
             </div>
-
-            <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
         </section>
         </section>
-        
             
             <section id="project-2" class="section section-dark reveal">
 
@@ -433,10 +368,11 @@
                                 </iframe>
                             </div>
                             <div class="anim-meta">
-                                <span class="anim-tag" style="color: #f43f5e;">CHARACTER ANIMATION</span>
-                                <h3>Maya Rigging Project</h3>
-                                <p>A reimagined environment, envisioned as a peaceful sanctuary hidden away from the ordinary world. 
-                                    The scene takes place on the full moon of fifteenth night of the lunar month.</p>
+                                <span class="anim-tag" style="color: #f43f5e;">ENVIRONMENT DESIGN</span>
+                                <h3>The Sakura Skyhouse</h3>
+                                <p>Wonder how it feels living above the cloud? This virtual environment -- Sakura Skyhouse is built high above the clouds. 
+                                    It is designed to evoke the feeling of "a hidden paradise beyond the world", allows users to immerse themselves in a tranquil, floating sanctuary.</p>
+                                <p>With a soft purple color palette, handcrafted cloud formations, and self-modeled sakura trees and structures using Maya, the environment creates a dreamlike, meditative atmosphere, perfect for relaxation and exploration.</p>
                                 <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
                                     <i class="fab fa-youtube"></i> Behind the scenes
                                 </a>
@@ -445,58 +381,80 @@
 
                         <div class="showcase-item">
                             <div class="video-wrapper">
-                                <video poster="assets/images/thumb2.jpg" controls>
-                                    <source src="assets/videos/lowpoly-demo.mp4" type="video/mp4">
-                                </video>
+                                <iframe 
+                                    src="https://www.youtube.com/embed/1vEILyL2mDc" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                                </iframe>
                             </div>
                             <div class="anim-meta">
                                 <span class="anim-tag" style="color: #f43f5e;">ENVIRONMENT DESIGN</span>
-                                <h3>Low-Poly World</h3>
-                                <p>使用 Maya 和 Substance Painter 制作的低多边形游戏场景模型。</p>
+                                <h3>Moonlit Jing Guan Temple</h3>
+                                <p>A reimagined environment, envisioned as a peaceful sanctuary hidden away from the ordinary world. 
+                                    The scene takes place on the full moon of fifteenth night of the lunar month.</p>
+                                <p> </p>
+                                <p>The project began with gathering visual references and conceptual inspiration from Lotus Pier and Chang’an to establish the direction of the environment. 
+                                    The terrain was then created and sculpted using brushes to shape the lake, central island, and surrounding landscape. 
+                                    Key assets were imported and placed with attention to composition, balance, and storytelling. Lighting became a major focus in refining the atmosphere. 
+                                    Moonlight, bloom, and reflections were adjusted to evoke a calm night setting. 
+                                    The floating Kongming lanterns were created using particle effects to add motion and a sense of celebration. </p>
+                                <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
+                                    <i class="fab fa-youtube"></i> Behind the scenes
+                                </a>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="showcase-item">
+                            <div class="video-wrapper">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/1vEILyL2mDc" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="anim-meta">
+                                <span class="anim-tag" style="color: #f43f5e;">ENVIRONMENT DESIGN</span>
+                                <h3>The Isolated Island</h3>
+                                <p>Inspired by Ancient Greek mythology, This Athena-themed island is inspired by Ancient Greek mythology. 
+                                    The mountain is sculpted using terrain tool, and the island is surrounded by a vast ocean. 
+                                    The sunset aesthetic and the warm red-orange palette enhances the mystical atmosphere.</p>
+                                <p>The animations is created to improve a sense of immersiveness. 
+                                    It blends mythology, storytelling, and exploration to create a captivating game environment.</p>
+                                <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
+                                    <i class="fab fa-youtube"></i> Behind the scenes
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="showcase-item">
+                            <div class="video-wrapper">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/1vEILyL2mDc" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="anim-meta">
+                                <span class="anim-tag" style="color: #f43f5e;">ENVIRONMENT DESIGN</span>
+                                <h3>Mayan Temple</h3>
+                                <p>The Mayan-themed battleground utilised a dark, atmospheric setting. 
+                                    The overall atmosphere and aesthetic is enhanced by flames and torches, casting eerie light across ancient stone structures. 
+                                    The map is designed for strategic FPS combat, includes elevated vantage points for long-range shooting, hidden cover spots for tactical movement, and a central arena for intense face-to-face battles.</p>
+                                <p>Built entirely using Unity’s ProBuilder, this level balances verticality, cover, and engagement zones, creating a dynamic and immersive combat environment.</p>
+                                <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
+                                    <i class="fab fa-youtube"></i> Behind the scenes
+                                </a>
+                            </div>
+                        </div>
                 </div>
 
-                
-                <div class="video-wrapper">
-                    <iframe 
-                        src="https://www.youtube.com/embed/VIDEO_ID" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                
-                <div class="about-content">
-                    <h3>Project Overview</h3>
-                    <p>A reimagined environment, envisioned as a peaceful sanctuary hidden away from the ordinary world. 
-                        The scene takes place on the full moon of fifteenth night of the lunar month.</p>
-                    
-                    <h3>我的角色</h3>
-                    <ul>
-                        <li>使用 <strong>Unity C#</strong> 编写交互逻辑，确保在实时展出中达到 100% 的稳定性。</li>
-                        <li>进行性能优化，优化 Draw Calls 以适配中端硬件性能。</li>
-                    </ul>
-                </div>
-
-                <div class="tech-stack-grid">
-                    <div class="tech-item">
-                        <i class="fab fa-unity fa-2x" style="color: #222;"></i>
-                        <p>Unity 3D</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-code fa-2x" style="color: var(--accent);"></i>
-                        <p>C# Scripting</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-vr-cardboard fa-2x" style="color: #f43f5e;"></i>
-                        <p>OpenXR / VR</p>
-                    </div>
-                </div>
             </div>
-
-            <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
 
             <section class="hub-selection reveal" style="padding: 100px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1000px; margin: 0 auto;">
                 <a href="gamedev-logic.html" class="hub-card" style="text-align: center; border: 1px solid rgba(255,255,255,0.1); padding: 60px; border-radius: 16px; text-decoration: none; color: white; transition: 0.3s; background: rgba(255,255,255,0.02);">
@@ -511,22 +469,17 @@
                 </a>
             </section>
 
-            
-
-            <div class="reveal">
-                <h2 class="section-heading">Rapid Prototyping: <em>Game Jam 2025</em></h2>
-                <p>在 48 小时内，我作为 Art Team 成员，在压力下完成了这款可玩原型。</p>
-                <blockquote>
-                    "快速解决问题、团队协作、以及在资源有限的情况下保证核心体验。"
-                </blockquote>
-            </div>
             </section>
-        </section>
+            </section>
 
-        <section class="section section-dark reveal" style="text-align: center;">
+        <section class="section reveal" style="text-align: center;">
             <div class="section-container">
                 <h2 class="section-heading">Have a game idea?</h2>
-                <p style="margin-bottom: 30px;">无论你是需要一个技术原型，还是一个完整的 VR 解决方案，我都准备好迎接挑战。</p>
+                <div class="skill-tags" style="justify-content: center; font-size: 1.2rem;">
+                    <span>Unity C#</span>
+                    <span>Unreal Engine C++</span>
+                    <span>Autodesk Maya</span>
+                </div>
                 <a href="index.html#contact" class="btn btn-primary">Let's Talk <i class="fas fa-paper-plane"></i></a>
             </div>
         </section>
@@ -549,17 +502,22 @@
         
         
         
-  // Smooth scroll
- document.querySelectorAll('a[href^="#"]').forEach(anchor => {
- anchor.addEventListener('click', function(e) {
- e.preventDefault();
- const target = document.querySelector(this.getAttribute('href'));
- if (target) {
- target.scrollIntoView({ behavior: 'smooth', block: 'start' });
- document.querySelector('.nav-links').classList.remove('open');
- }
- });
- });
+ // Smooth scroll 修复版
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // 修复关键：增加一个判断，防止在没有 .nav-links 的页面报错
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks) {
+                navLinks.classList.remove('open');
+            }
+        }
+    });
+});
 
  /*sidenav scrolling logic*/
  window.addEventListener('scroll', () => {
