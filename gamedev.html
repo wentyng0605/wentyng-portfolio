@@ -83,12 +83,58 @@
     transform: translateY(-5px);
 }
 
-
-
-/* 手机端适配：改为单列显示 */
-@media (max-width: 768px) {
-    
+/* 1. 定义缺失的变量，确保基础颜色可见 */
+:root {
+    --bg-dark: #0a0a0a;
+    --text-white: #ffffff;
+    --accent: #60a5fa;
+    --border: rgba(255, 255, 255, 0.1);
+    --radius: 12px;
+    --radius-sm: 8px;
 }
+
+/* 2. 视频容器响应式修复 */
+.video-responsive {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 比例 */
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    margin-bottom: 30px;
+    background: #000;
+}
+.video-responsive iframe {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+}
+
+/* 3. 手机端适配逻辑 (核心修复) */
+@media (max-width: 768px) {
+    .project-hero {
+        padding: 100px 20px 60px; /* 减小间距防止首屏过长 */
+    }
+    .hero-text {
+        font-size: 2.2rem !important; /* 缩小标题防止折行 */
+    }
+    .side-nav {
+        display: none; /* 手机端隐藏侧边点导航，避免遮挡 */
+    }
+    .case-study-container {
+        padding: 40px 15px; /* 增加边缘间距 */
+    }
+    .showcase-grid, .gallery-grid, .hub-selection {
+        grid-template-columns: 1fr !important; /* 强制所有网格变为单列 */
+        gap: 20px;
+    }
+    .gallery-item {
+        height: 200px; /* 限制手机端图片高度 */
+    }
+    .video-wrapper {
+        aspect-ratio: 16 / 9; /* 保持 YouTube 比例 */
+    }
+}
+
+
     </style>
 </head>
 <body>
@@ -498,7 +544,7 @@
                     entry.target.classList.add('revealed');
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.05 });
         revealElements.forEach(el => observer.observe(el));
         
         
@@ -540,6 +586,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+
     </script>
 </body>
 </html>
