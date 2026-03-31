@@ -83,6 +83,7 @@
     transform: translateY(-5px);
 }
 
+/* 视频包装器 */
 /* 视频容器保持 16:9 */
 .video-wrapper {
     position: relative;
@@ -103,7 +104,7 @@
     display: block; /* 核心：防止 iframe 产生底部的幽灵空位 */
 }
 
-/* 压缩文字区域的间距 */
+/* 文字描述区域 */
 .anim-meta {
     padding: 24px; /* 保持左右和底部的间距 */
     padding-top: 12px; /* 核心：将顶部间距减半，让文字紧贴视频 */
@@ -111,15 +112,20 @@
 }
 
 .anim-tag {
-    margin-top: 0; /* 消除标签顶部的默认间距 */
-    margin-bottom: 6px;
     font-size: 0.7rem;
     font-weight: 700;
+    letter-spacing: 1px;
     display: block;
+    margin-top: 0; /* 消除标签顶部的默认间距 */
+    margin-bottom: 6px;
 }
 
 .anim-meta h3 {
-    margin-top: 0; /* 确保标题不被推开 */
+    font-size: 1.25rem;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    font-family: 'Inter', sans-serif;
+    margin-top: 0;
 }
 
 .anim-meta p {
