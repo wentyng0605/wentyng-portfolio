@@ -85,6 +85,99 @@
             left: 0;
             color: var(--accent);
         }
+
+        /* Gameplay Highlight Styles */
+.interest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.interest-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: left;
+}
+
+.interest-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(245, 158, 11, 0.1); /* 使用你的 Accent 颜色作为投影 */
+    border-color: var(--accent);
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    background: rgba(245, 158, 11, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--accent);
+    font-size: 1.5rem;
+}
+
+.interest-card h4 {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    color: #111;
+}
+
+.project-gallery {
+    margin-top: 50px;
+    padding-bottom: 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 默认双列排版 */
+    gap: 20px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 12px; /* 匹配你现有的圆角 */
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover; /* 确保图片铺满格子且不变形 */
+    display: block;
+    transition: filter 0.3s ease;
+}
+
+/* 悬停效果：轻微放大并提亮 */
+.gallery-item:hover {
+    transform: scale(1.02);
+}
+
+.gallery-item:hover img {
+    filter: brightness(1.1);
+}
+
+
+/* 手机端适配 */
+@media (max-width: 768px) {
+    .interest-grid {
+        grid-template-columns: 1fr;
+    }
+    .gallery-grid {
+    grid-template-columns: 1fr;
+}
+.gallery-item.wide {
+    grid-column: span 1;
+}
+}
     </style>
 </head>
 <body>
@@ -104,27 +197,186 @@
                 <div class="award-tag"><i class="fas fa-crown"></i> 1st Place - Best FYP Award</div>
                 <h1 style="font-size: 3.5rem; font-family: 'Playfair Display', serif;">Interactive Storytelling <br><em>in Virtual Spaces</em></h1>
                 <p style="max-width: 600px; margin: 20px auto; opacity: 0.9;">
-                    在厦门大学马来西亚分校获得肯定的力作，融合了 UI/UX 设计与实时开发技术。
+                    An award-winning integration of player experiences research and game prototype development at Xiamen University Malaysia.
                 </p>
             </div>
         </section>
 
-        <section class="case-study-content reveal">
-            <h2 class="section-heading">The <em>Challenge</em></h2>
-            <p>作为互动媒体设计专业的学生，我的毕业设计致力于解决虚拟现实中[这里填入你的研究方向]的问题。这不仅是一次技术挑战，更是一次深入的用户体验探索。</p>
+        <section id="part-1" class="case-study-content reveal">
+        <p class="section-label" style="color: var(--accent);">Part I: The Overview</p>
+        <h2 class="section-heading">Gameplay & <em>Production</em></h2>
+        
+        <div class="video-responsive">
+            <iframe 
+                src="https://www.youtube.com/embed/VTkJDHS9qjw" 
+                frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+        
+        <div class="about-content">
+            <h3>Project Overview</h3>
+            <p>The Little Guardian is a 3D side-scrolling platformer-adventure set in a medieval, mysterious world. 
+                The player takes on the role of a young guardian tasked with uncovering the cause of a dark curse that is draining the life from the forest. 
+                By blending platforming and RPG elements, the game invites players to embark on a journey through a semi-open world filled with secrets, puzzles, and challenges. 
+                As the mystery of the kingdom unfolds, the player must master movement, solve puzzles, and battle enemies to confront the spreading curse at the heart of the decay.</p>
+            
+            <h3>Production Process</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="assets/images/sketch.jpg" alt="Concept Art">
+                    <p class="image-caption">Concept Sketches</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/modeling.jpg" alt="3D Modeling">
+                    <p class="image-caption">Maya Modeling</p>
+                </div>
+            </div>
+        </div>
+        <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
+    </section>
+
+    <section id="part-2" class="case-study-content reveal" style="padding: 60px 0;">
+        <p class="section-label" style="color: var(--accent);">Part II: Core Gameplay Experience</p>
+        <h2 class="section-heading">More Than Just a <em>Game</em>.</h2>
+        
+        <div class="video-responsive">
+            <iframe 
+                src="https://www.youtube.com/embed/VTkJDHS9qjw" 
+                frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="experience-intro">
+            <p>Step into a world where <strong>mechanics meet emotion</strong>. The gameplay is designed around [Core Mechanic, e.g., spatial manipulation], allowing players to interact with the environment in ways previously thought impossible.</p>
+        </div>
+
+        
+        <div class="interest-grid">
+            <div class="interest-card">
+                <div class="icon-box"><i class="fas fa-magic"></i></div>
+                <h4>Immersive Interaction</h4>
+                <p>Utilizing <strong>Hand Tracking</strong> to create a natural "touch" within the virtual space, making every object feel tangible.</p>
+                
+            </div>
+            <div class="interest-card">
+                <div class="icon-box"><i class="fas fa-puzzle-piece"></i></div>
+                <h4>Adaptive Puzzles</h4>
+                <p>Challenges that evolve based on user behavior, ensuring the <strong>flow state</strong> is maintained throughout the journey.</p>
+            </div>
+            <div class="interest-card">
+                <div class="icon-box"><i class="fas fa-wind"></i></div>
+                <h4>Atmospheric Feedback</h4>
+                <p>A dynamic environment that reacts to player presence through <strong>real-time lighting and spatial audio</strong>.</p>
+            </div>
+        </div>
+
+        <div class="project-gallery">
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="assets/images/image1.jpg" alt="Level Design Process" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/image1.jpg" alt="Character Rigging" loading="lazy">
+                        </div>
+                        <div class="gallery-item"> <img src="assets/images/image1.jpg" alt="Final Environment Render" loading="lazy">
+                        </div>
+                        
+                    </div>
+                </div>
+        <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
+    </section>
+
+                        
+
+
+    <section id="part-2" class="case-study-content reveal">
+        <p class="section-label" style="color: var(--accent);">Part III: Experience Development</p>
+        <h2 class="section-heading">The Production & <em>Development</em></h2>
+
+        <p>As the sole creator of this project, I managed the full production lifecycle—balancing technical constraints with creative vision to deliver a polished 3D experience.</p>
             
             <div class="process-grid">
                 <div>
                     <span class="step-number">01.</span>
-                    <h3>Research</h3>
-                    <p>通过对潜在用户的深度调研，我确立了项目的核心交互逻辑与视觉基调。</p>
+                    <h3>Ideation & Proposal</h3>
+                    <p>I initiated the project by defining the core vision: a synergy between dark fantasy aesthetics and player agency. 
+                        This phase involved extensive brainstorming and market analysis to craft a solid project proposal that balanced creative storytelling with technical feasibility.</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/image1.jpg" alt="3D Modeling">
+                    <p class="image-caption">Maya Modeling</p>
+                </div>
+                
+            </div>
+            <div class="process-grid">
+                <div class="gallery-item">
+                    <img src="assets/images/image1.jpg" alt="3D Modeling">
+                    <p class="image-caption">Maya Modeling</p>
                 </div>
                 <div>
                     <span class="step-number">02.</span>
-                    <h3>Prototyping</h3>
-                    <p>利用 Unity 进行了多轮迭代，确保交互的流畅性与视觉的一致性。</p>
+                    <h3>Player Preference Survey & Prototyping</h3>
+                    <p>Before development, I conducted a targeted survey to understand player mechanics preferences. 
+                        This data allowed me to identify which interaction types fostered the strongest sense of agency, directly informing my game planning and core mechanic design.</p>
                 </div>
             </div>
+            <div class="process-grid">
+                <div>
+                    <span class="step-number">03.</span>
+                    <h3>World Building & Narrative</h3>
+                    <p>I meticulously designed a decaying medieval world where every asset, from the weathered stone bridges to the bioluminescent flora, serves a narrative purpose. 
+                        By using layered fog and dynamic lighting, I created an atmosphere that visually reflects the encroaching curse.</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/image1.jpg" alt="3D Modeling">
+                    <p class="image-caption">Maya Modeling</p>
+                </div>
+            </div>
+            <div class="process-grid">
+                <div class="gallery-item">
+                    <img src="assets/images/image1.jpg" alt="3D Modeling">
+                    <p class="image-caption">Maya Modeling</p>
+                </div>
+                <div>
+                    <span class="step-number">04.</span>
+                    <h3>Gameplay Programming & Mechanics</h3>
+                    <p>Using C# and Unity, I developed a responsive 3D side-scrolling movement system. 
+                        I focused on the "feel" of the character—weight, jump arcs, and combat impact—to ensure that the Actual Mechanical Agency 
+                        I was researching was felt directly through the controller.</p>
+                </div>
+            </div>
+        
+        <div class="video-responsive">
+            <iframe 
+                src="https://www.youtube.com/embed/VTkJDHS9qjw" 
+                frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+        
+        <div class="about-content">
+            <h3>Project Overview</h3>
+            <p>The Little Guardian is a 3D side-scrolling platformer-adventure set in a medieval, mysterious world. 
+                The player takes on the role of a young guardian tasked with uncovering the cause of a dark curse that is draining the life from the forest. 
+                By blending platforming and RPG elements, the game invites players to embark on a journey through a semi-open world filled with secrets, puzzles, and challenges. 
+                As the mystery of the kingdom unfolds, the player must master movement, solve puzzles, and battle enemies to confront the spreading curse at the heart of the decay.</p>
+            
+            <h3>Production Process</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="assets/images/sketch.jpg" alt="Concept Art">
+                    <p class="image-caption">Concept Sketches</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/modeling.jpg" alt="3D Modeling">
+                    <p class="image-caption">Maya Modeling</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="case-study-content reveal">
+            <h2 class="section-heading">The <em>Challenge</em></h2>
+            
         </section>
 
         <section class="section-dark" style="padding: 80px 0;">
