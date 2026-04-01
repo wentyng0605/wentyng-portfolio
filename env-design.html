@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* Environment Design 专属样式 */
+        :root {
+            --bg-dark: #0a0a0a;
+            --text-white: #ffffff;
+            --accent: #2dd4bf;
+            --border: rgba(255, 255, 255, 0.1);
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+
         .project-hero {
             padding: 160px 24px 80px;
             background: #07090a;
@@ -77,10 +86,62 @@
             font-size: 1rem;
         }
 
+        /* 视频/作品展示网格 */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .showcase-item {
+            background: #fff;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .showcase-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+
+        .video-placeholder i {
+            font-size: 3rem;
+            opacity: 0.8;
+        }
+
+        .anim-meta {
+            padding: 20px;
+        }
+
+        .anim-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #f43f5e;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+        }
+
         /* 移动端适配 */
         @media (max-width: 768px) {
             .wide-content { grid-template-columns: 1fr; }
             .wide-img { height: 300px; }
+            .showcase-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -104,51 +165,114 @@
             </div>
         </section>
 
-        <section class="case-study-container">
-            
-            <div class="reveal">
-                <h2 class="section-heading">Cinematic <em>Environments</em></h2>
-                <div class="wide-showcase">
-                    <img src="assets/images/image1.jpeg" alt="Environment Showcase" class="wide-img">
-                    <div class="wide-content">
-                        <div class="env-stats">
-                            <div><span>Software</span><strong>Unreal Engine 5 / Octane</strong></div>
-                            <div><span>Focus</span><strong>Lighting & Atmosphere</strong></div>
-                            <div><span>Role</span><strong>Environment Artist</strong></div>
+        <section id="project-2" class="section section reveal">
+
+                <section class="case-study-container">
+                    <div class="reveal">
+                    <p class="section-label">Video Production</p>
+                    <h2 class="section-heading">Audio-Visual &  <em>Cinematography</em></h2>
+                    
+                    <div class="showcase-grid">
+                        <div class="showcase-item">
+                            <div class="video-wrapper">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/B8ktT7GAL_c" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="anim-meta">
+                                <span class="anim-tag" style="color: var(--accent);">Short Film</span>
+                                <h3>I AM WATCHING YOU</h3>
+                                <p>A heartfelt 2D animation that tells the story of a young girl escaping the horrors of war. Struggling to survive in the harsh desert, 
+                                    she faces countless hardships until someone kind-hearted from an oasis rescues her, offering her a chance to begin a new life filled with hope.</p>
+                                
+                            </div>
                         </div>
-                        <div class="about-content">
-                            <h3>光影叙事：废墟中的新生</h3>
-                            <p>该项目重点在于通过**实时全局光照 (Lumen)** 表现自然光在室内空间的散射效果。我设计了整套材质系统，利用纹理细节来传达环境的历史感与叙事深度。</p>
+
+                        <div class="showcase-item">
+                            <div class="video-wrapper">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/M53kTxGfHDc" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="anim-meta">
+                                <span class="anim-tag" style="color: var(--accent);">DOCUMENTARY</span>
+                                <h3>The Organic Utopia</h3>
+                                <p>The animation is about the heroic battle of two warriors against monstrous creatures that emerged after a meteorite crash. 
+                                    Fighting bravely to protect the human, they ultimately sacrifice themselves. 
+                                    After a century, their descendants return to honor the fallen heroes who brought them peace.</p>
+                            </div>
                         </div>
-                    </div>
+
                 </div>
+
             </div>
 
-            <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
+            </section>
+            </section>
 
-            <div class="reveal">
-                <h2 class="section-heading">Multimedia <em>Workflow</em></h2>
-                <div class="tech-stack-grid">
-                    <div class="tech-item">
-                        <i class="fas fa-camera-retro" style="color: #2dd4bf;"></i>
-                        <p>Cinematography</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-mountain" style="color: #2dd4bf;"></i>
-                        <p>Terrain Design</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-lightbulb" style="color: #2dd4bf;"></i>
-                        <p>Lighting Art</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-video" style="color: #2dd4bf;"></i>
-                        <p>Post-Production</p>
-                    </div>
+        <section id="project-2" class="section section-dark reveal">
+
+                <section class="case-study-container">
+                    <div class="reveal">
+                    <p class="section-label">AFTER Effects</p>
+                    <h2 class="section-heading">VFX & <em>Motion Studies</em></h2>
+                    
+                    <div class="showcase-grid">
+                        <div class="showcase-item">
+                            <div class="video-wrapper">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/gsLQfIuOL00" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="anim-meta">
+                                <span class="anim-tag" style="color: var(--accent);">2D animation</span>
+                                <h3>Rays of Hope</h3>
+                                <p>A heartfelt 2D animation that tells the story of a young girl escaping the horrors of war. Struggling to survive in the harsh desert, 
+                                    she faces countless hardships until someone kind-hearted from an oasis rescues her, offering her a chance to begin a new life filled with hope.</p>
+                                
+                            </div>
+                        </div>
+
+                        <div class="showcase-item">
+                            <div class="video-wrapper">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/OrZbB8b8SKM" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="anim-meta">
+                                <span class="anim-tag" style="color: var(--accent);">Final Project</span>
+                                <h3>Celestial Heroes</h3>
+                                <p>The animation is about the heroic battle of two warriors against monstrous creatures that emerged after a meteorite crash. 
+                                    Fighting bravely to protect the human, they ultimately sacrifice themselves. 
+                                    After a century, their descendants return to honor the fallen heroes who brought them peace.</p>
+                                <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
+                                    <i class="fab fa-youtube"></i> Behind the scenes
+                                </a>
+                            </div>
+                        </div>
+
                 </div>
+
             </div>
 
-        </section>
+            </section>
+            </section>
 
         <section class="section section-dark reveal" style="text-align: center;">
             <div class="section-container">

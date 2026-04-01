@@ -623,6 +623,19 @@
     font-weight: bold;
 }
 
+.video-responsive {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 比例 */
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    margin-bottom: 30px;
+    background: #000;
+}
+.video-responsive iframe {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+}
 
 
 /* 还原原图的色块逻辑 */
@@ -723,11 +736,13 @@
         <h2 class="section-heading">Gameplay & <em>Production</em></h2>
         
         <div class="video-responsive">
-            <iframe 
-                src="https://www.youtube.com/embed/VTkJDHS9qjw" 
-                frameborder="0" allowfullscreen>
-            </iframe>
-        </div>
+                    <iframe 
+                        src="https://www.youtube.com/embed/VTkJDHS9qjw" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
         
         <div class="about-content">
             <h3>Project Overview</h3>
