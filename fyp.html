@@ -169,7 +169,7 @@
 /* Thesis 网格排版 */
 .thesis-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1 1fr;
     gap: 20px;
     margin: 40px 0;
 }
@@ -185,6 +185,14 @@
     align-items: center;
     gap: 10px;
     color: var(--accent);
+    margin-bottom: 12px;
+}
+
+.thesis-card li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
     margin-bottom: 12px;
 }
 
@@ -235,6 +243,396 @@
     color: #444;
 }
 
+/* --- Thesis Results Section --- */
+
+/* 1. 数据高亮横幅：突出最核心的 r 值和 p 值 */
+.stats-banner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+    background: #111827; /* 深色背景突出专业感 */
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.stat-box .value {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #f59e0b; /* 使用你的 Accent 橙色 */
+    font-family: 'Inter', sans-serif;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.stat-box p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 2. 发现与洞察网格 */
+.insights-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: start;
+    margin-top: 50px;
+}
+
+.insight-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.insight-text ul {
+    list-style: none;
+    padding: 0;
+}
+
+.insight-text li {
+    margin-bottom: 20px;
+    padding-left: 25px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.insight-text li::before {
+    content: '✓'; /* 呼应你原图中的打勾符号 */
+    position: absolute;
+    left: 0;
+    color: #10b981; /* 成功绿 */
+    font-weight: bold;
+}
+
+/* 3. 结果图片/图表容器 */
+.insight-visual {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.insight-visual img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Mechanics List Container */
+.mechanics-container {
+    margin: 40px 0;
+}
+
+.mechanics-title {
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.rq-tag {
+    font-size: 0.8rem;
+    background: #dcfce7;
+    color: #166534;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+/* Individual List Items */
+.mechanics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mech-item {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px 25px;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.mech-item:hover {
+    transform: translateX(10px); /* 悬停时向右微滑，增强互动感 */
+}
+
+/* 排名数字样式 */
+.mech-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-right: 25px;
+    opacity: 0.2;
+    min-width: 40px;
+}
+
+.mech-info h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #111;
+}
+
+.mech-info p {
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Findings Cards */
+.findings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.finding-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.finding-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
+
+.rq-badge {
+    display: inline-block;
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--accent);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    margin-bottom: 15px;
+}
+
+/* Key Highlights Summary Box */
+.summary-highlight-box {
+    background: #111827; /* 深色背景增加总结感 */
+    color: white;
+    padding: 40px;
+    border-radius: 16px;
+    margin-top: 50px;
+    border-left: 6px solid var(--accent);
+}
+
+.highlight-content h3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    color: var(--accent);
+}
+
+.highlight-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.highlight-content li {
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+}
+
+.highlight-content li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+/* 对比网格布局 */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.group-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 35px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.group-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.group-header i {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+/* AG 组配色：偏向冷静的紫色/蓝色 */
+.ag-group { border-top: 5px solid #6366f1; }
+.ag-group i { color: #6366f1; }
+
+/* AC 组配色：偏向活力的橙色/红色 */
+.ac-group { border-top: 5px solid #f59e0b; }
+.ac-group i { color: #f59e0b; }
+
+/* 排行榜样式 */
+.ranking-list {
+    list-style: none;
+    padding: 0;
+}
+
+.ranking-list li {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.ranking-list li span {
+    width: 28px;
+    height: 28px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* 关键发现盒子 */
+.key-insight-box {
+    background: #f8fafc;
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 20px;
+    border-left: 4px solid var(--accent);
+}
+
+/* Findings Section Layout */
+.research-segment {
+    padding: 60px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.segment-desc {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 30px;
+    max-width: 700px;
+}
+
+/* RQ2 Data Strip Fix */
+.data-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    background: #f8fafc;
+    padding: 40px;
+    border-radius: 16px;
+    border: none;
+}
+
+.stats-mini-grid {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-pill {
+    background: #fff;
+    padding: 15px 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    min-width: 140px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+}
+
+/* Comparison Grid Logic */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.group-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    border-top: 5px solid #ddd;
+}
+
+.ag-group { border-top-color: #6366f1; }
+.ac-group { border-top-color: var(--accent); }
+
+.ranking-list li {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.ranking-list span {
+    width: 24px;
+    height: 24px;
+    background: #eee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+
+
+/* 还原原图的色块逻辑 */
+.rank-1 { border-left: 6px solid #fecaca; } /* Exploration - Pink */
+.rank-2 { border-left: 6px solid #ffedd5; } /* Combine - Orange */
+.rank-3 { border-left: 6px solid #fef9c3; } /* Collectibles - Yellow */
+.rank-4 { border-left: 6px solid #dcfce7; } /* Movement - Green */
+.rank-5 { border-left: 6px solid #dbeafe; } /* Triggers - Blue */
+.default {border-left: 6px solid #f59e0b;}
+
 /* 手机端适配 */
 @media (max-width: 768px) {
     .interest-grid {
@@ -253,10 +651,52 @@
         gap: 20px;
     }
     .hero-title { font-size: 2.5rem !important; }
+
+    .insights-grid {
+        grid-template-columns: 1fr; /* 手机端变为单列 */
+    }
+    .stats-banner {
+        padding: 30px 20px;
+    }
+    .stat-box .value {
+        font-size: 2.2rem;
+    }
+    .mech-item {
+        padding: 15px;
+    }
+    .mech-number {
+        font-size: 1.4rem;
+        margin-right: 15px;
+    }
+    .findings-grid {
+        grid-template-columns: 1fr;
+    }
+    .summary-highlight-box {
+        padding: 30px 20px;
+    }
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+     .data-strip {
+        flex-direction: column;
+        text-align: center;
+    }
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
 }
     </style>
 </head>
 <body>
+
+    <aside class="side-nav">
+        <a href="#part-1" class="nav-dot active" data-name="Project Overview"></a>
+        <a href="#part-2" class="nav-dot" data-name="Gameplay Highlight"></a>
+        <a href="#part-3" class="nav-dot" data-name="Project Development"></a>
+        <a href="#part-4" class="nav-dot" data-name="Thesis Overview"></a>
+        <a href="#part-5" class="nav-dot" data-name="Result and Findings"></a>
+        <a href="#part-6" class="nav-dot" data-name="Achievements"></a>
+    </aside>
 
     <header id="header" class="scrolled">
         <nav class="navbar">
@@ -365,7 +805,7 @@
                         
 
 
-    <section id="part-2" class="case-study-content reveal">
+    <section id="part-3" class="case-study-content reveal">
         <p class="section-label" style="color: var(--accent);">Part III: Experience Development</p>
         <h2 class="section-heading">The Production & <em>Development</em></h2>
 
@@ -445,56 +885,232 @@
                         I iteratively balanced the difficulty curves and refined the "Actual Mechanical Agency" to ensure a cohesive and engaging user journey.</p>
                 </div>  
             </div>
-    
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
+
     </section>
 
-        <section id="thesis" class="case-study-content reveal section-dark-alt">
-            <p class="section-label" style="color: var(--accent);">Part II: The Research</p>
+        <section id="part-4" class="case-study-content reveal section-dark-alt">
+            <p class="section-label" style="color: var(--accent);">Part IV: The Research</p>
             <h2 class="section-heading">Academic <em>Thesis</em></h2>
+            <div class="about-content">
+            <span class="step-number">01.</span>
+            <h3>Research Focus: <em>Does Agency Mechanics Brings Engagement?</em></h3>
+            <p>Does more freedom equal more fun? This thesis quantifies the relationship between Mechanical Agency and User Engagement. 
+                Using a mix of quantitative surveys (n=98) and qualitative playtests (n=39), I designed an Unreal Engine
+                 5 prototype that successfully demonstrates how tailoring mechanics to specific player archetypes (Action vs. Adventure) can statistically improve the user experience.</p>
+            </div>
+            
             <div class="thesis-highlights">
-                <div class="highlight-box">
-                    <h4><i class="fas fa-lightbulb"></i> The Insight</h4>
-                    <p>Identified that <strong>spatial UI anchoring</strong> significantly reduces motion sickness compared to floating HUDs.</p>
-                </div>
+                <div class="about-content">
+                    <span class="step-number">02.</span>
+                    <h3>The Research Foundation: <em>Behind The Framework</em></h3>
 
-                <div class="stats-row">
-                    <div class="stat-card">
-                        <span class="stat-val">15%</span>
-                        <p>Faster Task Completion</p>
+                    <div class="thesis-highlight-box" style="border-left: 4px solid #f59e0b; padding: 20px; background: rgba(245, 158, 11, 0.05);">
+                        <h4 style="color: #f59e0b; margin-top: 0;">Aim</h4>
+                        <p style="font-style: italic; margin-bottom: 0;">
+                            To Investigate the relationship between <strong>player trait preferences, Actual Mechanical Agency(AMA)-mechanics, and player engagement </strong>in Platformer-Adventure games.
+                        </p>
                     </div>
-                    <div class="stat-card">
-                        <span class="stat-val">25%</span>
-                        <p>Less Eye Strain</p>
+                    <div class="thesis-grid">
+                        <div class="thesis-card">
+                            <h4><i class="fas fa-bullseye"></i> Objectives</h4>
+                            <div class="mechanics-list">
+                        <div class="mech-item default">
+                            <span class="mech-number">01</span>
+                            <div class="mech-info">
+                                <p>To identify the top five game mechanics that are most preferred by the Aesthetic-Goal and Aesthetic-Challenge players in a Platformer-Adventure game using preliminary analysis</p>
+                            </div>
+                        </div>
+                        <div class="mech-item default">
+                            <span class="mech-number">02</span>
+                            <div class="mech-info">
+                                <p>To develop a Platformer-Adventure game prototype incorporating the selected game mechanics using Unreal Engine. </p>
+                            </div>
+                        </div>
+                        <div class="mech-item default">
+                            <span class="mech-number">03</span>
+                            <div class="mech-info">
+                                <p>To evaluate players perceived AMA using the Game Sense of Agency (GSoA) and analyse its relationship with player engagement using the Game Engagement Questionnaire (GEQ). </p>
+                            </div>
+                        </div>
+                        <div class="mech-item default">
+                            <span class="mech-number">04</span>
+                            <div class="mech-info">
+                                <p>To analyse the differences in preferences for AMA-mechanics between Aesthetic-Goal player and Aesthetic-Challenge player in the developed Platformer-Adventure game prototype.</p>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                        <div class="thesis-card">
+                            <h4><i class="fas fa-question-circle"></i> Research Question</h4>
+                            <div class="mechanics-container">
+                    <div class="mechanics-list">
+                        <div class="mech-item default">
+                            <span class="mech-number">RQ1</span>
+                            <div class="mech-info">
+                                <p>What are the top five game mechanics that are most preferred by Aesthetic-Goal and Aesthetic-Challenge players in a Platformer-Adventure game?</p>
+                            </div>
+                        </div>
+                        <div class="mech-item default">
+                            <span class="mech-number">RQ2</span>
+                            <div class="mech-info">
+                                <p>How do the perceived Actual Mechanical Agency (AMA) impact player engagement among Aesthetic-Goal and Aesthetic-Challenge players in the Platformer-Adventure game? </p>
+                            </div>
+                        </div>
+                        <div class="mech-item default">
+                            <span class="mech-number">RQ3</span>
+                            <div class="mech-info">
+                                <p>What are the differences in the preferences of Aesthetic-Goal and Aesthetic-Challenge players with the top five AMA-mechanics in the proposed Platformer-Adventure game? </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                    <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
 
-                <div class="professor-quote">
-                    <p>"A masterclass in blending <strong>technical execution</strong> with <strong>user-centric research</strong>."</p>
-                    <cite>— FYP Evaluation Committee</cite>
+        </section>
+
+        <section id="part-5" class="case-study-content reveal section-dark-alt">
+            <div class="findings-header">
+                <p class="section-label" style="color: var(--accent);">Part V: Research Findings</p>
+                <h2 class="section-heading">Insights & <em>Validated Hypotheses</em></h2>
+            </div>
+
+            <div class="research-segment">
+                <h3 class="mechanics-title">Top 5 Gameplay Mechanics <span class="rq-tag">RQ1 <i class="fas fa-check"></i></span></h3>
+                <p class="segment-desc">Identified through a survey of <strong>98 participants</strong>, with <em>Exploration</em> ranking as the most engaging element across both groups.</p>
+                
+                <div class="mechanics-list">
+                    <div class="mech-item rank-1">
+                        <span class="mech-number">01</span>
+                        <div class="mech-info">
+                            <h4>Exploration</h4>
+                            <p>The primary driver for engagement, universally valued by all player types.</p>
+                        </div>
+                    </div>
+                    <div class="mech-item rank-2">
+                        <span class="mech-number">02</span>
+                        <div class="mech-info">
+                            <h4>Use, Examine & Combine</h4>
+                            <p>Essential for deep puzzle-solving and world interaction.</p>
+                        </div>
+                    </div>
+                    <div class="mech-item rank-3">
+                        <span class="mech-number">03</span>
+                        <div class="mech-info">
+                            <h4>Collectible Items</h4>
+                            <p>Critical for progression-driven satisfaction (p = 0.006).</p>
+                        </div>
+                    </div>
+                    <div class="mech-item rank-4">
+                        <span class="mech-number">04</span>
+                        <div class="mech-info">
+                            <h4>Movement Aids</h4>
+                            <p>Crucial for maintaining gameplay flow and spatial navigation.</p>
+                        </div>
+                    </div>
+                    <div class="mech-item rank-5">
+                        <span class="mech-number">05</span>
+                        <div class="mech-info">
+                            <h4>Triggers</h4>
+                            <p>Ensuring dynamic world reactions to player agency.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="thesis-grid">
-                <div class="thesis-card">
-                    <h4><i class="fas fa-bullseye"></i> Objectives</h4>
-                    <p>To investigate the impact of adaptive depth in VR interfaces on user visual fatigue.</p>
+
+            <div class="research-segment data-strip">
+                <div class="data-content">
+                    <h3 class="mechanics-title">Agency & Engagement <span class="rq-tag">RQ2 <i class="fas fa-check"></i></span></h3>
+                    <p>Proven <strong>significant positive correlation</strong> between perceived Agency (AMA) and Player Engagement via Pearson’s Coefficient.</p>
                 </div>
-                <div class="thesis-card">
-                    <h4><i class="fas fa-question-circle"></i> Research Question</h4>
-                    <p>How does spatial UI positioning influence interaction efficiency in immersive environments?</p>
+                <div class="stats-mini-grid">
+                    <div class="stat-pill">
+                        <span class="stat-value">0.448</span>
+                        <span class="stat-label">Correlation (r)</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="stat-value">0.004</span>
+                        <span class="stat-label">P-Value</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="thesis-results">
-                <h3>Findings & Results</h3>
-                <div class="result-banner">
-                    <div class="result-item"><h2>15%</h2><p>Efficiency Increase</p></div>
-                    <div class="result-item"><h2>-25%</h2><p>Visual Fatigue Reduction</p></div>
+            <div class="research-segment data-strip">
+                <div class="data-content">
+                    <h3 class="mechanics-title">Player Traits & Engagement <span class="rq-tag">RQ2 <i class="fas fa-check"></i></span></h3>
+                    <p>AC players has stronger correlation (r = 0.542), while AG players has moderate correlation (r = 0.372), which means AC players feel more fun than AG players</p>
                 </div>
-                <p style="margin-top: 20px;">Through rigorous usability testing, the research proved that [Brief Conclusion].</p>
+                <div class="stats-mini-grid">
+                    <div class="stat-pill">
+                        <span class="stat-value">0.542</span>
+                        <span class="stat-label">AC Correlation (r)</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="stat-value">0.372</span>
+                        <span class="stat-label">AG Correlation (r)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-segment">
+                <h3 class="mechanics-title">Preference Divergence <span class="rq-tag">RQ3 <i class="fas fa-check"></i></span></h3>
+                <p class="research-question">"What are the differences in the preferences of AG and AC players with the top five AMA-mechanics?"</p>
+
+                <div class="comparison-grid">
+                    <div class="group-card ag-group">
+                        <div class="group-header">
+                            <i class="fas fa-bullseye"></i>
+                            <h3>Aesthetic-Goal (AG)</h3>
+                            <p>Prioritizes Logic & Progression</p>
+                        </div>
+                        <ul class="ranking-list">
+                            <li><span>1</span> Use, Examine & Combine</li>
+                            <li><span>2</span> Exploration</li>
+                            <li><span>3</span> Collectible Items</li>
+                            <li><span>4</span> Puzzles</li>
+                            <li><span>5</span> Hint Systems</li>
+                        </ul>
+                    </div>
+
+                    <div class="group-card ac-group">
+                        <div class="group-header">
+                            <i class="fas fa-fist-raised"></i>
+                            <h3>Aesthetic-Challenge (AC)</h3>
+                            <p>Focuses on Mastery & Action</p>
+                        </div>
+                        <ul class="ranking-list">
+                            <li><span>1</span> Exploration</li>
+                            <li><span>2</span> Movement Aids</li>
+                            <li><span>3</span> Triggers</li>
+                            <li><span>4</span> Collectible Item</li>
+                            <li><span>5</span> Use, Examine & Combine</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-insight-box">
+                    <h4><i class="fas fa-lightbulb"></i> Core Finding</h4>
+                    <p>While <strong>Exploration</strong> is universally valued, <strong>AG players</strong> lean towards intellectual engagement, whereas <strong>AC players</strong> demand fluid control and environmental reactivity.</p>
+                </div>
+            </div>
+
+            <div class="summary-highlight-box">
+                <div class="highlight-content">
+                    <h3><i class="fas fa-star"></i> Key Highlights</h3>
+                    <ul>
+                        <li><strong>Empowerment Drives Retention:</strong> Higher Mechanical Agency (AMA) statistically increases overall player engagement.</li>
+                        <li><strong>Tailored Experiences:</strong> AG players prefer progression-based mechanics like <em>Collectible Items</em> (p = 0.006).</li>
+                        <li><strong>Movement is Key:</strong> AC players prioritize exploration efficiency and <em>Movement Aids</em> for better flow.</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <section class="section-dark" style="padding: 80px 0;">
+        <section id="part-6" class="section-dark" style="padding: 80px 0;">
             <div class="section-container" style="max-width: 1000px; margin: 0 auto; padding: 0 24px;">
                 <div class="project-media">
                     <img src="assets/images/fypcert.png" alt="FYP Showcase" style="width: 100%; border-radius: var(--radius);">
@@ -529,6 +1145,27 @@
             });
         }, { threshold: 0.1 });
         revealElements.forEach(el => observer.observe(el));
+
+        /*sidenav scrolling logic*/
+ window.addEventListener('scroll', () => {
+    let current = "";
+    const sections = document.querySelectorAll('section[id]'); // 确保你的项目 section 都有 id
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    document.querySelectorAll('.nav-dot').forEach(dot => {
+        dot.classList.remove('active');
+        if (dot.getAttribute('href').includes(current)) {
+            dot.classList.add('active');
+        }
+    });
+});
     </script>
 </body>
 </html>
