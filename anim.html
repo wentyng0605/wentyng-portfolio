@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* Animation 页面专属样式 */
+        :root {
+            --bg-dark: #0a0a0a;
+            --text-white: #ffffff;
+            --accent: #f43f5e;
+            --border: rgba(255, 255, 255, 0.1);
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+
         .project-hero {
             padding: 160px 24px 80px;
             background: #0a0a0a;
@@ -86,8 +95,91 @@
             display: block;
         }
 
+        /* Feature Cards with 3D Tilt */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+            perspective: 1000px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-gold));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(245, 158, 11, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(129, 140, 248, 0.1));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(129, 140, 248, 0.15));
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+        }
+
+        .feature-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .feature-card strong {
+            color: var(--accent-gold);
+        }
+
+
         @media (max-width: 768px) {
             .showcase-grid { grid-template-columns: 1fr; }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -112,62 +204,201 @@
         </section>
 
         <section class="case-study-container">
+            <section id="project-1" class="project-section reveal">
             
+                <p class="section-label">3D Animation</p>
+                <h2 class="section-heading">The Legacy To A <em>True Man</em></h2>
+                <div class="video-responsive">
+                    <iframe 
+                        src="https://www.youtube.com/embed/VRP5kN3Tw7g" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <div class="about-content">
+                    <h3>Project Overview</h3>
+                    <p>"The Legacy To A True Man" is a high-fantasy 3D cinematic short film that tells a story of ambition, lineage, and personal growth.
+                        Set in a world divided between two powerful forces—the noble Harrysons and the formidable Kingdom of Aldhave—the narrative follows a young prince 
+                        named Arche Harryson.Trapped within a "gilded cage" of royal duty, 
+                        Arche dreams of a life beyond castle walls, leading him on a dangerous journey where he must prove his worth to claim his true legacy.</p>
+                    
+                    <h3>My Role: <em>Project Leader & Gameplay Programmer</em></h3>
+                    <div class="feature-grid">
+                    <div class="feature-card reveal" data-tilt>
+                        <div class="feature-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <h4>Project Leader</h4>
+                        <p> Coordinated with the team to ensure visual consistency between the stylized assets and the narrative flow.</p>
+                    </div>
+                    <div class="feature-card reveal" data-tilt>
+                        <div class="feature-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h4>Rigging & Animation</h4>
+                        <p>Implemented complex character rigs to allow for expressive facial animations and agile combat maneuvers. </p>
+                    </div>
+                    <div class="feature-card reveal" data-tilt>
+                        <div class="feature-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <h4>Visual Storytelling</h4>
+                        <p>Managed the cinematography and lighting to establish a distinct mood for each scene, from the warm sunset of the training grounds to the high-contrast lighting of the battle arena.</p>
+                    </div>
+                </div>
+
+                <div class="project-gallery">
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="assets/images/image1.jpg" alt="Level Design Process" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/image1.jpg" alt="Character Rigging" loading="lazy">
+                        </div>
+                        <div class="gallery-item"> <img src="assets/images/image1.jpg" alt="Final Environment Render" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/image1.jpg" alt="UI Implementation" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+        </section>
+
+        <section class="case-study-container">
             <div class="reveal">
-                <h2 class="section-heading">3D Modeling & <em>Rigging</em></h2>
+                <h2 class="section-heading">3D Modeling &<em>Rigging</em></h2>
                 <div class="showcase-grid">
                     <div class="showcase-item">
-                        <div class="video-placeholder">
-                            <i class="fas fa-play-circle"></i>
+                            <div class="video-wrapper">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/CUZMwPjbkSA" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                                </iframe>
                             </div>
-                        <div class="anim-meta">
-                            <span class="anim-tag">Character Animation</span>
-                            <h3>Maya Rigging Project</h3>
-                            <p>负责完整的角色骨骼绑定与权重分配，实现流畅的肢体动作。</p>
+                            <div class="anim-meta">
+                                <span class="anim-tag" style="color: var(--accent);">Character Modeling</span>
+                                <h3>Main Character Modeling and Rigging</h3>
+                                
+                                <p>Inspired by Ancient Greek mythology, This Athena-themed island is inspired by Ancient Greek mythology. 
+                                    The mountain is sculpted using terrain tool, and the island is surrounded by a vast ocean. 
+                                    The sunset aesthetic and the warm red-orange palette enhances the mystical atmosphere.</p>
+                                <p>The animations is created to improve a sense of immersiveness. 
+                                    It blends mythology, storytelling, and exploration to create a captivating game environment.</p>
+                                <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
+                                    <i class="fab fa-youtube"></i> Behind the scenes
+                                </a>
+                            </div>
                         </div>
-                    </div>
+
                     <div class="showcase-item">
-                        <div class="video-placeholder">
-                            <i class="fas fa-cube"></i>
+                            <div class="video-wrapper">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/CUZMwPjbkSA" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="anim-meta">
+                                <span class="anim-tag" style="color: var(--accent);">Environment Modeling</span>
+                                <h3>Castle Modeling</h3>
+                                
+                                <p>Inspired by Ancient Greek mythology, This Athena-themed island is inspired by Ancient Greek mythology. 
+                                    The mountain is sculpted using terrain tool, and the island is surrounded by a vast ocean. 
+                                    The sunset aesthetic and the warm red-orange palette enhances the mystical atmosphere.</p>
+                                <p>The animations is created to improve a sense of immersiveness. 
+                                    It blends mythology, storytelling, and exploration to create a captivating game environment.</p>
+                                <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
+                                    <i class="fab fa-youtube"></i> Behind the scenes
+                                </a>
+                            </div>
                         </div>
-                        <div class="anim-meta">
-                            <span class="anim-tag">Environment Design</span>
-                            <h3>Low-Poly World</h3>
-                            <p>使用 Maya 和 Substance Painter 制作的低多边形游戏场景模型。</p>
-                        </div>
-                    </div>
+
+                    
                 </div>
             </div>
 
             <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
 
-            <div class="reveal">
-                <h2 class="section-heading">2D Motion <em>Design</em></h2>
-                <div class="showcase-grid">
-                    <div class="showcase-item">
-                        <div class="video-placeholder">
-                            <i class="fas fa-film"></i>
+        </section>
+
+        <section id="project-2" class="section section-dark reveal">
+
+                <section class="case-study-container">
+                    <div class="reveal">
+                    <p class="section-label">2D Animation</p>
+                    <h2 class="section-heading">2D Motion <em>Design</em></h2>
+                    
+                    <div class="showcase-grid">
+                        <div class="showcase-item">
+                            <div class="video-wrapper">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/gsLQfIuOL00" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="anim-meta">
+                                <span class="anim-tag" style="color: var(--accent);">2D animation</span>
+                                <h3>Rays of Hope</h3>
+                                <p>A heartfelt 2D animation that tells the story of a young girl escaping the horrors of war. Struggling to survive in the harsh desert, 
+                                    she faces countless hardships until someone kind-hearted from an oasis rescues her, offering her a chance to begin a new life filled with hope.</p>
+                                
+                            </div>
                         </div>
-                        <div class="anim-meta">
-                            <span class="anim-tag">After Effects</span>
-                            <h3>Explainer Video</h3>
-                            <p>利用形状图层动画解释复杂的 UI 交互逻辑。</p>
+
+                        <div class="showcase-item">
+                            <div class="video-wrapper">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/OrZbB8b8SKM" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="anim-meta">
+                                <span class="anim-tag" style="color: var(--accent);">Final Project</span>
+                                <h3>Celestial Heroes</h3>
+                                <p>The animation is about the heroic battle of two warriors against monstrous creatures that emerged after a meteorite crash. 
+                                    Fighting bravely to protect the human, they ultimately sacrifice themselves. 
+                                    After a century, their descendants return to honor the fallen heroes who brought them peace.</p>
+                                <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
+                                    <i class="fab fa-youtube"></i> Behind the scenes
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="showcase-item">
-                        <div class="video-placeholder">
-                            <i class="fas fa-magic"></i>
-                        </div>
-                        <div class="anim-meta">
-                            <span class="anim-tag">Frame by Frame</span>
-                            <h3>Hand-Drawn Effects</h3>
-                            <p>在数字作品中融合传统逐帧动画带来的视觉张力。</p>
-                        </div>
-                    </div>
+
                 </div>
+
             </div>
 
-        </section>
+            </section>
+            </section>
 
         <section class="section section-dark reveal" style="text-align: center;">
             <div class="section-container">

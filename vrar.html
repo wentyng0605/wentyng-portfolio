@@ -97,6 +97,85 @@
             color: var(--text);
         }
 
+        /* Feature Cards with 3D Tilt */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+            perspective: 1000px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-gold));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(245, 158, 11, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(129, 140, 248, 0.1));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(129, 140, 248, 0.15));
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+        }
+
+        .feature-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .feature-card strong {
+            color: var(--accent-gold);
+        }
+
         /* 获奖/高光时刻 */
         .award-banner {
             background: rgba(37, 99, 235, 0.04);
@@ -110,11 +189,30 @@
         }
         .award-banner i { color: #f59e0b; font-size: 1.5rem; }
 
+        /* 针对 Full Gameplay 按钮的微调 */
+        .case-study-container .btn-primary {
+            padding: 12px 32px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background-color: var(--accent); /* 使用你定义的紫色 */
+            border: none;
+        }
+
+        .case-study-container .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(147, 51, 234, 0.3);
+            opacity: 0.9;
+        }
+
         /* 移动端微调 */
         @media (max-width: 768px) {
             .project-hero h1 { font-size: 2.5rem; }
             .case-study-container { padding: 48px 24px; }
             .tech-stack-grid { grid-template-columns: 1fr 1fr; }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
         }
     </style>
 </head>
@@ -163,24 +261,23 @@
                         <div class="feature-icon">
                             <i class="fas fa-magic"></i>
                         </div>
-                        <h4>Immersive Interaction</h4>
-                        <p>Utilizing <strong>Hand Tracking</strong> to create a natural "touch" within the virtual space, making every object feel tangible.</p>
+                        <h4>Project Leader</h4>
+                        <p> Managed team coordination, ensuring smooth development and task delegation.</p>
                     </div>
                     <div class="feature-card reveal" data-tilt>
                         <div class="feature-icon">
                             <i class="fas fa-puzzle-piece"></i>
                         </div>
-                        <h4>Adaptive Puzzles</h4>
-                        <p>Challenges that evolve based on user behavior, ensuring the <strong>flow state</strong> is maintained throughout the journey.</p>
+                        <h4>VR Interaction Programming</h4>
+                        <p>Developed core gameplay mechanics, including note collection, puzzle interactions, and object manipulation in VR. </p>
                     </div>
                     <div class="feature-card reveal" data-tilt>
                         <div class="feature-icon">
                             <i class="fas fa-wind"></i>
                         </div>
-                        <h4>Atmospheric Feedback</h4>
-                        <p>A dynamic environment that reacts to player presence through <strong>real-time lighting and spatial audio</strong>.</p>
+                        <h4>Dialogue & VR Locomotion</h4>
+                        <p> Implemented character dialogues and movement systems, ensuring a smooth and immersive VR navigation experience.</p>
                     </div>
-                </div>
                 </div>
 
                 <div class="project-gallery">
@@ -225,15 +322,22 @@
                         <p>UI/UX Designer & Programmer</p>
                     </div>
                 </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="https://youtu.be/RWYMJJJmBjA" target="_blank" class="btn btn-primary">
+                        View Full Gameplay </i>
+                    </a>
+                </div>
+
             </div>
 
             <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
 
                 <p class="section-label">Game Programming & Development</p>
-                <h2 class="section-heading">First-Person Shooting Game: <em>The Solaria</em></h2>
+                <h2 class="section-heading">AR Interactive Storybook: <em>Diner Escape</em></h2>
                 <div class="video-responsive">
                     <iframe 
-                        src="https://www.youtube.com/embed/6C6HWAQQD5s" 
+                        src="https://www.youtube.com/embed/R1Rf5oJM2GE" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
@@ -242,31 +346,36 @@
                 
                 <div class="about-content">
                     <h3>Project Overview</h3>
-                    <p>On a mysterious, cursed island, once-human monsters roam, their bodies twisted by an ancient curse. 
-                        Deep within this desolate land lies Solaria, a legendary flower rumored to possess the power to cure any illness.</p>
-                    <p>To save his beloved, the protagonist embarks on a perilous journey to retrieve the flower. 
-                        As players navigate this abandoned realm, they must unravel the island’s dark secrets while surviving the horrors that dwell within.</p>
-                    
-                    <h3>My Role: <em>Team Leader</em></h3>
-                    <ul>
-                        <li>- I managed the team’s development pipeline, ensuring high-quality execution from concept to final build.</li>
-                        <li>- Designed and programmed interactive puzzles and dialogue interactions.</li>
-                        <li>- Developed in-game cinematics using Cinemachine and Timeline for immersive storytelling.</li>
-                    </ul>
+                    <p>Diner Escape is an innovative AR mobile application that transforms a traditional children's storybook into a multi-sensory, interactive experience.
+                        By leveraging augmented reality, the project bridges the gap between physical reading and digital gaming, allowing readers to assist a family as 
+                        they succumb to the irresistible aroma of a local diner.
+                        The story follows Mia, Jack, Papa, and Mama as they "escape" their household chores to follow a delicious scent through the city.</p>
                 </div>
 
-                <div class="tech-stack-grid">
-                    <div class="tech-item">
-                        <i class="fab fa-unity fa-2x" style="color: #222;"></i>
-                        <p>Project Leader</p>
+                <div class="about-content"> 
+                    <h3>Core AR Features & Interactions</h3>
+                    <div class="feature-grid">
+                    <div class="feature-card reveal" data-tilt>
+                        <div class="feature-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <h4>Gamified Storytelling</h4>
+                        <p>Each character's journey is paired with a unique mini-game, such as a Math Challenge with Papa or rhythm-based tasks to progress through the town.</p>
                     </div>
-                    <div class="tech-item">
-                        <i class="fas fa-code fa-2x" style="color: var(--accent);"></i>
-                        <p>Puzzle & Dialogue Interaction</p>
+                    <div class="feature-card reveal" data-tilt>
+                        <div class="feature-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h4>Interactive Narrative</h4>
+                        <p>Players don't just read; they actively "help" characters navigate streets and overcome obstacles to reach their goal. </p>
                     </div>
-                    <div class="tech-item">
-                        <i class="fas fa-vr-cardboard fa-2x" style="color: #f43f5e;"></i>
-                        <p>In-Game Cutscene & Cinematics</p>
+                    <div class="feature-card reveal" data-tilt>
+                        <div class="feature-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <h4>Audio-Visual Immersion</h4>
+                        <p>The experience features synchronized voice-over narration and sound effects that trigger as AR content appears, enhancing the emotional connection to the story.</p>
+                    </div>
                     </div>
                 </div>
 
@@ -313,76 +422,6 @@
                     </div>
                 </div>
             </div>
-
-            <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
-
-                <p class="section-label">Game Programming & Development</p>
-                <h2 class="section-heading">Mobile Endless Runner Game: <em>Zi Xuan In The Wonderland</em></h2>
-                <div class="video-responsive">
-                    <iframe 
-                        src="https://www.youtube.com/embed/VYLMC5GAXCI" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                
-                <div class="about-content">
-                    <h3>Project Overview</h3>
-                    <p>Trapped within a mystical dreamworld, Zi Xuan must navigate a surreal landscape to escape before time runs out. 
-                        Players embark on a high-speed, visually immersive journey where they must run, dodge, and overcome obstacles. 
-                        The game explores the theme of the subconscious, featuring ever-changing dreamscapes filled with both beauty and hidden dangers.</p>
-                    
-                    <h3>My Role: <em>Solo Developer</em></h3>
-                    <ul>
-                        <li>- I managed the entire lifecycle from conceptualization to deployment, focusing on performance optimization and user engagement</li>
-                        <li>- Developed endless runner mechanics, obstacle logic, and player movement.</li>
-                        <li>- Created mobile-friendly interface for smooth gameplay.</li>
-                    </ul>
-                </div>
-
-                <div class="tech-stack-grid">
-                    <div class="tech-item">
-                        <i class="fab fa-unity fa-2x" style="color: #222;"></i>
-                        <p>Project Leader</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-code fa-2x" style="color: var(--accent);"></i>
-                        <p>Puzzle & Dialogue Interaction</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-vr-cardboard fa-2x" style="color: #f43f5e;"></i>
-                        <p>In-Game Cutscene & Cinematics</p>
-                    </div>
-                </div>
-
-                <div class="project-gallery">
-                    <div class="gallery-grid">
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Level Design Process" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Character Rigging" loading="lazy">
-                        </div>
-                        <div class="gallery-item"> <img src="assets/images/image1.jpg" alt="Final Environment Render" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="UI Implementation" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
         </section>
