@@ -123,6 +123,32 @@
  font-weight: 500;
 }
 
+/* 技能标签容器布局 */
+.item-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 16px 0; /* 控制与标题和描述的间距 */
+}
+
+/* 单个标签样式 */
+.skill-badge {
+    background: rgba(96, 165, 250, 0.1); /* 使用你常用的蓝色，带透明度 */
+    color: #60a5fa;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: 1px solid rgba(96, 165, 250, 0.2);
+    transition: all 0.3s ease;
+}
+
+.showcase-item:hover .skill-badge {
+    background: rgba(96, 165, 250, 0.2);
+    transform: translateY(-1px);
+}
 
 
 /* 3. 手机端适配逻辑 (核心修复) */
@@ -439,8 +465,13 @@
                             <div class="anim-meta">
                                 <span class="anim-tag" style="color: #60a5fa;">ENVIRONMENT DESIGN</span>
                                 <h3>The Sakura Skyhouse</h3>
-                                <p>Wonder how it feels living above the cloud? This virtual environment -- Sakura Skyhouse is built high above the clouds. 
-                                    It is designed to evoke the feeling of "a hidden paradise beyond the world", allows users to immerse themselves in a tranquil, floating sanctuary.</p>
+                                <div class="item-skills">
+                                    <span class="skill-badge">Unity</span>
+                                    <span class="skill-badge">3D Modeling</span>
+                                    <span class="skill-badge">VR Space Design</span>
+                                </div>
+                                <p>Wonder how it feels living above the cloud? This virtual (VR) environment -- Sakura Skyhouse is built high above the clouds. 
+                                    It is designed to evoke the feeling of "a hidden paradise beyond the world", allows users to immerse themselves in a tranquil, floating sanctuary using a VR device.</p>
                                 <p>With a soft purple color palette, handcrafted cloud formations, and self-modeled sakura trees and structures using Maya, the environment creates a dreamlike, meditative atmosphere, perfect for relaxation and exploration.</p>
                                 <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
                                     <i class="fab fa-youtube"></i> Behind the scenes
@@ -461,14 +492,14 @@
                             <div class="anim-meta">
                                 <span class="anim-tag" style="color: #60a5fa;">ENVIRONMENT DESIGN</span>
                                 <h3>Moonlit Jing Guan Temple</h3>
-                                <p>A reimagined environment, envisioned as a peaceful sanctuary hidden away from the ordinary world. 
-                                    The scene takes place on the full moon of fifteenth night of the lunar month.</p>
-                                <p> </p>
-                                <p>The project began with gathering visual references and conceptual inspiration from Lotus Pier and Chang’an to establish the direction of the environment. 
-                                    The terrain was then created and sculpted using brushes to shape the lake, central island, and surrounding landscape. 
-                                    Key assets were imported and placed with attention to composition, balance, and storytelling. Lighting became a major focus in refining the atmosphere. 
-                                    Moonlight, bloom, and reflections were adjusted to evoke a calm night setting. 
-                                    The floating Kongming lanterns were created using particle effects to add motion and a sense of celebration. </p>
+                                <div class="item-skills">
+                                    <span class="skill-badge">Unreal Engine</span>
+                                    <span class="skill-badge">Cinematics</span>
+                                    <span class="skill-badge">Level Design</span>
+                                </div>
+                                <p>A peaceful sanctuary inspired by the aesthetics of Lotus Pier and ancient Chang’an. 
+                                    Set under the fifteenth lunar moon, this environment features handcrafted terrains and a sculpted central lake. 
+                                    By orchestrating volumetric moonlight with dynamic particle-effect lanterns, the scene evokes a calm, celebratory atmosphere perfect for immersive exploration. </p>
                                 <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
                                     <i class="fab fa-youtube"></i> Behind the scenes
                                 </a>
@@ -488,6 +519,11 @@
                             <div class="anim-meta">
                                 <span class="anim-tag" style="color: #60a5fa;">ENVIRONMENT DESIGN</span>
                                 <h3>The Isolated Island</h3>
+                                <div class="item-skills">
+                                    <span class="skill-badge">Unity</span>
+                                    <span class="skill-badge">Atmospheric Lighting</span>
+                                    <span class="skill-badge">Level Design</span>
+                                </div>
                                 <p>Inspired by Ancient Greek mythology, This Athena-themed island is inspired by Ancient Greek mythology. 
                                     The mountain is sculpted using terrain tool, and the island is surrounded by a vast ocean. 
                                     The sunset aesthetic and the warm red-orange palette enhances the mystical atmosphere.</p>
@@ -512,10 +548,14 @@
                             <div class="anim-meta">
                                 <span class="anim-tag" style="color:#60a5fa;">ENVIRONMENT DESIGN</span>
                                 <h3>Mayan Temple</h3>
-                                <p>The Mayan-themed battleground utilised a dark, atmospheric setting. 
-                                    The overall atmosphere and aesthetic is enhanced by flames and torches, casting eerie light across ancient stone structures. 
-                                    The map is designed for strategic FPS combat, includes elevated vantage points for long-range shooting, hidden cover spots for tactical movement, and a central arena for intense face-to-face battles.</p>
-                                <p>Built entirely using Unity’s ProBuilder, this level balances verticality, cover, and engagement zones, creating a dynamic and immersive combat environment.</p>
+                                <div class="item-skills">
+                                    <span class="skill-badge">Unity</span>
+                                    <span class="skill-badge">ProBuilder</span>
+                                    <span class="skill-badge">Level Design</span>
+                                </div>
+                                <p>A dark, atmospheric battleground built entirely with Unity’s ProBuilder to balance verticality and tactical engagement.
+                                    The aesthetic is driven by dynamic torchlight casting eerie shadows across ancient stone structures，enhancing the immersive FPS experience.
+                                    Designed for strategic combat，the map features elevated vantage points，hidden tactical cover，and a high-intensity central arena.</p>
                                 <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
                                     <i class="fab fa-youtube"></i> Behind the scenes
                                 </a>
@@ -524,19 +564,6 @@
                 </div>
 
             </div>
-
-            <section class="hub-selection reveal" style="padding: 100px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1000px; margin: 0 auto;">
-                <a href="gamedev-logic.html" class="hub-card" style="text-align: center; border: 1px solid rgba(255,255,255,0.1); padding: 60px; border-radius: 16px; text-decoration: none; color: white; transition: 0.3s; background: rgba(255,255,255,0.02);">
-                    <i class="fas fa-code fa-3x" style="color: #60a5fa; margin-bottom: 20px;"></i>
-                    <h2>Game Development</h2>
-                    <p style="opacity: 0.6;">Programming & Logic</p>
-                </a>
-                <a href="gamedev-env.html" class="hub-card" style="text-align: center; border: 1px solid rgba(255,255,255,0.1); padding: 60px; border-radius: 16px; text-decoration: none; color: white; transition: 0.3s; background: rgba(255,255,255,0.02);">
-                    <i class="fas fa-mountain fa-3x" style="color: #2dd4bf; margin-bottom: 20px;"></i>
-                    <h2>Environment Design</h2>
-                    <p style="opacity: 0.6;">Level & World Building</p>
-                </a>
-            </section>
 
             </section>
             </section>

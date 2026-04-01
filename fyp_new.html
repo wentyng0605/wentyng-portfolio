@@ -4,1045 +4,2041 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Final Year Project | Lee Wen Tyng</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
     <style>
         :root {
-            --accent: #f59e0b;
-            --accent-light: rgba(245, 158, 11, 0.1);
-            --accent-border: rgba(245, 158, 11, 0.4);
-            --bg: #fdfcfb;
-            --bg-alt: #f8fafc;
-            --text: #111827;
-            --text-light: #555;
-            --text-muted: #888;
-            --border: rgba(0,0,0,0.05);
-            --radius: 16px;
-            --radius-sm: 12px;
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --bg-hover: #222230;
+            --accent-gold: #f59e0b;
+            --accent-gold-light: #fbbf24;
+            --accent-purple: #818cf8;
+            --accent-purple-light: #a5b4fc;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --glow-gold: rgba(245, 158, 11, 0.3);
+            --glow-purple: rgba(129, 140, 248, 0.3);
         }
 
-        /* ===== Hero ===== */
-        .fyp-hero {
-            padding: 160px 24px 100px;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                        url('assets/images/fypbg.png');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .fyp-hero h1 {
-            font-size: 3.5rem;
-            font-family: 'Playfair Display', serif;
-            line-height: 1.15;
-            margin-bottom: 20px;
+
+        html {
+            scroll-behavior: smooth;
         }
-        .fyp-hero p {
-            max-width: 620px;
-            margin: 0 auto;
-            opacity: 0.9;
-            font-size: 1.05rem;
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        /* ===== Award Tag ===== */
-        .award-tag {
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-gold);
+            border-radius: 4px;
+        }
+
+        /* Side Navigation */
+        .side-nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-dot::before {
+            content: attr(data-name);
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .nav-dot:hover::before,
+        .nav-dot.active::before {
+            opacity: 1;
+            right: 20px;
+        }
+
+        .nav-dot:hover,
+        .nav-dot.active {
+            background: var(--accent-gold);
+            box-shadow: 0 0 20px var(--glow-gold);
+            transform: scale(1.3);
+        }
+
+        @media (max-width: 768px) {
+            .side-nav {
+                display: none;
+            }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            padding: 20px 40px;
+            background: linear-gradient(to bottom, rgba(10, 10, 15, 0.95), transparent);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 15px 40px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo .dot {
+            color: var(--accent-gold);
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 30px var(--glow-gold);
+        }
+
+        .btn-outline {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(245, 158, 11, 0.2);
-            color: #f59e0b;
-            padding: 8px 18px;
+            padding: 10px 24px;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            box-shadow: 0 0 20px var(--glow-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 24px 80px;
+        }
+
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(129, 140, 248, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .award-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05));
+            color: var(--accent-gold);
+            padding: 12px 24px;
             border-radius: 50px;
             font-weight: 600;
             font-size: 0.9rem;
-            margin-bottom: 24px;
-            border: 1px solid var(--accent-border);
+            margin-bottom: 30px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
         }
 
-        /* ===== Content Layout ===== */
-        .case-study-content {
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 80px 24px;
+        .award-tag i {
+            animation: pulse 2s ease-in-out infinite;
         }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-title .word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: wordReveal 0.6s ease forwards;
+        }
+
+        @keyframes wordReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title em {
+            color: var(--accent-gold);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 1.5s;
+        }
+
+        .scroll-indicator i {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(10px); }
+            60% { transform: translateY(5px); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 24px;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .section-label {
-            font-weight: 600;
+            display: inline-block;
+            color: var(--accent-gold);
             font-size: 0.85rem;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--accent);
-            margin-bottom: 12px;
-        }
-        .section-heading {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.4rem;
-            margin-bottom: 30px;
-            line-height: 1.2;
-        }
-        .section-heading em {
-            color: var(--accent);
-        }
-        .section-divider {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 60px 0;
-        }
-        .section-dark-alt {
-            background: var(--bg-alt);
-        }
-        .section-dark {
-            background: #111827;
-            color: white;
+            margin-bottom: 15px;
         }
 
-        /* ===== Video ===== */
+        .section-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            margin-bottom: 40px;
+            line-height: 1.3;
+        }
+
+        .section-heading em {
+            color: var(--accent-gold);
+            font-style: italic;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-left.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-right.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-scale.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Stagger delays */
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
+        /* Video Container */
         .video-responsive {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            border-radius: var(--radius-sm);
-            margin-bottom: 40px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            border-radius: 16px;
+            margin: 40px 0;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
         }
+
         .video-responsive iframe {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             border: none;
         }
 
-        /* ===== About Content ===== */
-        .about-content h3 {
-            font-size: 1.25rem;
-            margin-bottom: 16px;
-            color: var(--text);
+        /* Content Cards */
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 30px 0;
+            transition: all 0.4s ease;
         }
-        .about-content p {
-            color: var(--text-light);
-            line-height: 1.8;
+
+        .content-card:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 40px rgba(245, 158, 11, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .content-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
             margin-bottom: 20px;
+            color: var(--text-primary);
         }
 
-        /* ===== Image Caption ===== */
-        .image-caption {
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 10px;
-            font-style: italic;
+        .content-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
         }
 
-        /* ===== Gallery ===== */
+        /* Gallery Grid */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            margin-top: 24px;
-        }
-        .gallery-item {
-            overflow: hidden;
-            border-radius: var(--radius-sm);
-            background: #f3f3f3;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .gallery-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-        }
-        .gallery-item img {
-            width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover;
-            display: block;
-            transition: filter 0.3s ease;
-        }
-        .gallery-item:hover img {
-            filter: brightness(1.05);
+            margin: 40px 0;
         }
 
-        /* ===== Feature Cards (Interest Grid) ===== */
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 10, 15, 0.8), transparent);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            z-index: 2;
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Feature Cards with 3D Tilt */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+            perspective: 1000px;
         }
+
         .feature-card {
-            background: #fff;
-            padding: 32px;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-                        box-shadow 0.3s ease,
-                        border-color 0.3s ease;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
         }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-purple));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
         .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(245, 158, 11, 0.08);
-            border-color: var(--accent);
+            border-color: rgba(245, 158, 11, 0.3);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(245, 158, 11, 0.1);
         }
-        .icon-box {
-            width: 48px;
-            height: 48px;
-            background: var(--accent-light);
-            border-radius: 12px;
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(129, 140, 248, 0.1));
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            color: var(--accent);
-            font-size: 1.3rem;
-        }
-        .feature-card h4 {
-            margin-bottom: 10px;
-            font-size: 1.05rem;
-            color: var(--text);
-        }
-        .feature-card p {
-            color: var(--text-light);
-            line-height: 1.7;
-            font-size: 0.95rem;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            transition: all 0.3s ease;
         }
 
-        /* ===== Process Timeline ===== */
-        .process-grid {
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(129, 140, 248, 0.15));
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+        }
+
+        .feature-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .feature-card strong {
+            color: var(--accent-gold);
+        }
+
+        /* Timeline / Process Grid */
+        .process-container {
+            position: relative;
+            margin: 50px 0;
+        }
+
+        .process-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-gold), var(--accent-purple), transparent);
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .process-container::before {
+                left: 20px;
+            }
+        }
+
+        .process-item {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 60px;
+            margin-bottom: 60px;
+            position: relative;
             align-items: center;
-            margin: 40px 0;
-        }
-        .step-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            color: var(--accent);
-            opacity: 0.25;
-            line-height: 1;
-            margin-bottom: 12px;
-        }
-        .process-grid h3 {
-            font-size: 1.15rem;
-            margin-bottom: 12px;
-        }
-        .process-grid p {
-            color: var(--text-light);
-            line-height: 1.75;
-            font-size: 0.95rem;
         }
 
-        /* ===== Thesis Grid ===== */
+        @media (max-width: 768px) {
+            .process-item {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding-left: 50px;
+            }
+        }
+
+        .process-item:nth-child(even) .process-content {
+            order: 2;
+        }
+
+        .process-item:nth-child(even) .process-visual {
+            order: 1;
+        }
+
+        @media (max-width: 768px) {
+            .process-item:nth-child(even) .process-content,
+            .process-item:nth-child(even) .process-visual {
+                order: unset;
+            }
+        }
+
+        .process-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: var(--bg-primary);
+            border: 3px solid var(--accent-gold);
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 20px var(--glow-gold);
+        }
+
+        @media (max-width: 768px) {
+            .process-dot {
+                left: 20px;
+            }
+        }
+
+        .process-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            opacity: 0.15;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .process-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .process-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .process-visual {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+
+        .process-visual:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .process-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: all 0.5s ease;
+        }
+
+        .process-visual:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Thesis Cards */
         .thesis-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
         }
+
         .thesis-card {
-            background: #fff;
-            padding: 28px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.4s ease;
         }
+
+        .thesis-card:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
         .thesis-card h4 {
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: var(--accent);
+            gap: 12px;
+            color: var(--accent-gold);
+            font-size: 1.1rem;
             margin-bottom: 20px;
+        }
+
+        .thesis-highlight-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.02));
+            border-left: 4px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .thesis-highlight-box h4 {
+            color: var(--accent-gold);
+            margin-bottom: 15px;
             font-size: 1.1rem;
         }
 
-        /* ===== Aim Box ===== */
-        .aim-box {
-            border-left: 4px solid var(--accent);
-            padding: 20px 24px;
-            background: var(--accent-light);
-            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-            margin-bottom: 30px;
-        }
-        .aim-box h4 {
-            color: var(--accent);
-            margin-top: 0;
-            margin-bottom: 8px;
-        }
-        .aim-box p {
-            font-style: italic;
-            margin: 0;
-            line-height: 1.7;
-        }
-
-        /* ===== Mech List ===== */
+        /* Mechanics List */
         .mechanics-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
+
         .mech-item {
             display: flex;
             align-items: center;
-            background: #fff;
-            border-radius: var(--radius-sm);
-            padding: 16px 24px;
-            border: 1px solid var(--border);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 18px 25px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
+
         .mech-item:hover {
-            transform: translateX(8px);
-            border-color: var(--accent);
+            transform: translateX(10px);
+            border-color: rgba(245, 158, 11, 0.3);
+            background: var(--bg-hover);
         }
+
         .mech-number {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-right: 20px;
-            opacity: 0.2;
+            color: var(--accent-gold);
+            opacity: 0.4;
             min-width: 50px;
         }
+
         .mech-info h4 {
             margin: 0;
             font-size: 1rem;
-            color: var(--text);
+            color: var(--text-primary);
         }
+
         .mech-info p {
             margin: 4px 0 0;
-            font-size: 0.88rem;
-            color: var(--text-light);
-            line-height: 1.6;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
         }
 
-        /* ===== Rank Colors ===== */
-        .rank-1 { border-left: 5px solid #fecaca; }
-        .rank-2 { border-left: 5px solid #ffedd5; }
-        .rank-3 { border-left: 5px solid #fef9c3; }
-        .rank-4 { border-left: 5px solid #dcfce7; }
-        .rank-5 { border-left: 5px solid #dbeafe; }
-        .rank-default { border-left: 5px solid var(--accent); }
+        /* Rank Colors */
+        .rank-1 { border-left: 4px solid #f43f5e; }
+        .rank-2 { border-left: 4px solid #f97316; }
+        .rank-3 { border-left: 4px solid #eab308; }
+        .rank-4 { border-left: 4px solid #22c55e; }
+        .rank-5 { border-left: 4px solid #3b82f6; }
 
-        /* ===== Research Segment ===== */
-        .research-segment {
-            padding: 50px 0;
-            border-bottom: 1px solid var(--border);
-        }
-        .mechanics-title {
-            font-size: 1.3rem;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .rq-tag {
-            font-size: 0.78rem;
-            background: #dcfce7;
-            color: #166534;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 600;
-        }
-        .segment-desc {
-            color: var(--text-light);
-            margin-bottom: 30px;
-            max-width: 700px;
-            line-height: 1.7;
+        /* Stats Banner */
+        .stats-banner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
         }
 
-        /* ===== Data Strip ===== */
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            font-family: 'Inter', sans-serif;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-box p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Counter Animation Class */
+        .counter {
+            opacity: 1;
+        }
+
+        /* Data Strip */
         .data-strip {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 30px;
-            background: var(--bg-alt);
-            padding: 36px 40px;
-            border-radius: var(--radius);
-            margin-bottom: 0;
+            gap: 40px;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            margin: 30px 0;
+            flex-wrap: wrap;
         }
-        .data-strip p {
-            color: var(--text-light);
-            line-height: 1.7;
-            margin-bottom: 0;
+
+        @media (max-width: 768px) {
+            .data-strip {
+                flex-direction: column;
+                text-align: center;
+            }
         }
+
+        .data-content {
+            flex: 1;
+        }
+
         .stats-mini-grid {
             display: flex;
-            gap: 16px;
-            flex-shrink: 0;
+            gap: 20px;
+            flex-wrap: wrap;
         }
+
         .stat-pill {
-            background: #fff;
-            padding: 16px 24px;
-            border-radius: var(--radius-sm);
+            background: var(--bg-secondary);
+            padding: 20px 30px;
+            border-radius: 16px;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-            min-width: 130px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            min-width: 140px;
         }
-        .stat-value {
+
+        .stat-pill:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-3px);
+        }
+
+        .stat-pill .value {
             display: block;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
-            color: var(--accent);
+            color: var(--accent-gold);
             line-height: 1;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
-        .stat-label {
-            font-size: 0.72rem;
+
+        .stat-pill .label {
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-muted);
         }
 
-        /* ===== Comparison Grid ===== */
+        /* Comparison Grid */
         .comparison-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-top: 30px;
+            gap: 30px;
+            margin: 40px 0;
         }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .group-card {
-            background: #fff;
-            padding: 32px;
-            border-radius: var(--radius);
-            border-top: 5px solid #ddd;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.02);
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
         }
+
+        .group-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .ag-group {
+            border-top: 4px solid var(--accent-purple);
+        }
+
+        .ac-group {
+            border-top: 4px solid var(--accent-gold);
+        }
+
         .group-header {
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 30px;
         }
+
         .group-header i {
-            font-size: 2rem;
-            margin-bottom: 12px;
-            display: block;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
         }
-        .ag-group { border-top-color: #6366f1; }
-        .ag-group i { color: #6366f1; }
-        .ac-group { border-top-color: var(--accent); }
-        .ac-group i { color: var(--accent); }
+
+        .ag-group .group-header i {
+            color: var(--accent-purple);
+        }
+
+        .ac-group .group-header i {
+            color: var(--accent-gold);
+        }
+
+        .group-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .group-header p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
         .ranking-list {
             list-style: none;
-            padding: 0;
-            margin: 0;
         }
+
         .ranking-list li {
             display: flex;
             align-items: center;
-            padding: 11px 0;
-            border-bottom: 1px solid #f1f1f1;
-            font-size: 0.93rem;
-            font-weight: 500;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
         }
+
+        .ranking-list li:hover {
+            padding-left: 10px;
+            color: var(--accent-gold);
+        }
+
         .ranking-list li:last-child {
             border-bottom: none;
         }
+
         .ranking-list span {
-            width: 26px;
-            height: 26px;
-            background: var(--bg-alt);
+            width: 32px;
+            height: 32px;
+            background: var(--bg-secondary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 14px;
-            font-size: 0.75rem;
+            margin-right: 15px;
+            font-size: 0.8rem;
             font-weight: 700;
-            flex-shrink: 0;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
         }
 
-        /* ===== Key Insight Box ===== */
-        .key-insight-box {
-            background: #fff;
-            padding: 24px;
-            border-radius: var(--radius-sm);
-            margin-top: 24px;
-            border-left: 4px solid var(--accent);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+        .ranking-list li:hover span {
+            background: var(--accent-gold);
+            color: var(--bg-primary);
         }
+
+        /* Key Insight Box */
+        .key-insight-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.02));
+            padding: 30px;
+            border-radius: 16px;
+            margin-top: 30px;
+            border-left: 4px solid var(--accent-gold);
+        }
+
         .key-insight-box h4 {
+            color: var(--accent-gold);
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-        .key-insight-box p {
-            color: var(--text-light);
-            line-height: 1.7;
+            gap: 10px;
         }
 
-        /* ===== Summary Highlight ===== */
+        /* Summary Highlight Box */
         .summary-highlight-box {
-            background: #111827;
-            color: white;
-            padding: 40px;
-            border-radius: var(--radius);
+            background: linear-gradient(135deg, var(--bg-card), rgba(245, 158, 11, 0.05));
+            border: 1px solid var(--border-color);
+            border-left: 6px solid var(--accent-gold);
+            border-radius: 20px;
+            padding: 50px;
             margin-top: 50px;
-            border-left: 6px solid var(--accent);
+            position: relative;
+            overflow: hidden;
         }
+
+        .summary-highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.1), transparent 70%);
+            pointer-events: none;
+        }
+
+        .highlight-content {
+            position: relative;
+            z-index: 1;
+        }
+
         .highlight-content h3 {
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 1.4rem;
-            margin-bottom: 24px;
-            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--accent-gold);
         }
+
         .highlight-content ul {
             list-style: none;
-            padding: 0;
-            margin: 0;
         }
+
         .highlight-content li {
-            margin-bottom: 16px;
-            padding-left: 28px;
+            margin-bottom: 20px;
+            padding-left: 35px;
             position: relative;
-            font-size: 1rem;
+            font-size: 1.05rem;
             line-height: 1.7;
-            color: rgba(255,255,255,0.88);
+            color: var(--text-secondary);
         }
+
         .highlight-content li::before {
             content: '✦';
             position: absolute;
             left: 0;
-            color: var(--accent);
+            color: var(--accent-gold);
+            font-size: 1.2rem;
         }
 
-        /* ===== Tech List ===== */
-        .tech-list {
-            list-style: none;
-            margin-top: 20px;
-            padding: 0;
+        .highlight-content li strong {
+            color: var(--text-primary);
         }
-        .tech-list li {
-            margin-bottom: 14px;
-            padding-left: 24px;
-            position: relative;
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-        .tech-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
+
+        /* RQ Tag */
+        .rq-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            padding: 6px 12px;
+            border-radius: 50px;
+            margin-left: 15px;
             font-weight: 600;
         }
 
-        /* ===== Footer ===== */
-        .footer {
+        /* Achievement Section */
+        .achievement-section {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), transparent);
+        }
+
+        .achievement-image {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s ease;
+        }
+
+        .achievement-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(245, 158, 11, 0.1);
+        }
+
+        .achievement-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
             text-align: center;
-            padding: 40px 24px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* Tech Stack */
+        .tech-list {
+            list-style: none;
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .tech-list li {
+            padding: 20px 25px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            padding-left: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-list li:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            transform: translateX(5px);
+        }
+
+        .tech-list li::before {
+            content: '→';
+            position: absolute;
+            left: 20px;
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        .tech-list strong {
+            color: var(--accent-gold);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 24px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+
+        footer p {
             color: var(--text-muted);
             font-size: 0.9rem;
         }
 
-        /* ===== Responsive ===== */
+        /* Progress Bar Animation */
+        .progress-bar {
+            height: 4px;
+            background: var(--bg-hover);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-purple));
+            border-radius: 2px;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .progress-fill.animate {
+            width: var(--progress);
+        }
+
+        /* Parallax Background */
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(129, 140, 248, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        /* Glow Effects */
+        .glow-gold {
+            box-shadow: 0 0 40px var(--glow-gold);
+        }
+
+        .glow-purple {
+            box-shadow: 0 0 40px var(--glow-purple);
+        }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .fyp-hero { padding: 130px 20px 70px; }
-            .fyp-hero h1 { font-size: 2.2rem; }
-            .case-study-content { padding: 50px 20px; }
-            .section-heading { font-size: 1.8rem; }
-            .feature-grid { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: 1fr; }
-            .process-grid { grid-template-columns: 1fr; gap: 20px; }
-            .thesis-grid { grid-template-columns: 1fr; }
-            .comparison-grid { grid-template-columns: 1fr; }
-            .data-strip { flex-direction: column; padding: 28px 20px; text-align: center; }
-            .stats-mini-grid { width: 100%; justify-content: center; }
-            .summary-highlight-box { padding: 28px 20px; }
-            .mech-item { padding: 14px 16px; }
-            .mech-number { font-size: 1.3rem; margin-right: 14px; min-width: 40px; }
+            header {
+                padding: 15px 20px;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .content-card {
+                padding: 25px;
+            }
+
+            .thesis-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-banner {
+                padding: 25px;
+            }
+
+            .stat-value {
+                font-size: 2.2rem;
+            }
+
+            .summary-highlight-box {
+                padding: 30px 25px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-number {
+                font-size: 3rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-primary);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loader">
+        <div class="loading-spinner"></div>
+    </div>
 
     <!-- Side Navigation -->
-    <aside class="side-nav">
+    <nav class="side-nav">
         <a href="#part-1" class="nav-dot active" data-name="Project Overview"></a>
-        <a href="#part-2" class="nav-dot" data-name="Gameplay Highlights"></a>
-        <a href="#part-3" class="nav-dot" data-name="Development Process"></a>
-        <a href="#part-4" class="nav-dot" data-name="Academic Thesis"></a>
-        <a href="#part-5" class="nav-dot" data-name="Research Findings"></a>
+        <a href="#part-2" class="nav-dot" data-name="Gameplay Highlight"></a>
+        <a href="#part-3" class="nav-dot" data-name="Development"></a>
+        <a href="#part-4" class="nav-dot" data-name="Thesis"></a>
+        <a href="#part-5" class="nav-dot" data-name="Findings"></a>
         <a href="#part-6" class="nav-dot" data-name="Achievements"></a>
-    </aside>
+    </nav>
 
     <!-- Header -->
-    <header id="header" class="scrolled">
+    <header id="header">
         <nav class="navbar">
             <a href="index.html" class="logo">WT<span class="dot">.</span></a>
-            <a href="index.html#projects" class="btn btn-outline" style="padding: 8px 20px;">
+            <a href="index.html" class="btn-outline">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
         </nav>
     </header>
 
     <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <canvas id="particles-canvas"></canvas>
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <div class="award-tag">
+                    <i class="fas fa-crown"></i> 1st Place — Best FYP Award
+                </div>
+                <h1 class="hero-title">
+                    <span class="word" style="animation-delay: 0.3s;">Interactive</span>
+                    <span class="word" style="animation-delay: 0.4s;">Storytelling</span><br>
+                    <em class="word" style="animation-delay: 0.5s;">in</em>
+                    <em class="word" style="animation-delay: 0.6s;">Virtual</em>
+                    <em class="word" style="animation-delay: 0.7s;">Spaces</em>
+                </h1>
+                <p class="hero-subtitle">
+                    An award-winning integration of player experiences research and game prototype development at Xiamen University Malaysia.
+                </p>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll to explore</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
 
-        <!-- ===================== HERO ===================== -->
-        <section class="fyp-hero">
+        <!-- Part I: Project Overview -->
+        <section id="part-1" class="reveal">
+            <div class="parallax-bg" data-speed="0.3"></div>
             <div class="section-container">
-                <div class="award-tag"><i class="fas fa-crown"></i> 1st Place — Best FYP Award</div>
-                <h1>Interactive Storytelling<br><em>in Virtual Spaces</em></h1>
-                <p>An award-winning integration of player experience research and game prototype development at Xiamen University Malaysia.</p>
-            </div>
-        </section>
+                <span class="section-label">Part I: Project Overview</span>
+                <h2 class="section-heading">Gameplay & <em>Production</em></h2>
+                
+                <div class="video-responsive reveal-scale stagger-1">
+                    <iframe src="https://www.youtube.com/embed/VTkJDHS9qjw" frameborder="0" allowfullscreen></iframe>
+                </div>
+                
+                <div class="content-card reveal stagger-2">
+                    <h3>The Little Guardian</h3>
+                    <p>The Little Guardian is a 3D side-scrolling platformer-adventure set in a medieval, mysterious world. The player takes on the role of a young guardian tasked with uncovering the cause of a dark curse that is draining the life from the forest. By blending platforming and RPG elements, the game invites players to embark on a journey through a semi-open world filled with secrets, puzzles, and challenges. As the mystery of the kingdom unfolds, the player must master movement, solve puzzles, and battle enemies to confront the spreading curse at the heart of the decay.</p>
+                </div>
 
-        <!-- ===================== PART 1: OVERVIEW ===================== -->
-        <section id="part-1" class="case-study-content reveal">
-            <p class="section-label">Part I · The Overview</p>
-            <h2 class="section-heading">Gameplay & <em>Production</em></h2>
-
-            <div class="video-responsive">
-                <iframe src="https://www.youtube.com/embed/VTkJDHS9qjw" allowfullscreen></iframe>
-            </div>
-
-            <div class="about-content">
-                <h3>Project Overview</h3>
-                <p><strong>The Little Guardian</strong> is a 3D side-scrolling platformer-adventure set in a medieval, mysterious world.
-                    The player takes on the role of a young guardian tasked with uncovering the cause of a dark curse that is draining the life from the forest.
-                    By blending platforming and RPG elements, the game invites players to journey through a semi-open world filled with secrets, puzzles, and challenges.
-                    As the mystery of the kingdom unfolds, the player must master movement, solve puzzles, and battle enemies to confront the spreading curse at the heart of the decay.</p>
-
-                <h3>Production Process</h3>
+                <h3 class="reveal stagger-3" style="margin-top: 50px; margin-bottom: 25px;">Production Process</h3>
                 <div class="gallery-grid">
-                    <div class="gallery-item">
+                    <div class="gallery-item reveal stagger-3">
                         <img src="assets/images/sketch.jpg" alt="Concept Art">
-                        <p class="image-caption">Concept Sketches</p>
+                        <div class="gallery-caption">Concept Sketches</div>
                     </div>
-                    <div class="gallery-item">
+                    <div class="gallery-item reveal stagger-4">
                         <img src="assets/images/modeling.jpg" alt="3D Modeling">
-                        <p class="image-caption">Maya Modeling</p>
+                        <div class="gallery-caption">Maya Modeling</div>
                     </div>
                 </div>
             </div>
-            <hr class="section-divider">
         </section>
 
-        <!-- ===================== PART 2: CORE GAMEPLAY ===================== -->
-        <section id="part-2" class="case-study-content reveal">
-            <p class="section-label">Part II · Core Gameplay Experience</p>
-            <h2 class="section-heading">More Than Just a <em>Game</em></h2>
+        <div class="section-divider"></div>
 
-            <div class="video-responsive">
-                <iframe src="https://www.youtube.com/embed/VTkJDHS9qjw" allowfullscreen></iframe>
-            </div>
+        <!-- Part II: Core Gameplay Experience -->
+        <section id="part-2" class="reveal">
+            <div class="section-container">
+                <span class="section-label">Part II: Core Gameplay Experience</span>
+                <h2 class="section-heading">More Than Just a <em>Game</em>.</h2>
+                
+                <div class="video-responsive reveal-scale stagger-1">
+                    <iframe src="https://www.youtube.com/embed/VTkJDHS9qjw" frameborder="0" allowfullscreen></iframe>
+                </div>
 
-            <div class="about-content">
-                <p>Step into a world where <strong>mechanics meet emotion</strong>.
-                    The gameplay is built around a dynamic combat and exploration system that lets players interact with the environment through fluid movement, puzzle-solving, and real-time combat — ensuring every moment feels intentional and responsive.</p>
-            </div>
+                <div class="content-card reveal stagger-2">
+                    <p>Step into a world where <strong style="color: var(--accent-gold);">mechanics meet emotion</strong>. The gameplay is designed around spatial manipulation, allowing players to interact with the environment in ways previously thought impossible.</p>
+                </div>
 
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fas fa-gamepad"></i></div>
-                    <h4>Responsive Combat</h4>
-                    <p>A carefully tuned combat system where every attack, dodge, and parry carries weight — designed to keep players engaged through <strong>Actual Mechanical Agency</strong>.</p>
+                <div class="feature-grid">
+                    <div class="feature-card reveal stagger-2" data-tilt>
+                        <div class="feature-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <h4>Immersive Interaction</h4>
+                        <p>Utilizing <strong>Hand Tracking</strong> to create a natural "touch" within the virtual space, making every object feel tangible.</p>
+                    </div>
+                    <div class="feature-card reveal stagger-3" data-tilt>
+                        <div class="feature-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h4>Adaptive Puzzles</h4>
+                        <p>Challenges that evolve based on user behavior, ensuring the <strong>flow state</strong> is maintained throughout the journey.</p>
+                    </div>
+                    <div class="feature-card reveal stagger-4" data-tilt>
+                        <div class="feature-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <h4>Atmospheric Feedback</h4>
+                        <p>A dynamic environment that reacts to player presence through <strong>real-time lighting and spatial audio</strong>.</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fas fa-puzzle-piece"></i></div>
-                    <h4>Adaptive Puzzles</h4>
-                    <p>Challenges that evolve with player progression, maintaining <strong>flow state</strong> and ensuring the difficulty curve feels natural rather than forced.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fas fa-wind"></i></div>
-                    <h4>Atmospheric World</h4>
-                    <p>A living environment that reacts to player presence through <strong>dynamic lighting, layered fog, and spatial audio</strong> — every corner tells a story.</p>
-                </div>
-            </div>
 
-            <div class="gallery-grid" style="margin-top: 50px;">
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Level Design Process" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Character Rigging" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Final Environment Render" loading="lazy">
+                <div class="gallery-grid" style="margin-top: 50px;">
+                    <div class="gallery-item reveal stagger-3">
+                        <img src="assets/images/image1.jpg" alt="Level Design Process">
+                        <div class="gallery-caption">Level Design Process</div>
+                    </div>
+                    <div class="gallery-item reveal stagger-4">
+                        <img src="assets/images/image1.jpg" alt="Character Rigging">
+                        <div class="gallery-caption">Character Rigging</div>
+                    </div>
+                    <div class="gallery-item reveal stagger-5">
+                        <img src="assets/images/image1.jpg" alt="Final Environment Render">
+                        <div class="gallery-caption">Final Environment Render</div>
+                    </div>
                 </div>
             </div>
-            <hr class="section-divider">
         </section>
 
-        <!-- ===================== PART 3: DEVELOPMENT ===================== -->
-        <section id="part-3" class="case-study-content reveal">
-            <p class="section-label">Part III · Experience Development</p>
-            <h2 class="section-heading">Production & <em>Development</em></h2>
+        <div class="section-divider"></div>
 
-            <div class="about-content">
-                <p>As the sole creator of this project, I managed the full production lifecycle — balancing technical constraints with creative vision to deliver a polished 3D experience.</p>
-            </div>
+        <!-- Part III: Development Process -->
+        <section id="part-3" class="reveal">
+            <div class="section-container">
+                <span class="section-label">Part III: Development Process</span>
+                <h2 class="section-heading">The Production & <em>Development</em></h2>
 
-            <!-- Step 01 -->
-            <div class="process-grid">
-                <div>
-                    <span class="step-number">01.</span>
-                    <h3>Ideation & Proposal</h3>
-                    <p>I initiated the project by defining the core vision: a synergy between dark fantasy aesthetics and player agency.
-                        This phase involved extensive brainstorming and market analysis to craft a solid project proposal that balanced creative storytelling with technical feasibility.</p>
+                <div class="content-card reveal stagger-1">
+                    <p>As the sole creator of this project, I managed the full production lifecycle—balancing technical constraints with creative vision to deliver a polished 3D experience.</p>
                 </div>
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Ideation Phase">
-                    <p class="image-caption">Early Ideation</p>
-                </div>
-            </div>
-
-            <!-- Step 02 -->
-            <div class="process-grid">
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Survey & Prototyping">
-                    <p class="image-caption">Player Preference Survey</p>
-                </div>
-                <div>
-                    <span class="step-number">02.</span>
-                    <h3>Player Preference Survey & Prototyping</h3>
-                    <p>Before development, I conducted a targeted survey to understand player mechanics preferences.
-                        This data allowed me to identify which interaction types fostered the strongest sense of agency, directly informing my game planning and core mechanic design.</p>
-                </div>
-            </div>
-
-            <!-- Step 03 -->
-            <div class="process-grid">
-                <div>
-                    <span class="step-number">03.</span>
-                    <h3>World Building & Narrative</h3>
-                    <p>I meticulously designed a decaying medieval world where every asset — from the weathered stone bridges to the bioluminescent flora — serves a narrative purpose.
-                        Layered fog and dynamic lighting create an atmosphere that visually reflects the encroaching curse.</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="World Building">
-                    <p class="image-caption">Environment Design</p>
-                </div>
-            </div>
-
-            <!-- Step 04 -->
-            <div class="process-grid">
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Gameplay Programming">
-                    <p class="image-caption">Gameplay Programming</p>
-                </div>
-                <div>
-                    <span class="step-number">04.</span>
-                    <h3>Gameplay Programming & Mechanics</h3>
-                    <p>Using C# and Unity, I developed a responsive 3D side-scrolling movement system.
-                        I focused on the "feel" of the character — weight, jump arcs, and combat impact — to ensure that the Actual Mechanical Agency I was researching was felt directly through the controller.</p>
-                </div>
-            </div>
-
-            <!-- Step 05 -->
-            <div class="process-grid">
-                <div>
-                    <span class="step-number">05.</span>
-                    <h3>Level Design & Player Flow</h3>
-                    <p>I prototyped levels using a "Graybox" method to test player pacing and navigation before committing to final art.
-                        This iterative process allowed me to refine puzzles and platforming challenges based on early playtest feedback.</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Level Design">
-                    <p class="image-caption">Level Prototyping</p>
-                </div>
-            </div>
-
-            <!-- Step 06 -->
-            <div class="process-grid">
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Testing">
-                    <p class="image-caption">User Testing</p>
-                </div>
-                <div>
-                    <span class="step-number">06.</span>
-                    <h3>Testing & Execution</h3>
-                    <p>I conducted structured playtests with 39 participants to validate my research and gameplay.
-                        By analysing behavioural data and player feedback, I iteratively balanced difficulty curves and refined the "Actual Mechanical Agency" to ensure a cohesive and engaging user journey.</p>
-                </div>
-            </div>
-            <hr class="section-divider">
-        </section>
-
-        <!-- ===================== PART 4: THESIS ===================== -->
-        <section id="part-4" class="case-study-content reveal section-dark-alt">
-            <p class="section-label">Part IV · The Research</p>
-            <h2 class="section-heading">Academic <em>Thesis</em></h2>
-
-            <div class="about-content">
-                <span class="step-number">01.</span>
-                <h3>Research Focus: Does Agency Mechanics Bring <em>Engagement</em>?</h3>
-                <p>Does more freedom equal more fun? This thesis quantifies the relationship between Mechanical Agency and User Engagement.
-                    Using a mix of quantitative surveys (n=98) and qualitative playtests (n=39), I designed a game prototype that successfully demonstrates how tailoring mechanics to specific player archetypes (Action vs. Adventure) can statistically improve the user experience.</p>
-            </div>
-
-            <div style="margin-top: 40px;">
-                <div class="about-content">
-                    <span class="step-number">02.</span>
-                    <h3>The Research Foundation: <em>Behind The Framework</em></h3>
-
-                    <div class="aim-box">
-                        <h4><i class="fas fa-bullseye"></i> Aim</h4>
-                        <p>To investigate the relationship between <strong>player trait preferences, Actual Mechanical Agency (AMA) mechanics, and player engagement</strong> in Platformer-Adventure games.</p>
+                
+                <div class="process-container">
+                    <div class="process-item reveal-left stagger-1">
+                        <div class="process-dot"></div>
+                        <div class="process-content">
+                            <div class="process-number">01</div>
+                            <h3>Ideation & Proposal</h3>
+                            <p>I initiated the project by defining the core vision: a synergy between dark fantasy aesthetics and player agency. This phase involved extensive brainstorming and market analysis to craft a solid project proposal that balanced creative storytelling with technical feasibility.</p>
+                        </div>
+                        <div class="process-visual">
+                            <img src="assets/images/image1.jpg" alt="Ideation">
+                        </div>
                     </div>
 
-                    <div class="thesis-grid">
-                        <div class="thesis-card">
-                            <h4><i class="fas fa-bullseye"></i> Objectives</h4>
-                            <div class="mechanics-list">
-                                <div class="mech-item rank-default">
-                                    <span class="mech-number">01</span>
-                                    <div class="mech-info">
-                                        <p>To identify the top five game mechanics most preferred by Aesthetic-Goal and Aesthetic-Challenge players in a Platformer-Adventure game using preliminary analysis.</p>
-                                    </div>
+                    <div class="process-item reveal-right stagger-2">
+                        <div class="process-dot"></div>
+                        <div class="process-content">
+                            <div class="process-number">02</div>
+                            <h3>Player Preference Survey & Prototyping</h3>
+                            <p>Before development, I conducted a targeted survey to understand player mechanics preferences. This data allowed me to identify which interaction types fostered the strongest sense of agency, directly informing my game planning and core mechanic design.</p>
+                        </div>
+                        <div class="process-visual">
+                            <img src="assets/images/image1.jpg" alt="Survey">
+                        </div>
+                    </div>
+
+                    <div class="process-item reveal-left stagger-3">
+                        <div class="process-dot"></div>
+                        <div class="process-content">
+                            <div class="process-number">03</div>
+                            <h3>World Building & Narrative</h3>
+                            <p>I meticulously designed a decaying medieval world where every asset, from the weathered stone bridges to the bioluminescent flora, serves a narrative purpose. By using layered fog and dynamic lighting, I created an atmosphere that visually reflects the encroaching curse.</p>
+                        </div>
+                        <div class="process-visual">
+                            <img src="assets/images/image1.jpg" alt="World Building">
+                        </div>
+                    </div>
+
+                    <div class="process-item reveal-right stagger-4">
+                        <div class="process-dot"></div>
+                        <div class="process-content">
+                            <div class="process-number">04</div>
+                            <h3>Gameplay Programming & Mechanics</h3>
+                            <p>Using C# and Unity, I developed a responsive 3D side-scrolling movement system. I focused on the "feel" of the character—weight, jump arcs, and combat impact—to ensure that the Actual Mechanical Agency I was researching was felt directly through the controller.</p>
+                        </div>
+                        <div class="process-visual">
+                            <img src="assets/images/image1.jpg" alt="Programming">
+                        </div>
+                    </div>
+
+                    <div class="process-item reveal-left stagger-5">
+                        <div class="process-dot"></div>
+                        <div class="process-content">
+                            <div class="process-number">05</div>
+                            <h3>Level Design & Player Flow</h3>
+                            <p>I prototyped levels using a "Graybox" method to test player pacing and navigation before committing to final art. This iterative process allowed me to refine puzzles and platforming challenges based on early playtest feedback.</p>
+                        </div>
+                        <div class="process-visual">
+                            <img src="assets/images/image1.jpg" alt="Level Design">
+                        </div>
+                    </div>
+
+                    <div class="process-item reveal-right stagger-6">
+                        <div class="process-dot"></div>
+                        <div class="process-content">
+                            <div class="process-number">06</div>
+                            <h3>Testing and Execution</h3>
+                            <p>I conducted structured playtests with 39 participants to validate my research and gameplay. By analyzing behavioral data and player feedback, I iteratively balanced the difficulty curves and refined the "Actual Mechanical Agency" to ensure a cohesive and engaging user journey.</p>
+                        </div>
+                        <div class="process-visual">
+                            <img src="assets/images/image1.jpg" alt="Testing">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Part IV: Academic Thesis -->
+        <section id="part-4" class="reveal">
+            <div class="section-container">
+                <span class="section-label">Part IV: The Research</span>
+                <h2 class="section-heading">Academic <em>Thesis</em></h2>
+                
+                <div class="content-card reveal stagger-1">
+                    <h3>Does Agency Mechanics Brings Engagement?</h3>
+                    <p>Does more freedom equal more fun? This thesis quantifies the relationship between Mechanical Agency and User Engagement. Using a mix of quantitative surveys (n=98) and qualitative playtests (n=39), I designed a Unity 3D prototype that successfully demonstrates how tailoring mechanics to specific player archetypes (Action vs. Adventure) can statistically improve the user experience.</p>
+                </div>
+                
+                <div class="thesis-highlight-box reveal stagger-2">
+                    <h4><i class="fas fa-bullseye"></i> Aim</h4>
+                    <p style="font-style: italic; margin: 0;">To Investigate the relationship between <strong style="color: var(--accent-gold);">player trait preferences, Actual Mechanical Agency(AMA)-mechanics, and player engagement</strong> in Platformer-Adventure games.</p>
+                </div>
+
+                <div class="thesis-grid">
+                    <div class="thesis-card reveal stagger-3">
+                        <h4><i class="fas fa-bullseye"></i> Objectives</h4>
+                        <div class="mechanics-list">
+                            <div class="mech-item">
+                                <span class="mech-number">01</span>
+                                <div class="mech-info">
+                                    <p>To identify the top five game mechanics that are most preferred by the Aesthetic-Goal and Aesthetic-Challenge players in a Platformer-Adventure game using preliminary analysis</p>
                                 </div>
-                                <div class="mech-item rank-default">
-                                    <span class="mech-number">02</span>
-                                    <div class="mech-info">
-                                        <p>To develop a Platformer-Adventure game prototype incorporating the selected game mechanics.</p>
-                                    </div>
+                            </div>
+                            <div class="mech-item">
+                                <span class="mech-number">02</span>
+                                <div class="mech-info">
+                                    <p>To develop a Platformer-Adventure game prototype incorporating the selected game mechanics using Unity 3D.</p>
                                 </div>
-                                <div class="mech-item rank-default">
-                                    <span class="mech-number">03</span>
-                                    <div class="mech-info">
-                                        <p>To evaluate players' perceived AMA using the Game Sense of Agency (GSoA) and analyse its relationship with player engagement using the Game Engagement Questionnaire (GEQ).</p>
-                                    </div>
+                            </div>
+                            <div class="mech-item">
+                                <span class="mech-number">03</span>
+                                <div class="mech-info">
+                                    <p>To evaluate players perceived AMA using the Game Sense of Agency (GSoA) and analyse its relationship with player engagement using the Game Engagement Questionnaire (GEQ).</p>
                                 </div>
-                                <div class="mech-item rank-default">
-                                    <span class="mech-number">04</span>
-                                    <div class="mech-info">
-                                        <p>To analyse the differences in preferences for AMA-mechanics between Aesthetic-Goal and Aesthetic-Challenge players in the developed prototype.</p>
-                                    </div>
+                            </div>
+                            <div class="mech-item">
+                                <span class="mech-number">04</span>
+                                <div class="mech-info">
+                                    <p>To analyse the differences in preferences for AMA-mechanics between Aesthetic-Goal player and Aesthetic-Challenge player in the developed Platformer-Adventure game prototype.</p>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="thesis-card">
-                            <h4><i class="fas fa-question-circle"></i> Research Questions</h4>
-                            <div class="mechanics-list">
-                                <div class="mech-item rank-default">
-                                    <span class="mech-number">RQ1</span>
-                                    <div class="mech-info">
-                                        <p>What are the top five game mechanics most preferred by Aesthetic-Goal and Aesthetic-Challenge players in a Platformer-Adventure game?</p>
-                                    </div>
+                    </div>
+                    <div class="thesis-card reveal stagger-4">
+                        <h4><i class="fas fa-question-circle"></i> Research Questions</h4>
+                        <div class="mechanics-list">
+                            <div class="mech-item">
+                                <span class="mech-number">RQ1</span>
+                                <div class="mech-info">
+                                    <p>What are the top five game mechanics that are most preferred by Aesthetic-Goal and Aesthetic-Challenge players in a Platformer-Adventure game?</p>
                                 </div>
-                                <div class="mech-item rank-default">
-                                    <span class="mech-number">RQ2</span>
-                                    <div class="mech-info">
-                                        <p>How does perceived Actual Mechanical Agency (AMA) impact player engagement among Aesthetic-Goal and Aesthetic-Challenge players?</p>
-                                    </div>
+                            </div>
+                            <div class="mech-item">
+                                <span class="mech-number">RQ2</span>
+                                <div class="mech-info">
+                                    <p>How do the perceived Actual Mechanical Agency (AMA) impact player engagement among Aesthetic-Goal and Aesthetic-Challenge players in the Platformer-Adventure game?</p>
                                 </div>
-                                <div class="mech-item rank-default">
-                                    <span class="mech-number">RQ3</span>
-                                    <div class="mech-info">
-                                        <p>What are the differences in the preferences of Aesthetic-Goal and Aesthetic-Challenge players with the top five AMA-mechanics in the proposed game?</p>
-                                    </div>
+                            </div>
+                            <div class="mech-item">
+                                <span class="mech-number">RQ3</span>
+                                <div class="mech-info">
+                                    <p>What are the differences in the preferences of Aesthetic-Goal and Aesthetic-Challenge players with the top five AMA-mechanics in the proposed Platformer-Adventure game?</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <hr class="section-divider">
         </section>
 
-        <!-- ===================== PART 5: FINDINGS ===================== -->
-        <section id="part-5" class="case-study-content reveal section-dark-alt">
-            <p class="section-label">Part V · Research Findings</p>
-            <h2 class="section-heading">Insights & <em>Validated Hypotheses</em></h2>
+        <div class="section-divider"></div>
 
-            <!-- RQ1 -->
-            <div class="research-segment">
-                <h3 class="mechanics-title">Top 5 Gameplay Mechanics <span class="rq-tag">RQ1 <i class="fas fa-check"></i></span></h3>
-                <p class="segment-desc">Identified through a survey of <strong>98 participants</strong>, with <em>Exploration</em> ranking as the most engaging element across both player groups.</p>
+        <!-- Part V: Research Findings -->
+        <section id="part-5" class="reveal">
+            <div class="section-container">
+                <span class="section-label">Part V: Research Findings</span>
+                <h2 class="section-heading">Insights & <em>Validated Hypotheses</em></h2>
 
-                <div class="mechanics-list">
-                    <div class="mech-item rank-1">
-                        <span class="mech-number">01</span>
-                        <div class="mech-info">
-                            <h4>Exploration</h4>
-                            <p>The primary driver for engagement, universally valued by all player types.</p>
+                <!-- RQ1: Top 5 Mechanics -->
+                <div class="research-segment">
+                    <h3 class="reveal stagger-1" style="font-size: 1.4rem; margin-bottom: 15px;">
+                        Top 5 Gameplay Mechanics <span class="rq-tag">RQ1 <i class="fas fa-check"></i></span>
+                    </h3>
+                    <p class="reveal stagger-1" style="color: var(--text-secondary); margin-bottom: 30px;">Identified through a survey of <strong style="color: var(--accent-gold);">98 participants</strong>, with <em>Exploration</em> ranking as the most engaging element across both groups.</p>
+                    
+                    <div class="mechanics-list">
+                        <div class="mech-item rank-1 reveal stagger-1">
+                            <span class="mech-number">01</span>
+                            <div class="mech-info">
+                                <h4>Exploration</h4>
+                                <p>The primary driver for engagement, universally valued by all player types.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mech-item rank-2">
-                        <span class="mech-number">02</span>
-                        <div class="mech-info">
-                            <h4>Use, Examine & Combine</h4>
-                            <p>Essential for deep puzzle-solving and world interaction.</p>
+                        <div class="mech-item rank-2 reveal stagger-2">
+                            <span class="mech-number">02</span>
+                            <div class="mech-info">
+                                <h4>Use, Examine & Combine</h4>
+                                <p>Essential for deep puzzle-solving and world interaction.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mech-item rank-3">
-                        <span class="mech-number">03</span>
-                        <div class="mech-info">
-                            <h4>Collectible Items</h4>
-                            <p>Critical for progression-driven satisfaction (p = 0.006).</p>
+                        <div class="mech-item rank-3 reveal stagger-3">
+                            <span class="mech-number">03</span>
+                            <div class="mech-info">
+                                <h4>Collectible Items</h4>
+                                <p>Critical for progression-driven satisfaction (p = 0.006).</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mech-item rank-4">
-                        <span class="mech-number">04</span>
-                        <div class="mech-info">
-                            <h4>Movement Aids</h4>
-                            <p>Crucial for maintaining gameplay flow and spatial navigation.</p>
+                        <div class="mech-item rank-4 reveal stagger-4">
+                            <span class="mech-number">04</span>
+                            <div class="mech-info">
+                                <h4>Movement Aids</h4>
+                                <p>Crucial for maintaining gameplay flow and spatial navigation.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mech-item rank-5">
-                        <span class="mech-number">05</span>
-                        <div class="mech-info">
-                            <h4>Triggers</h4>
-                            <p>Ensuring dynamic world reactions to player agency.</p>
+                        <div class="mech-item rank-5 reveal stagger-5">
+                            <span class="mech-number">05</span>
+                            <div class="mech-info">
+                                <h4>Triggers</h4>
+                                <p>Ensuring dynamic world reactions to player agency.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- RQ2: Agency & Engagement -->
-            <div class="research-segment">
-                <div class="data-strip">
+                <!-- RQ2: Agency & Engagement -->
+                <div class="data-strip reveal stagger-1">
                     <div class="data-content">
-                        <h3 class="mechanics-title">Agency & Engagement <span class="rq-tag">RQ2 <i class="fas fa-check"></i></span></h3>
-                        <p>A <strong>significant positive correlation</strong> was found between perceived Agency (AMA) and Player Engagement via Pearson's Coefficient.</p>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 10px;">
+                            Agency & Engagement <span class="rq-tag">RQ2 <i class="fas fa-check"></i></span>
+                        </h3>
+                        <p style="color: var(--text-secondary);">Proven <strong style="color: var(--accent-gold);">significant positive correlation</strong> between perceived Agency (AMA) and Player Engagement via Pearson's Coefficient.</p>
                     </div>
                     <div class="stats-mini-grid">
                         <div class="stat-pill">
-                            <span class="stat-value">0.448</span>
-                            <span class="stat-label">Correlation (r)</span>
+                            <span class="stat-value counter" data-target="0.448">0</span>
+                            <span class="label">Correlation (r)</span>
                         </div>
                         <div class="stat-pill">
-                            <span class="stat-value">0.004</span>
-                            <span class="stat-label">P-Value</span>
+                            <span class="stat-value counter" data-target="0.004">0</span>
+                            <span class="label">P-Value</span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- RQ2: Player Traits -->
-            <div class="research-segment">
-                <div class="data-strip">
+                <!-- RQ2: Player Traits -->
+                <div class="data-strip reveal stagger-2">
                     <div class="data-content">
-                        <h3 class="mechanics-title">Player Traits & Engagement <span class="rq-tag">RQ2 <i class="fas fa-check"></i></span></h3>
-                        <p>AC players showed a stronger correlation (r = 0.542), while AG players showed a moderate correlation (r = 0.372) — AC players experienced higher engagement from mechanical agency.</p>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 10px;">
+                            Player Traits & Engagement <span class="rq-tag">RQ2 <i class="fas fa-check"></i></span>
+                        </h3>
+                        <p style="color: var(--text-secondary);">AC players has stronger correlation (r = 0.542), while AG players has moderate correlation (r = 0.372), which means AC players feel more fun than AG players</p>
                     </div>
                     <div class="stats-mini-grid">
                         <div class="stat-pill">
-                            <span class="stat-value">0.542</span>
-                            <span class="stat-label">AC (r)</span>
+                            <span class="stat-value counter" data-target="0.542">0</span>
+                            <span class="label">AC Correlation (r)</span>
                         </div>
                         <div class="stat-pill">
-                            <span class="stat-value">0.372</span>
-                            <span class="stat-label">AG (r)</span>
+                            <span class="stat-value counter" data-target="0.372">0</span>
+                            <span class="label">AG Correlation (r)</span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- RQ3: Preference Divergence -->
-            <div class="research-segment">
-                <h3 class="mechanics-title">Preference Divergence <span class="rq-tag">RQ3 <i class="fas fa-check"></i></span></h3>
-                <p class="segment-desc">"What are the differences in the preferences of AG and AC players with the top five AMA-mechanics?"</p>
+                <!-- RQ3: Preference Divergence -->
+                <div class="research-segment">
+                    <h3 class="reveal stagger-1" style="font-size: 1.4rem; margin-bottom: 15px;">
+                        Preference Divergence <span class="rq-tag">RQ3 <i class="fas fa-check"></i></span>
+                    </h3>
+                    <p class="reveal stagger-1" style="color: var(--text-secondary); margin-bottom: 30px; font-style: italic;">"What are the differences in the preferences of AG and AC players with the top five AMA-mechanics?"</p>
 
-                <div class="comparison-grid">
-                    <div class="group-card ag-group">
-                        <div class="group-header">
-                            <i class="fas fa-bullseye"></i>
-                            <h3>Aesthetic-Goal (AG)</h3>
-                            <p style="color: var(--text-muted); margin: 0;">Prioritises Logic & Progression</p>
+                    <div class="comparison-grid">
+                        <div class="group-card ag-group reveal-left stagger-2">
+                            <div class="group-header">
+                                <i class="fas fa-bullseye"></i>
+                                <h3>Aesthetic-Goal (AG)</h3>
+                                <p>Prioritizes Logic & Progression</p>
+                            </div>
+                            <ul class="ranking-list">
+                                <li><span>1</span> Use, Examine & Combine</li>
+                                <li><span>2</span> Exploration</li>
+                                <li><span>3</span> Collectible Items</li>
+                                <li><span>4</span> Puzzles</li>
+                                <li><span>5</span> Hint Systems</li>
+                            </ul>
                         </div>
-                        <ul class="ranking-list">
-                            <li><span>1</span> Use, Examine & Combine</li>
-                            <li><span>2</span> Exploration</li>
-                            <li><span>3</span> Collectible Items</li>
-                            <li><span>4</span> Puzzles</li>
-                            <li><span>5</span> Hint Systems</li>
+
+                        <div class="group-card ac-group reveal-right stagger-3">
+                            <div class="group-header">
+                                <i class="fas fa-fist-raised"></i>
+                                <h3>Aesthetic-Challenge (AC)</h3>
+                                <p>Focuses on Mastery & Action</p>
+                            </div>
+                            <ul class="ranking-list">
+                                <li><span>1</span> Exploration</li>
+                                <li><span>2</span> Movement Aids</li>
+                                <li><span>3</span> Triggers</li>
+                                <li><span>4</span> Collectible Item</li>
+                                <li><span>5</span> Use, Examine & Combine</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="key-insight-box reveal stagger-4">
+                        <h4><i class="fas fa-lightbulb"></i> Core Finding</h4>
+                        <p>While <strong style="color: var(--accent-gold);">Exploration</strong> is universally valued, <strong>AG players</strong> lean towards intellectual engagement, whereas <strong>AC players</strong> demand fluid control and environmental reactivity.</p>
+                    </div>
+                </div>
+
+                <!-- Key Highlights -->
+                <div class="summary-highlight-box reveal stagger-1">
+                    <div class="highlight-content">
+                        <h3><i class="fas fa-star"></i> Key Highlights</h3>
+                        <ul>
+                            <li><strong>Empowerment Drives Retention:</strong> Higher Mechanical Agency (AMA) statistically increases overall player engagement.</li>
+                            <li><strong>Tailored Experiences:</strong> AG players prefer progression-based mechanics like <em>Collectible Items</em> (p = 0.006).</li>
+                            <li><strong>Movement is Key:</strong> AC players prioritize exploration efficiency and <em>Movement Aids</em> for better flow.</li>
                         </ul>
                     </div>
-                    <div class="group-card ac-group">
-                        <div class="group-header">
-                            <i class="fas fa-fist-raised"></i>
-                            <h3>Aesthetic-Challenge (AC)</h3>
-                            <p style="color: var(--text-muted); margin: 0;">Focuses on Mastery & Action</p>
-                        </div>
-                        <ul class="ranking-list">
-                            <li><span>1</span> Exploration</li>
-                            <li><span>2</span> Movement Aids</li>
-                            <li><span>3</span> Triggers</li>
-                            <li><span>4</span> Collectible Items</li>
-                            <li><span>5</span> Use, Examine & Combine</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="key-insight-box">
-                    <h4><i class="fas fa-lightbulb"></i> Core Finding</h4>
-                    <p>While <strong>Exploration</strong> is universally valued, <strong>AG players</strong> lean towards intellectual engagement, whereas <strong>AC players</strong> demand fluid control and environmental reactivity.</p>
-                </div>
-            </div>
-
-            <!-- Summary -->
-            <div class="summary-highlight-box">
-                <div class="highlight-content">
-                    <h3><i class="fas fa-star"></i> Key Highlights</h3>
-                    <ul>
-                        <li><strong>Empowerment Drives Retention:</strong> Higher Mechanical Agency (AMA) statistically increases overall player engagement.</li>
-                        <li><strong>Tailored Experiences:</strong> AG players prefer progression-based mechanics like <em>Collectible Items</em> (p = 0.006).</li>
-                        <li><strong>Movement is Key:</strong> AC players prioritise exploration efficiency and <em>Movement Aids</em> for better flow.</li>
-                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- ===================== PART 6: ACHIEVEMENTS ===================== -->
-        <section id="part-6" class="section-dark" style="padding: 80px 0;">
-            <div style="max-width: 1000px; margin: 0 auto; padding: 0 24px;">
-                <div style="border-radius: var(--radius); overflow: hidden;">
-                    <img src="assets/images/fypcert.png" alt="FYP Award Certificate" style="width: 100%; display: block;">
+        <div class="section-divider"></div>
+
+        <!-- Part VI: Achievements -->
+        <section id="part-6" class="achievement-section reveal">
+            <div class="section-container">
+                <span class="section-label">Part VI: Achievements</span>
+                <h2 class="section-heading">Recognition & <em>Awards</em></h2>
+                
+                <div class="achievement-image reveal-scale stagger-1">
+                    <img src="assets/images/fypcert.png" alt="FYP Certificate - Best FYP Award">
                 </div>
-                <p class="image-caption" style="color: rgba(255,255,255,0.5); margin-top: 16px;">This project won the Best Final Year Project Award at Xiamen University Malaysia.</p>
+                <p class="image-caption reveal stagger-2">本项目荣获厦门大学马来西亚分校最佳毕业设计奖 (1st Place — Best FYP Award)</p>
             </div>
         </section>
 
-        <!-- ===================== TECH STACK ===================== -->
-        <section class="case-study-content reveal">
-            <p class="section-label">Technical</p>
-            <h2 class="section-heading">Tech <em>Stack</em></h2>
-            <p style="color: var(--text-light); line-height: 1.7; margin-bottom: 10px;">
-                I independently completed the entire production — from art asset creation to code implementation — demonstrating cross-disciplinary design and engineering capabilities:
-            </p>
-            <ul class="tech-list">
-                <li><strong>Core Engine:</strong> Unity 3D & C# Scripting</li>
-                <li><strong>Art Assets:</strong> Maya & Substance Painter</li>
-                <li><strong>Research Tools:</strong> GSoA & GEQ Surveys, SPSS for Statistical Analysis</li>
-            </ul>
-        </section>
+        <div class="section-divider"></div>
 
+        <!-- Tech Stack -->
+        <section class="reveal">
+            <div class="section-container">
+                <h2 class="section-heading">Technical <em>Stack</em></h2>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">我独立完成了从美术资源生产到代码逻辑实现的全部环节，充分展示了跨学科的设计与工程能力：</p>
+                <ul class="tech-list">
+                    <li class="reveal stagger-1"><strong>核心引擎：</strong> Unity 3D & C# Scripting</li>
+                    <li class="reveal stagger-2"><strong>美术资产：</strong> Maya & Substance Painter</li>
+                    <li class="reveal stagger-3"><strong>研究工具：</strong> GSoA & GEQ (Game Sense of Agency & Game Engagement Questionnaire)</li>
+                </ul>
+            </div>
+        </section>
     </main>
 
-    <footer class="footer">
-        <p>&copy; 2026 Lee Wen Tyng. Designed with care.</p>
+    <footer>
+        <p>&copy; 2026 Lee Wen Tyng. Designed with Care。</p>
     </footer>
 
     <script>
-        // Scroll reveal
-        const revealElements = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
+        // Hide loader when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 500);
+        });
+
+        // Particle Background
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animationId;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.opacity = Math.random() * 0.5 + 0.2;
+                this.color = Math.random() > 0.5 ? '245, 158, 11' : '129, 140, 248';
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            // Draw connections
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(245, 158, 11, ${0.1 * (1 - distance / 100)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            animationId = requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        // Pause particles when not visible
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    cancelAnimationFrame(animationId);
+                } else {
+                    animateParticles();
+                }
+            });
+        }, { threshold: 0.1 });
+
+        heroObserver.observe(document.querySelector('.hero'));
+
+        // Intersection Observer for scroll reveals
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('revealed');
                 }
             });
-        }, { threshold: 0.1 });
-        revealElements.forEach(el => observer.observe(el));
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        // Side nav active state
-        window.addEventListener('scroll', () => {
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseFloat(counter.dataset.target);
+                    const duration = 2000;
+                    const start = 0;
+                    const startTime = performance.now();
+
+                    function updateCounter(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const easeProgress = 1 - Math.pow(1 - progress, 3);
+                        const current = start + (target - start) * easeProgress;
+                        
+                        counter.textContent = current.toFixed(target < 1 ? 3 : 0);
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCounter);
+                        }
+                    }
+
+                    requestAnimationFrame(updateCounter);
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // 3D Tilt Effect for Feature Cards
+        const tiltCards = document.querySelectorAll('[data-tilt]');
+        
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            });
+        });
+
+        // Side Navigation Active State
+        const sections = document.querySelectorAll('section[id]');
+        const navDots = document.querySelectorAll('.nav-dot');
+
+        function updateActiveNav() {
             let current = '';
-            const sections = document.querySelectorAll('section[id]');
+            const scrollPos = window.pageYOffset + window.innerHeight / 3;
+
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
                     current = section.getAttribute('id');
                 }
             });
-            document.querySelectorAll('.nav-dot').forEach(dot => {
+
+            navDots.forEach(dot => {
                 dot.classList.remove('active');
-                if (dot.getAttribute('href').includes(current)) {
+                if (dot.getAttribute('href') === `#${current}`) {
                     dot.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav();
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Parallax Effect
+        const parallaxElements = document.querySelectorAll('.parallax-bg');
+        window.addEventListener('scroll', () => {
+            parallaxElements.forEach(el => {
+                const speed = el.dataset.speed || 0.3;
+                const rect = el.parentElement.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const yPos = -(rect.top * speed);
+                    el.style.transform = `translateY(${yPos}px)`;
+                }
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });

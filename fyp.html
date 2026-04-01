@@ -536,6 +536,187 @@
             font-size: 0.9rem;
         }
 
+        /* Timeline / Process Grid */
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 30px 0;
+            transition: all 0.4s ease;
+        }
+
+    
+
+        .content-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .content-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .process-container {
+            position: relative;
+            margin: 50px 0;
+        }
+
+        .process-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-gold), var(--accent-purple), transparent);
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .process-container::before {
+                left: 20px;
+            }
+        }
+
+        .process-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+            position: relative;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .process-item {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding-left: 50px;
+            }
+        }
+
+        .process-item:nth-child(even) .process-content {
+            order: 2;
+        }
+
+        .process-item:nth-child(even) .process-visual {
+            order: 1;
+        }
+
+        @media (max-width: 768px) {
+            .process-item:nth-child(even) .process-content,
+            .process-item:nth-child(even) .process-visual {
+                order: unset;
+            }
+        }
+
+        .process-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: var(--bg-primary);
+            border: 3px solid var(--accent-gold);
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 20px var(--glow-gold);
+        }
+
+        @media (max-width: 768px) {
+            .process-dot {
+                left: 20px;
+            }
+        }
+
+        .process-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            opacity: 0.15;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .process-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .process-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .process-visual {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+
+        .process-visual:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .process-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: all 0.5s ease;
+        }
+
+        .process-visual:hover img {
+            transform: scale(1.05);
+        }
+
+        
+
+        .achievement-image {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s ease;
+        }
+
+        .achievement-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(245, 158, 11, 0.1);
+        }
+
+        .achievement-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        
+          /* Stagger delays */
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
         /* ===== Responsive ===== */
         @media (max-width: 768px) {
             .fyp-hero { padding: 130px 20px 70px; }
@@ -553,9 +734,57 @@
             .mech-item { padding: 14px 16px; }
             .mech-number { font-size: 1.3rem; margin-right: 14px; min-width: 40px; }
         }
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .content-card {
+                padding: 25px;
+            }
+
+            .thesis-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-banner {
+                padding: 25px;
+            }
+
+            .stat-value {
+                font-size: 2.2rem;
+            }
+
+            .summary-highlight-box {
+                padding: 30px 25px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-number {
+                font-size: 3rem;
+            }
+        }
     </style>
 </head>
 <body>
+     <div class="loading-overlay" id="loader">
+        <div class="loading-spinner"></div>
+    </div>
 
     <!-- Side Navigation -->
     <aside class="side-nav">
@@ -588,434 +817,440 @@
             </div>
         </section>
 
+                        <div class="section-divider"></div>
+
         <!-- ===================== PART 1: OVERVIEW ===================== -->
-        <section id="part-1" class="case-study-content reveal">
-            <p class="section-label">Part I · The Overview</p>
-            <h2 class="section-heading">Gameplay & <em>Production</em></h2>
+        <section id="part-1" class="reveal">
+            <div class="parallax-bg" data-speed="0.3"></div>
+            <div class="section-container">
+                <span class="section-label">Part I: Project Overview</span>
+                <h2 class="section-heading">Gameplay & <em>Production</em></h2>
+                
+                <div class="video-responsive reveal-scale stagger-1">
+                    <iframe src="https://www.youtube.com/embed/VTkJDHS9qjw" frameborder="0" allowfullscreen></iframe>
+                </div>
+                
+                <div class="content-card reveal stagger-2">
+                    <h3>The Little Guardian</h3>
+                    <p>The Little Guardian is a 3D side-scrolling platformer-adventure set in a medieval, mysterious world. The player takes on the role of a young guardian tasked with uncovering the cause of a dark curse that is draining the life from the forest. By blending platforming and RPG elements, the game invites players to embark on a journey through a semi-open world filled with secrets, puzzles, and challenges. As the mystery of the kingdom unfolds, the player must master movement, solve puzzles, and battle enemies to confront the spreading curse at the heart of the decay.</p>
+                </div>
 
-            <div class="video-responsive">
-                <iframe src="https://www.youtube.com/embed/VTkJDHS9qjw" allowfullscreen></iframe>
-            </div>
-
-            <div class="about-content">
-                <h3>Project Overview</h3>
-                <p><strong>The Little Guardian</strong> is a 3D side-scrolling platformer-adventure set in a medieval, mysterious world.
-                    The player takes on the role of a young guardian tasked with uncovering the cause of a dark curse that is draining the life from the forest.
-                    By blending platforming and RPG elements, the game invites players to journey through a semi-open world filled with secrets, puzzles, and challenges.
-                    As the mystery of the kingdom unfolds, the player must master movement, solve puzzles, and battle enemies to confront the spreading curse at the heart of the decay.</p>
-
-                <h3>Production Process</h3>
+                <h3 class="reveal stagger-3" style="margin-top: 50px; margin-bottom: 25px;">Production Process</h3>
                 <div class="gallery-grid">
-                    <div class="gallery-item">
+                    <div class="gallery-item reveal stagger-3">
                         <img src="assets/images/sketch.jpg" alt="Concept Art">
-                        <p class="image-caption">Concept Sketches</p>
+                        <div class="gallery-caption">Concept Sketches</div>
                     </div>
-                    <div class="gallery-item">
+                    <div class="gallery-item reveal stagger-4">
                         <img src="assets/images/modeling.jpg" alt="3D Modeling">
-                        <p class="image-caption">Maya Modeling</p>
+                        <div class="gallery-caption">Maya Modeling</div>
                     </div>
                 </div>
             </div>
-            <hr class="section-divider">
         </section>
+        <div class="section-divider"></div>
+
 
         <!-- ===================== PART 2: CORE GAMEPLAY ===================== -->
-        <section id="part-2" class="case-study-content reveal">
-            <p class="section-label">Part II · Core Gameplay Experience</p>
-            <h2 class="section-heading">More Than Just a <em>Game</em></h2>
+        <section id="part-2" class="reveal">
+            <div class="section-container">
+                <span class="section-label">Part II: Core Gameplay Experience</span>
+                <h2 class="section-heading">More Than Just a <em>Game</em>.</h2>
+                
+                <div class="video-responsive reveal-scale stagger-1">
+                    <iframe src="https://www.youtube.com/embed/VTkJDHS9qjw" frameborder="0" allowfullscreen></iframe>
+                </div>
 
-            <div class="video-responsive">
-                <iframe src="https://www.youtube.com/embed/VTkJDHS9qjw" allowfullscreen></iframe>
-            </div>
+                <div class="content-card reveal stagger-2">
+                    <p>Step into a world where <strong style="color: var(--accent-gold);">mechanics meet emotion</strong>. The gameplay is designed around spatial manipulation, allowing players to interact with the environment in ways previously thought impossible.</p>
+                </div>
 
-            <div class="about-content">
-                <p>Step into a world where <strong>mechanics meet emotion</strong>.
-                    The gameplay is built around a dynamic combat and exploration system that lets players interact with the environment through fluid movement, puzzle-solving, and real-time combat — ensuring every moment feels intentional and responsive.</p>
-            </div>
+                <div class="feature-grid">
+                    <div class="feature-card reveal stagger-2" data-tilt>
+                        <div class="feature-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <h4>Immersive Interaction</h4>
+                        <p>Utilizing <strong>Hand Tracking</strong> to create a natural "touch" within the virtual space, making every object feel tangible.</p>
+                    </div>
+                    <div class="feature-card reveal stagger-3" data-tilt>
+                        <div class="feature-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h4>Adaptive Puzzles</h4>
+                        <p>Challenges that evolve based on user behavior, ensuring the <strong>flow state</strong> is maintained throughout the journey.</p>
+                    </div>
+                    <div class="feature-card reveal stagger-4" data-tilt>
+                        <div class="feature-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <h4>Atmospheric Feedback</h4>
+                        <p>A dynamic environment that reacts to player presence through <strong>real-time lighting and spatial audio</strong>.</p>
+                    </div>
+                </div>
 
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fas fa-gamepad"></i></div>
-                    <h4>Responsive Combat</h4>
-                    <p>A carefully tuned combat system where every attack, dodge, and parry carries weight — designed to keep players engaged through <strong>Actual Mechanical Agency</strong>.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fas fa-puzzle-piece"></i></div>
-                    <h4>Adaptive Puzzles</h4>
-                    <p>Challenges that evolve with player progression, maintaining <strong>flow state</strong> and ensuring the difficulty curve feels natural rather than forced.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fas fa-wind"></i></div>
-                    <h4>Atmospheric World</h4>
-                    <p>A living environment that reacts to player presence through <strong>dynamic lighting, layered fog, and spatial audio</strong> — every corner tells a story.</p>
+                <div class="gallery-grid" style="margin-top: 50px;">
+                    <div class="gallery-item reveal stagger-3">
+                        <img src="assets/images/image1.jpg" alt="Level Design Process">
+                        <div class="gallery-caption">Level Design Process</div>
+                    </div>
+                    <div class="gallery-item reveal stagger-4">
+                        <img src="assets/images/image1.jpg" alt="Character Rigging">
+                        <div class="gallery-caption">Character Rigging</div>
+                    </div>
+                    <div class="gallery-item reveal stagger-5">
+                        <img src="assets/images/image1.jpg" alt="Final Environment Render">
+                        <div class="gallery-caption">Final Environment Render</div>
+                    </div>
                 </div>
             </div>
-
-            <div class="gallery-grid" style="margin-top: 50px;">
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Level Design Process" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Character Rigging" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Final Environment Render" loading="lazy">
-                </div>
-            </div>
-            <hr class="section-divider">
         </section>
+
+        <div class="section-divider"></div>
 
         <!-- ===================== PART 3: DEVELOPMENT ===================== -->
-        <section id="part-3" class="case-study-content reveal">
-            <p class="section-label">Part III · Experience Development</p>
-            <h2 class="section-heading">Production & <em>Development</em></h2>
+        <section id="part-3" class="reveal">
+            <div class="section-container">
+                <span class="section-label">Part III: Development Process</span>
+                <h2 class="section-heading">The Production & <em>Development</em></h2>
 
-            <div class="about-content">
-                <p>As the sole creator of this project, I managed the full production lifecycle — balancing technical constraints with creative vision to deliver a polished 3D experience.</p>
-            </div>
+                <div class="content-card reveal stagger-1">
+                    <p>As the sole creator of this project, I managed the full production lifecycle—balancing technical constraints with creative vision to deliver a polished 3D experience.</p>
+                </div>
+                
+                <div class="process-container">
+                    <div class="process-item reveal-left stagger-1">
+                        <div class="process-dot"></div>
+                        <div class="process-content">
+                            <div class="process-number">01</div>
+                            <h3>Ideation & Proposal</h3>
+                            <p>I initiated the project by defining the core vision: a synergy between dark fantasy aesthetics and player agency. This phase involved extensive brainstorming and market analysis to craft a solid project proposal that balanced creative storytelling with technical feasibility.</p>
+                        </div>
+                        <div class="process-visual">
+                            <img src="assets/images/image1.jpg" alt="Ideation">
+                        </div>
+                    </div>
 
-            <!-- Step 01 -->
-            <div class="process-grid">
-                <div>
-                    <span class="step-number">01.</span>
-                    <h3>Ideation & Proposal</h3>
-                    <p>I initiated the project by defining the core vision: a synergy between dark fantasy aesthetics and player agency.
-                        This phase involved extensive brainstorming and market analysis to craft a solid project proposal that balanced creative storytelling with technical feasibility.</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Ideation Phase">
-                    <p class="image-caption">Early Ideation</p>
-                </div>
-            </div>
+                    <div class="process-item reveal-right stagger-2">
+                        <div class="process-dot"></div>
+                        <div class="process-content">
+                            <div class="process-number">02</div>
+                            <h3>Player Preference Survey & Prototyping</h3>
+                            <p>Before development, I conducted a targeted survey to understand player mechanics preferences. This data allowed me to identify which interaction types fostered the strongest sense of agency, directly informing my game planning and core mechanic design.</p>
+                        </div>
+                        <div class="process-visual">
+                            <img src="assets/images/image1.jpg" alt="Survey">
+                        </div>
+                    </div>
 
-            <!-- Step 02 -->
-            <div class="process-grid">
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Survey & Prototyping">
-                    <p class="image-caption">Player Preference Survey</p>
-                </div>
-                <div>
-                    <span class="step-number">02.</span>
-                    <h3>Player Preference Survey & Prototyping</h3>
-                    <p>Before development, I conducted a targeted survey to understand player mechanics preferences.
-                        This data allowed me to identify which interaction types fostered the strongest sense of agency, directly informing my game planning and core mechanic design.</p>
-                </div>
-            </div>
+                    <div class="process-item reveal-left stagger-3">
+                        <div class="process-dot"></div>
+                        <div class="process-content">
+                            <div class="process-number">03</div>
+                            <h3>World Building & Narrative</h3>
+                            <p>I meticulously designed a decaying medieval world where every asset, from the weathered stone bridges to the bioluminescent flora, serves a narrative purpose. By using layered fog and dynamic lighting, I created an atmosphere that visually reflects the encroaching curse.</p>
+                        </div>
+                        <div class="process-visual">
+                            <img src="assets/images/image1.jpg" alt="World Building">
+                        </div>
+                    </div>
 
-            <!-- Step 03 -->
-            <div class="process-grid">
-                <div>
-                    <span class="step-number">03.</span>
-                    <h3>World Building & Narrative</h3>
-                    <p>I meticulously designed a decaying medieval world where every asset — from the weathered stone bridges to the bioluminescent flora — serves a narrative purpose.
-                        Layered fog and dynamic lighting create an atmosphere that visually reflects the encroaching curse.</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="World Building">
-                    <p class="image-caption">Environment Design</p>
-                </div>
-            </div>
+                    <div class="process-item reveal-right stagger-4">
+                        <div class="process-dot"></div>
+                        <div class="process-content">
+                            <div class="process-number">04</div>
+                            <h3>Gameplay Programming & Mechanics</h3>
+                            <p>Using C# and Unity, I developed a responsive 3D side-scrolling movement system. I focused on the "feel" of the character—weight, jump arcs, and combat impact—to ensure that the Actual Mechanical Agency I was researching was felt directly through the controller.</p>
+                        </div>
+                        <div class="process-visual">
+                            <img src="assets/images/image1.jpg" alt="Programming">
+                        </div>
+                    </div>
 
-            <!-- Step 04 -->
-            <div class="process-grid">
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Gameplay Programming">
-                    <p class="image-caption">Gameplay Programming</p>
-                </div>
-                <div>
-                    <span class="step-number">04.</span>
-                    <h3>Gameplay Programming & Mechanics</h3>
-                    <p>Using C# and Unity, I developed a responsive 3D side-scrolling movement system.
-                        I focused on the "feel" of the character — weight, jump arcs, and combat impact — to ensure that the Actual Mechanical Agency I was researching was felt directly through the controller.</p>
-                </div>
-            </div>
+                    <div class="process-item reveal-left stagger-5">
+                        <div class="process-dot"></div>
+                        <div class="process-content">
+                            <div class="process-number">05</div>
+                            <h3>Level Design & Player Flow</h3>
+                            <p>I prototyped levels using a "Graybox" method to test player pacing and navigation before committing to final art. This iterative process allowed me to refine puzzles and platforming challenges based on early playtest feedback.</p>
+                        </div>
+                        <div class="process-visual">
+                            <img src="assets/images/image1.jpg" alt="Level Design">
+                        </div>
+                    </div>
 
-            <!-- Step 05 -->
-            <div class="process-grid">
-                <div>
-                    <span class="step-number">05.</span>
-                    <h3>Level Design & Player Flow</h3>
-                    <p>I prototyped levels using a "Graybox" method to test player pacing and navigation before committing to final art.
-                        This iterative process allowed me to refine puzzles and platforming challenges based on early playtest feedback.</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Level Design">
-                    <p class="image-caption">Level Prototyping</p>
-                </div>
-            </div>
-
-            <!-- Step 06 -->
-            <div class="process-grid">
-                <div class="gallery-item">
-                    <img src="assets/images/image1.jpg" alt="Testing">
-                    <p class="image-caption">User Testing</p>
-                </div>
-                <div>
-                    <span class="step-number">06.</span>
-                    <h3>Testing & Execution</h3>
-                    <p>I conducted structured playtests with 39 participants to validate my research and gameplay.
-                        By analysing behavioural data and player feedback, I iteratively balanced difficulty curves and refined the "Actual Mechanical Agency" to ensure a cohesive and engaging user journey.</p>
+                    <div class="process-item reveal-right stagger-6">
+                        <div class="process-dot"></div>
+                        <div class="process-content">
+                            <div class="process-number">06</div>
+                            <h3>Testing and Execution</h3>
+                            <p>I conducted structured playtests with 39 participants to validate my research and gameplay. By analyzing behavioral data and player feedback, I iteratively balanced the difficulty curves and refined the "Actual Mechanical Agency" to ensure a cohesive and engaging user journey.</p>
+                        </div>
+                        <div class="process-visual">
+                            <img src="assets/images/image1.jpg" alt="Testing">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <hr class="section-divider">
         </section>
+
+        <div class="section-divider"></div>
 
         <!-- ===================== PART 4: THESIS ===================== -->
-         <section id="part-4" class="section section-dark-alt reveal">
+         <section id="part-4" class="reveal">
+            <div class="section-container">
+                <span class="section-label">Part IV: The Research</span>
+                <h2 class="section-heading">Academic <em>Thesis</em></h2>
+                
+                <div class="content-card reveal stagger-1">
+                    <h3>Does Agency Mechanics Brings Engagement?</h3>
+                    <p>Does more freedom equal more fun? This thesis quantifies the relationship between Mechanical Agency and User Engagement. Using a mix of quantitative surveys (n=98) and qualitative playtests (n=39), I designed a Unity 3D prototype that successfully demonstrates how tailoring mechanics to specific player archetypes (Action vs. Adventure) can statistically improve the user experience.</p>
+                </div>
+                
+                <div class="thesis-card reveal stagger-2">
+                    <h4><i class="fas fa-bullseye"></i> Aim</h4>
+                    <p style="font-style: italic; margin: 0;">To Investigate the relationship between <strong style="color: var(--accent-gold);">player trait preferences, Actual Mechanical Agency(AMA)-mechanics, and player engagement</strong> in Platformer-Adventure games.</p>
+                </div>
 
-                <section class="case-study-content reveal">
-
-       
-            <p class="section-label">Part IV · The Research</p>
-            <h2 class="section-heading">Academic <em>Thesis</em></h2>
-
-            <div class="about-content">
-                <span class="step-number">01.</span>
-                <h3>Research Focus: Does Agency Mechanics Bring <em>Engagement</em>?</h3>
-                <p>Does more freedom equal more fun? This thesis quantifies the relationship between Mechanical Agency and User Engagement.
-                    Using a mix of quantitative surveys (n=98) and qualitative playtests (n=39), I designed a game prototype that successfully demonstrates how tailoring mechanics to specific player archetypes (Action vs. Adventure) can statistically improve the user experience.</p>
-            </div>
-
-            <div style="margin-top: 40px;">
-                <div class="about-content">
-                    <span class="step-number">02.</span>
-                    <h3>The Research Foundation: <em>Behind The Framework</em></h3>
-
-                    <div class="aim-box">
-                        <h4><i class="fas fa-bullseye"></i> Aim</h4>
-                        <p>To investigate the relationship between <strong>player trait preferences, Actual Mechanical Agency (AMA) mechanics, and player engagement</strong> in Platformer-Adventure games.</p>
-                    </div>
-
-                    <div class="thesis-grid">
-                        <div class="thesis-card">
-                            <h4><i class="fas fa-bullseye"></i> Objectives</h4>
-                            <div class="mechanics-list">
-                                <div class="mech-item rank-default">
-                                    <span class="mech-number">01</span>
-                                    <div class="mech-info">
-                                        <p>To identify the top five game mechanics most preferred by Aesthetic-Goal and Aesthetic-Challenge players in a Platformer-Adventure game using preliminary analysis.</p>
-                                    </div>
+                <div class="thesis-grid">
+                    <div class="thesis-card reveal stagger-3">
+                        <h4><i class="fas fa-bullseye"></i> Objectives</h4>
+                        <div class="mechanics-list">
+                            <div class="mech-item">
+                                <span class="mech-number">01</span>
+                                <div class="mech-info">
+                                    <p>To identify the top five game mechanics that are most preferred by the Aesthetic-Goal and Aesthetic-Challenge players in a Platformer-Adventure game using preliminary analysis</p>
                                 </div>
-                                <div class="mech-item rank-default">
-                                    <span class="mech-number">02</span>
-                                    <div class="mech-info">
-                                        <p>To develop a Platformer-Adventure game prototype incorporating the selected game mechanics.</p>
-                                    </div>
+                            </div>
+                            <div class="mech-item">
+                                <span class="mech-number">02</span>
+                                <div class="mech-info">
+                                    <p>To develop a Platformer-Adventure game prototype incorporating the selected game mechanics using Unity 3D.</p>
                                 </div>
-                                <div class="mech-item rank-default">
-                                    <span class="mech-number">03</span>
-                                    <div class="mech-info">
-                                        <p>To evaluate players' perceived AMA using the Game Sense of Agency (GSoA) and analyse its relationship with player engagement using the Game Engagement Questionnaire (GEQ).</p>
-                                    </div>
+                            </div>
+                            <div class="mech-item">
+                                <span class="mech-number">03</span>
+                                <div class="mech-info">
+                                    <p>To evaluate players perceived AMA using the Game Sense of Agency (GSoA) and analyse its relationship with player engagement using the Game Engagement Questionnaire (GEQ).</p>
                                 </div>
-                                <div class="mech-item rank-default">
-                                    <span class="mech-number">04</span>
-                                    <div class="mech-info">
-                                        <p>To analyse the differences in preferences for AMA-mechanics between Aesthetic-Goal and Aesthetic-Challenge players in the developed prototype.</p>
-                                    </div>
+                            </div>
+                            <div class="mech-item">
+                                <span class="mech-number">04</span>
+                                <div class="mech-info">
+                                    <p>To analyse the differences in preferences for AMA-mechanics between Aesthetic-Goal player and Aesthetic-Challenge player in the developed Platformer-Adventure game prototype.</p>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="thesis-card">
-                            <h4><i class="fas fa-question-circle"></i> Research Questions</h4>
-                            <div class="mechanics-list">
-                                <div class="mech-item rank-default">
-                                    <span class="mech-number">RQ1</span>
-                                    <div class="mech-info">
-                                        <p>What are the top five game mechanics most preferred by Aesthetic-Goal and Aesthetic-Challenge players in a Platformer-Adventure game?</p>
-                                    </div>
+                    </div>
+                    <div class="thesis-card reveal stagger-4">
+                        <h4><i class="fas fa-question-circle"></i> Research Questions</h4>
+                        <div class="mechanics-list">
+                            <div class="mech-item">
+                                <span class="mech-number">RQ1</span>
+                                <div class="mech-info">
+                                    <p>What are the top five game mechanics that are most preferred by Aesthetic-Goal and Aesthetic-Challenge players in a Platformer-Adventure game?</p>
                                 </div>
-                                <div class="mech-item rank-default">
-                                    <span class="mech-number">RQ2</span>
-                                    <div class="mech-info">
-                                        <p>How does perceived Actual Mechanical Agency (AMA) impact player engagement among Aesthetic-Goal and Aesthetic-Challenge players?</p>
-                                    </div>
+                            </div>
+                            <div class="mech-item">
+                                <span class="mech-number">RQ2</span>
+                                <div class="mech-info">
+                                    <p>How do the perceived Actual Mechanical Agency (AMA) impact player engagement among Aesthetic-Goal and Aesthetic-Challenge players in the Platformer-Adventure game?</p>
                                 </div>
-                                <div class="mech-item rank-default">
-                                    <span class="mech-number">RQ3</span>
-                                    <div class="mech-info">
-                                        <p>What are the differences in the preferences of Aesthetic-Goal and Aesthetic-Challenge players with the top five AMA-mechanics in the proposed game?</p>
-                                    </div>
+                            </div>
+                            <div class="mech-item">
+                                <span class="mech-number">RQ3</span>
+                                <div class="mech-info">
+                                    <p>What are the differences in the preferences of Aesthetic-Goal and Aesthetic-Challenge players with the top five AMA-mechanics in the proposed Platformer-Adventure game?</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <hr class="section-divider">
-            </section>
         </section>
+
+        <div class="section-divider"></div>
 
         <!-- ===================== PART 5: FINDINGS ===================== -->
          
-        <section id="part-5" class="section section-dark-alt reveal">
-            <section class="case-study-content reveal ">
-            <p class="section-label">Part V · Research Findings</p>
-            <h2 class="section-heading">Insights & <em>Validated Hypotheses</em></h2>
+        <section id="part-5" class="reveal">
+            <div class="section-container">
+                <span class="section-label">Part V: Research Findings</span>
+                <h2 class="section-heading">Insights & <em>Validated Hypotheses</em></h2>
 
-            <!-- RQ1 -->
-            <div class="research-segment">
-                <h3 class="mechanics-title">Top 5 Gameplay Mechanics <span class="rq-tag">RQ1 <i class="fas fa-check"></i></span></h3>
-                <p class="segment-desc">Identified through a survey of <strong>98 participants</strong>, with <em>Exploration</em> ranking as the most engaging element across both player groups.</p>
-
-                <div class="mechanics-list">
-                    <div class="mech-item rank-1">
-                        <span class="mech-number">01</span>
-                        <div class="mech-info">
-                            <h4>Exploration</h4>
-                            <p>The primary driver for engagement, universally valued by all player types.</p>
+                <!-- RQ1: Top 5 Mechanics -->
+                <div class="research-segment">
+                    <h3 class="reveal stagger-1" style="font-size: 1.4rem; margin-bottom: 15px;">
+                        Top 5 Gameplay Mechanics <span class="rq-tag">RQ1 <i class="fas fa-check"></i></span>
+                    </h3>
+                    <p class="reveal stagger-1" style="color: var(--text-secondary); margin-bottom: 30px;">Identified through a survey of <strong style="color: var(--accent-gold);">98 participants</strong>, with <em>Exploration</em> ranking as the most engaging element across both groups.</p>
+                    
+                    <div class="mechanics-list">
+                        <div class="mech-item rank-1 reveal stagger-1">
+                            <span class="mech-number">01</span>
+                            <div class="mech-info">
+                                <h4>Exploration</h4>
+                                <p>The primary driver for engagement, universally valued by all player types.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mech-item rank-2">
-                        <span class="mech-number">02</span>
-                        <div class="mech-info">
-                            <h4>Use, Examine & Combine</h4>
-                            <p>Essential for deep puzzle-solving and world interaction.</p>
+                        <div class="mech-item rank-2 reveal stagger-2">
+                            <span class="mech-number">02</span>
+                            <div class="mech-info">
+                                <h4>Use, Examine & Combine</h4>
+                                <p>Essential for deep puzzle-solving and world interaction.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mech-item rank-3">
-                        <span class="mech-number">03</span>
-                        <div class="mech-info">
-                            <h4>Collectible Items</h4>
-                            <p>Critical for progression-driven satisfaction (p = 0.006).</p>
+                        <div class="mech-item rank-3 reveal stagger-3">
+                            <span class="mech-number">03</span>
+                            <div class="mech-info">
+                                <h4>Collectible Items</h4>
+                                <p>Critical for progression-driven satisfaction (p = 0.006).</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mech-item rank-4">
-                        <span class="mech-number">04</span>
-                        <div class="mech-info">
-                            <h4>Movement Aids</h4>
-                            <p>Crucial for maintaining gameplay flow and spatial navigation.</p>
+                        <div class="mech-item rank-4 reveal stagger-4">
+                            <span class="mech-number">04</span>
+                            <div class="mech-info">
+                                <h4>Movement Aids</h4>
+                                <p>Crucial for maintaining gameplay flow and spatial navigation.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mech-item rank-5">
-                        <span class="mech-number">05</span>
-                        <div class="mech-info">
-                            <h4>Triggers</h4>
-                            <p>Ensuring dynamic world reactions to player agency.</p>
+                        <div class="mech-item rank-5 reveal stagger-5">
+                            <span class="mech-number">05</span>
+                            <div class="mech-info">
+                                <h4>Triggers</h4>
+                                <p>Ensuring dynamic world reactions to player agency.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- RQ2: Agency & Engagement -->
-            <div class="research-segment">
-                <div class="data-strip">
+                <!-- RQ2: Agency & Engagement -->
+                <div class="data-strip reveal stagger-1">
                     <div class="data-content">
-                        <h3 class="mechanics-title">Agency & Engagement <span class="rq-tag">RQ2 <i class="fas fa-check"></i></span></h3>
-                        <p>A <strong>significant positive correlation</strong> was found between perceived Agency (AMA) and Player Engagement via Pearson's Coefficient.</p>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 10px;">
+                            Agency & Engagement <span class="rq-tag">RQ2 <i class="fas fa-check"></i></span>
+                        </h3>
+                        <p style="color: var(--text-secondary);">Proven <strong style="color: var(--accent-gold);">significant positive correlation</strong> between perceived Agency (AMA) and Player Engagement via Pearson's Coefficient.</p>
                     </div>
                     <div class="stats-mini-grid">
                         <div class="stat-pill">
-                            <span class="stat-value">0.448</span>
-                            <span class="stat-label">Correlation (r)</span>
+                            <span class="stat-value counter" data-target="0.448">0</span>
+                            <span class="label">Correlation (r)</span>
                         </div>
                         <div class="stat-pill">
-                            <span class="stat-value">0.004</span>
-                            <span class="stat-label">P-Value</span>
+                            <span class="stat-value counter" data-target="0.004">0</span>
+                            <span class="label">P-Value</span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- RQ2: Player Traits -->
-            <div class="research-segment">
-                <div class="data-strip">
+                <!-- RQ2: Player Traits -->
+                <div class="data-strip reveal stagger-2">
                     <div class="data-content">
-                        <h3 class="mechanics-title">Player Traits & Engagement <span class="rq-tag">RQ2 <i class="fas fa-check"></i></span></h3>
-                        <p>AC players showed a stronger correlation (r = 0.542), while AG players showed a moderate correlation (r = 0.372) — AC players experienced higher engagement from mechanical agency.</p>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 10px;">
+                            Player Traits & Engagement <span class="rq-tag">RQ2 <i class="fas fa-check"></i></span>
+                        </h3>
+                        <p style="color: var(--text-secondary);">AC players has stronger correlation (r = 0.542), while AG players has moderate correlation (r = 0.372), which means AC players feel more fun than AG players</p>
                     </div>
                     <div class="stats-mini-grid">
                         <div class="stat-pill">
-                            <span class="stat-value">0.542</span>
-                            <span class="stat-label">AC (r)</span>
+                            <span class="stat-value counter" data-target="0.542">0</span>
+                            <span class="label">AC Correlation (r)</span>
                         </div>
                         <div class="stat-pill">
-                            <span class="stat-value">0.372</span>
-                            <span class="stat-label">AG (r)</span>
+                            <span class="stat-value counter" data-target="0.372">0</span>
+                            <span class="label">AG Correlation (r)</span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- RQ3: Preference Divergence -->
-            <div class="research-segment">
-                <h3 class="mechanics-title">Preference Divergence <span class="rq-tag">RQ3 <i class="fas fa-check"></i></span></h3>
-                <p class="segment-desc">"What are the differences in the preferences of AG and AC players with the top five AMA-mechanics?"</p>
+                <!-- RQ3: Preference Divergence -->
+                <div class="research-segment">
+                    <h3 class="reveal stagger-1" style="font-size: 1.4rem; margin-bottom: 15px;">
+                        Preference Divergence <span class="rq-tag">RQ3 <i class="fas fa-check"></i></span>
+                    </h3>
+                    <p class="reveal stagger-1" style="color: var(--text-secondary); margin-bottom: 30px; font-style: italic;">"What are the differences in the preferences of AG and AC players with the top five AMA-mechanics?"</p>
 
-                <div class="comparison-grid">
-                    <div class="group-card ag-group">
-                        <div class="group-header">
-                            <i class="fas fa-bullseye"></i>
-                            <h3>Aesthetic-Goal (AG)</h3>
-                            <p style="color: var(--text-muted); margin: 0;">Prioritises Logic & Progression</p>
+                    <div class="comparison-grid">
+                        <div class="group-card ag-group reveal-left stagger-2">
+                            <div class="group-header">
+                                <i class="fas fa-bullseye"></i>
+                                <h3>Aesthetic-Goal (AG)</h3>
+                                <p>Prioritizes Logic & Progression</p>
+                            </div>
+                            <ul class="ranking-list">
+                                <li><span>1</span> Use, Examine & Combine</li>
+                                <li><span>2</span> Exploration</li>
+                                <li><span>3</span> Collectible Items</li>
+                                <li><span>4</span> Puzzles</li>
+                                <li><span>5</span> Hint Systems</li>
+                            </ul>
                         </div>
-                        <ul class="ranking-list">
-                            <li><span>1</span> Use, Examine & Combine</li>
-                            <li><span>2</span> Exploration</li>
-                            <li><span>3</span> Collectible Items</li>
-                            <li><span>4</span> Puzzles</li>
-                            <li><span>5</span> Hint Systems</li>
+
+                        <div class="group-card ac-group reveal-right stagger-3">
+                            <div class="group-header">
+                                <i class="fas fa-fist-raised"></i>
+                                <h3>Aesthetic-Challenge (AC)</h3>
+                                <p>Focuses on Mastery & Action</p>
+                            </div>
+                            <ul class="ranking-list">
+                                <li><span>1</span> Exploration</li>
+                                <li><span>2</span> Movement Aids</li>
+                                <li><span>3</span> Triggers</li>
+                                <li><span>4</span> Collectible Item</li>
+                                <li><span>5</span> Use, Examine & Combine</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="key-insight-box reveal stagger-4">
+                        <h4><i class="fas fa-lightbulb"></i> Core Finding</h4>
+                        <p>While <strong style="color: var(--accent-gold);">Exploration</strong> is universally valued, <strong>AG players</strong> lean towards intellectual engagement, whereas <strong>AC players</strong> demand fluid control and environmental reactivity.</p>
+                    </div>
+                </div>
+
+                <!-- Key Highlights -->
+                <div class="summary-highlight-box reveal stagger-1">
+                    <div class="highlight-content">
+                        <h3><i class="fas fa-star"></i> Key Highlights</h3>
+                        <ul>
+                            <li><strong>Empowerment Drives Retention:</strong> Higher Mechanical Agency (AMA) statistically increases overall player engagement.</li>
+                            <li><strong>Tailored Experiences:</strong> AG players prefer progression-based mechanics like <em>Collectible Items</em> (p = 0.006).</li>
+                            <li><strong>Movement is Key:</strong> AC players prioritize exploration efficiency and <em>Movement Aids</em> for better flow.</li>
                         </ul>
                     </div>
-                    <div class="group-card ac-group">
-                        <div class="group-header">
-                            <i class="fas fa-fist-raised"></i>
-                            <h3>Aesthetic-Challenge (AC)</h3>
-                            <p style="color: var(--text-muted); margin: 0;">Focuses on Mastery & Action</p>
-                        </div>
-                        <ul class="ranking-list">
-                            <li><span>1</span> Exploration</li>
-                            <li><span>2</span> Movement Aids</li>
-                            <li><span>3</span> Triggers</li>
-                            <li><span>4</span> Collectible Items</li>
-                            <li><span>5</span> Use, Examine & Combine</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="key-insight-box">
-                    <h4><i class="fas fa-lightbulb"></i> Core Finding</h4>
-                    <p>While <strong>Exploration</strong> is universally valued, <strong>AG players</strong> lean towards intellectual engagement, whereas <strong>AC players</strong> demand fluid control and environmental reactivity.</p>
                 </div>
             </div>
-
-            <!-- Summary -->
-            <div class="summary-highlight-box">
-                <div class="highlight-content">
-                    <h3><i class="fas fa-star"></i> Key Highlights</h3>
-                    <ul>
-                        <li><strong>Empowerment Drives Retention:</strong> Higher Mechanical Agency (AMA) statistically increases overall player engagement.</li>
-                        <li><strong>Tailored Experiences:</strong> AG players prefer progression-based mechanics like <em>Collectible Items</em> (p = 0.006).</li>
-                        <li><strong>Movement is Key:</strong> AC players prioritise exploration efficiency and <em>Movement Aids</em> for better flow.</li>
-                    </ul>
-                </div>
-            </div>
-            </section>
         </section>
+
+        <div class="section-divider"></div>
 
         <!-- ===================== PART 6: ACHIEVEMENTS ===================== -->
-        <section id="part-6" class="section-dark" style="padding: 80px 0;">
-            <div style="max-width: 1000px; margin: 0 auto; padding: 0 24px;">
-                <div style="border-radius: var(--radius); overflow: hidden;">
-                    <img src="assets/images/fypcert.png" alt="FYP Award Certificate" style="width: 100%; display: block;">
+        <section id="part-6" class="achievement-section reveal">
+            <div class="section-container">
+                <span class="section-label">Part VI: Achievements</span>
+                <h2 class="section-heading">Recognition & <em>Awards</em></h2>
+                
+                <div class="achievement-image reveal-scale stagger-1">
+                    <img src="assets/images/fypcert.png" alt="FYP Certificate - Best FYP Award">
                 </div>
-                <p class="image-caption" style="color: rgba(255,255,255,0.5); margin-top: 16px;">This project won the Best Final Year Project Award at Xiamen University Malaysia.</p>
+                <p class="image-caption reveal stagger-2">本项目荣获厦门大学马来西亚分校最佳毕业设计奖 (1st Place — Best FYP Award)</p>
             </div>
         </section>
 
-        <!-- ===================== TECH STACK ===================== -->
-        <section class="case-study-content reveal">
-            <p class="section-label">Technical</p>
-            <h2 class="section-heading">Tech <em>Stack</em></h2>
-            <p style="color: var(--text-light); line-height: 1.7; margin-bottom: 10px;">
-                I independently completed the entire production — from art asset creation to code implementation — demonstrating cross-disciplinary design and engineering capabilities:
-            </p>
-            <ul class="tech-list">
-                <li><strong>Core Engine:</strong> Unity 3D & C# Scripting</li>
-                <li><strong>Art Assets:</strong> Maya & Substance Painter</li>
-                <li><strong>Research Tools:</strong> GSoA & GEQ Surveys, SPSS for Statistical Analysis</li>
-            </ul>
+        <div class="section-divider"></div>
+
+        <!-- Tech Stack -->
+        <section class="reveal">
+            <div class="section-container">
+                <h2 class="section-heading">Technical <em>Stack</em></h2>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">我独立完成了从美术资源生产到代码逻辑实现的全部环节，充分展示了跨学科的设计与工程能力：</p>
+                <ul class="tech-list">
+                    <li class="reveal stagger-1"><strong>核心引擎：</strong> Unity 3D & C# Scripting</li>
+                    <li class="reveal stagger-2"><strong>美术资产：</strong> Maya & Substance Painter</li>
+                    <li class="reveal stagger-3"><strong>研究工具：</strong> GSoA & GEQ (Game Sense of Agency & Game Engagement Questionnaire)</li>
+                </ul>
+            </div>
         </section>
 
     </main>
