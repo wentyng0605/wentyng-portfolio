@@ -4,218 +4,970 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UI/UX Design | Lee Wen Tyng</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* UI/UX 专属样式：更偏向明亮、整洁的实验室风格 */
+        /* UI/UX Page Styles - Mixed: Dark Hero + Light Content */
         :root {
-            --ui-accent: #2563eb; /* 经典交互蓝 */
+            --ui-accent: #2563eb;
+            --ui-accent-light: #3b82f6;
+            --bg-dark: #0a0a0a;
+            --accent-blue: #60a5fa;
         }
 
-        .project-hero {
-            padding: 160px 24px 80px;
-            background: #ffffff;
-            color: #1a1a1a;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .case-study-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 80px 24px;
-        }
-
-        /* 流程展示：研究、原型、测试 */
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-
-        .process-step {
-            padding: 30px;
-            background: #f8fafc;
-            border-radius: var(--radius);
+        /* Project Navigation Sidebar */
+        .project-nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 20px 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             border: 1px solid var(--border);
         }
 
-        .step-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--ui-accent);
-            display: block;
-            margin-bottom: 15px;
+        .project-nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
-        /* 模拟手机/网页的原型展示框 */
-        .prototype-display {
-            width: 100%;
-            background: #f1f5f9;
-            border-radius: 20px;
-            padding: 40px;
+        .project-nav-item {
+            position: relative;
+        }
+
+        .project-nav-item a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-nav-item a::before {
+            content: attr(data-label);
+            position: absolute;
+            right: 50px;
+            background: var(--text);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+        }
+
+        .project-nav-item a:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .project-nav-item.active a,
+        .project-nav-item a:hover {
+            background: var(--ui-accent);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .project-nav-item.active a {
+            transform: scale(1.1);
+        }
+
+        /* Hero Section - Dark (matching gamedev.html) */
+        .project-hero {
+            padding: 160px 24px 80px;
+            background: var(--bg-dark);
+            color: white;
             text-align: center;
-            margin: 40px 0;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
         }
 
-        .prototype-display img {
-            max-width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.12) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
         }
 
-        .ux-highlight {
-            border-left: 4px solid var(--ui-accent);
-            padding-left: 20px;
-            margin: 30px 0;
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(96, 165, 250, 0.15);
+            color: var(--accent-blue);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 50px;
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 500;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-title em {
+            color: var(--accent-blue);
             font-style: italic;
-            color: #475569;
         }
 
-        .project-row {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    margin-bottom: 120px;
-}
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
 
-.project-row.reverse {
-    flex-direction: row-reverse;
-}
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
 
-.project-content {
-    flex: 1;
-}
+        .skill-tags span {
+            font-size: 0.85rem;
+            padding: 8px 16px;
+            background: rgba(96, 165, 250, 0.1);
+            color: var(--accent-blue);
+            border-radius: 50px;
+            font-weight: 500;
+            border: 1px solid rgba(96, 165, 250, 0.2);
+        }
 
-.project-media {
-    flex: 1.2;
-}
+        /* Case Study Container - Light */
+        .case-study-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 24px 100px;
+            background: #ffffff;
+        }
 
-/* 按钮微调 */
-.btn-outline-sm {
-    padding: 10px 24px;
-    border: 1px solid var(--ui-accent);
-    color: var(--ui-accent);
-    text-decoration: none;
-    border-radius: var(--radius-sm);
-    font-size: 0.9rem;
-    display: inline-block;
-    margin-top: 20px;
-    transition: 0.3s;
-}
+        /* Project Card - Light */
+        .project-card {
+            background: white;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            margin-bottom: 60px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
 
-.btn-outline-sm:hover {
-    background: var(--ui-accent);
-    color: white;
-}
+        .project-card.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-/* 移动端适配 */
-@media (max-width: 992px) {
-    .project-row, .project-row.reverse {
-        flex-direction: column;
-        gap: 30px;
-        margin-bottom: 80px;
-    }
-    .project-content, .project-media {
-        width: 100%;
-    }
-}
+        .project-card:hover {
+            box-shadow: var(--card-shadow);
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        /* Card Header */
+        .card-header {
+            padding: 40px 40px 20px;
+        }
+
+        .card-label {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--ui-accent);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 50px;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .card-title em {
+            color: var(--ui-accent);
+            font-style: italic;
+        }
+
+        .card-role {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .card-role strong {
+            color: var(--ui-accent);
+            font-weight: 600;
+        }
+
+        /* Card Content */
+        .card-content {
+            padding: 0 40px 40px;
+        }
+
+        /* Visual Section */
+        .visual-section {
+            margin-bottom: 32px;
+        }
+
+        .main-visual {
+            width: 100%;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: #f1f5f9;
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+
+        .main-visual:hover {
+            transform: scale(1.01);
+        }
+
+        .main-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .main-visual:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Content Blocks */
+        .content-section {
+            margin-bottom: 32px;
+        }
+
+        .content-section h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+
+        .content-section p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .content-section p strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* Solutions Grid */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .solution-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            border-color: rgba(37, 99, 235, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+
+        .solution-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ui-accent);
+            margin-bottom: 10px;
+        }
+
+        .solution-card p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+
+        /* Heuristic Grid */
+        .heuristic-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        /* Metrics */
+        .metrics-bar {
+            display: flex;
+            gap: 24px;
+            margin: 24px 0;
+            padding: 24px;
+            background: #f8fafc;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+
+        .metric {
+            flex: 1;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--ui-accent);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Gallery */
+        .gallery-section {
+            margin-top: 32px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 4/3;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: #f1f5f9;
+            cursor: zoom-in;
+            position: relative;
+            border: 1px solid var(--border);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '\f002';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.4);
+            color: white;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* CTA Section */
+        .card-cta {
+            display: flex;
+            justify-content: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            margin-top: 32px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--ui-accent), var(--ui-accent-light));
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Divider */
+        .section-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 60px 0;
+        }
+
+        /* Bottom CTA - Dark */
+        .simple-cta {
+            background: var(--text);
+            color: white;
+            padding: 100px 24px;
+            text-align: center;
+        }
+
+        .simple-cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .simple-cta p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 32px;
+        }
+
+        .simple-cta .btn-primary {
+            background: var(--accent-blue);
+            color: #0a0a0a;
+        }
+
+        .simple-cta .btn-primary:hover {
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.3);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .lightbox-prev { left: 30px; }
+        .lightbox-next { right: 30px; }
+
+        /* Footer */
+        .footer {
+            background: #fff;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .project-nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project-hero {
+                padding: 120px 20px 60px;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .card-header,
+            .card-content {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .solutions-grid,
+            .heuristic-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .metrics-bar {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-title {
+                font-size: 1.6rem;
+            }
+
+            .simple-cta h2 {
+                font-size: 1.8rem;
+            }
+        }
     </style>
-    
 </head>
-<body class="light-theme">
+<body>
 
-    <header id="header" class="scrolled"> 
+    <!-- Navigation -->
+    <header id="header">
         <nav class="navbar">
-            <a href="index.html" class="logo" style="color: #1a1a1a;">WT<span class="dot">.</span></a>
-            <a href="index.html#projects" class="btn btn-outline" style="padding: 8px 20px; border-color: #ddd; color: #333;">
+            <a href="index.html" class="logo">WT<span class="dot">.</span></a>
+            <a href="index.html#projects" class="btn btn-outline" style="padding: 8px 20px;">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
         </nav>
     </header>
 
+    <!-- Project Navigation Sidebar -->
+    <nav class="project-nav">
+        <ul class="project-nav-list">
+            <li class="project-nav-item active" data-target="portfolio">
+                <a href="#portfolio" data-label="Portfolio">01</a>
+            </li>
+            <li class="project-nav-item" data-target="bim">
+                <a href="#bim" data-label="Bloom-In-Motion">02</a>
+            </li>
+            <li class="project-nav-item" data-target="trippie">
+                <a href="#trippie" data-label="TravelGo">03</a>
+            </li>
+        </ul>
+    </nav>
+
     <main>
+        <!-- Hero Section - Dark (matching gamedev.html) -->
         <section class="project-hero">
-            <div class="section-container">
-                <p class="section-label" style="color: var(--ui-accent);">User Experience</p>
-                <h1 class="hero-text" style="font-size: 3.5rem; color: #111;">Intuitive <em>Interfaces</em></h1>
-                <p style="opacity: 0.7; max-width: 600px; margin: 20px auto; color: #444;">通过严谨的用户研究与快速迭代，打造平衡功能与美学的数字产品。</p>
-            </div>
-        </section>
-
-        <section class="case-study-container">
-    
-    <div class="reveal project-row">
-        <div class="project-content">
-            <span id="health" class="step-number">01.</span>
-            <h2 class="section-heading">Healthcare <em>Accessibility</em></h2>
-            <p>针对老年用户设计的医疗预约系统，重点在于简化导航层级和增强视觉辅助。</p>
-            <div class="ux-highlight">“任务完成率提升 45%，认知负荷显著降低。”</div>
-            <a href="uiui_n.html" class="btn btn-outline-sm">Read Full Case Study</a>
-        </div>
-        <div class="project-media">
-            <div class="prototype-display">
-                <img src="assets/images/project1.jpg" alt="Healthcare App UI">
-            </div>
-        </div>
-    </div>
-
-    <div class="reveal project-row reverse">
-        <div class="project-content">
-            <span class="step-number">02.</span>
-            <h2 class="section-heading">Seamless <em>Checkout</em></h2>
-            <p>优化电商平台的支付流，通过减少步骤和引入实时反馈来降低购物车弃用率。</p>
-            <div class="ux-highlight">“支付转化率提高 12%，用户满意度评分达到 4.8/5。”</div>
-            <a href="#" class="btn btn-outline-sm">Read Full Case Study</a>
-        </div>
-        <div class="project-media">
-            <div class="prototype-display">
-                <img src="assets/images/project2.jpg" alt="E-Commerce UI">
-            </div>
-        </div>
-    </div>
-
-    <div class="reveal project-row">
-        <div class="project-content">
-            <span class="step-number">03.</span>
-            <h2 class="section-heading">Data <em>Visualization</em></h2>
-            <p>为个人理财应用设计的仪表盘，将复杂的财务数据转化为直观的图表资产。</p>
-            <div class="ux-highlight">“通过原子设计系统构建，确保了跨平台的一致性。”</div>
-            <a href="#" class="btn btn-outline-sm">Read Full Case Study</a>
-        </div>
-        <div class="project-media">
-            <div class="prototype-display">
-                <img src="assets/images/project3.jpg" alt="Fintech Dashboard">
-            </div>
-        </div>
-    </div>
-
-</section>
-
-        <section class="section reveal" style="text-align: center; background: #f8fafc;">
-            <div class="section-container">
-                <h2 class="section-heading">Focusing on <em>Users</em></h2>
-                <div class="skill-tags" style="justify-content: center;">
+            <div class="hero-content">
+                <span class="section-label">User Experience</span>
+                <h1 class="hero-title">Crafting Digital <br><em>Experiences</em></h1>
+                <p class="hero-subtitle">I'm obsessed with the 'why' behind every click. From sketching messy wireframes to polishing high-fidelity prototypes, I build interfaces that don't just look pretty, but feel like a helping hand.</p>
+                <div class="skill-tags">
                     <span>Figma</span>
                     <span>Adobe XD</span>
                     <span>Prototyping</span>
                     <span>Usability Testing</span>
                 </div>
-                <div style="margin-top: 50px;">
-                    <a href="index.html#contact" class="btn btn-primary" style="background: var(--ui-accent);">Hire Me <i class="fas fa-paper-plane"></i></a>
-                </div>
             </div>
+        </section>
+
+        <!-- Case Studies - Light -->
+        <section class="case-study-container">
+
+            <!-- Project 1: Portfolio Website -->
+            <article class="project-card reveal" id="portfolio">
+                <div class="card-header">
+                    <span class="card-label">UI/UX Case Study</span>
+                    <h2 class="card-title">Building a Design-Centric <em>Portfolio</em></h2>
+                    <p class="card-role"><strong>Role:</strong> UI/UX Designer & Front-end Developer</p>
+                </div>
+                <div class="card-content">
+                    <div class="visual-section">
+                        <div class="main-visual" onclick="openLightbox(this)">
+                            <img src="assets/images/bg1.jpg" alt="Portfolio Website Preview" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>The Challenge</h3>
+                        <p>As a Digital Media Technology graduate, I needed a platform that didn't just 'list' my work, but acted as living proof of my technical proficiency. The goal was to build a high-performance, responsive site from scratch that balances visual storytelling with clean, production-ready code.</p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>The Process</h3>
+                        <p><strong>Information Architecture:</strong> I categorized my diverse projects (UI/UX, Game Dev, Research) into a modular system, ensuring users can navigate between domains without feeling overwhelmed.</p>
+                        <p><strong>Performance Engineering:</strong> Moving away from heavy templates, I chose a vanilla HTML/CSS/JS stack to ensure sub-second loading times and full creative control over micro-interactions.</p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Design Strategy & HCI Implementation</h3>
+                        <div class="solutions-grid">
+                            <div class="solution-card">
+                                <h4>Immersive Dark Mode</h4>
+                                <p>Deep-themed UI serves as a neutral canvas, allowing vibrant project thumbnails to stand out while minimizing visual noise.</p>
+                            </div>
+                            <div class="solution-card">
+                                <h4>Modular Card System</h4>
+                                <p>Reusable Card Component encapsulates project metadata, tech stacks, and visual previews into a single, digestible unit.</p>
+                            </div>
+                            <div class="solution-card">
+                                <h4>Fluid Responsive Layout</h4>
+                                <p>Mobile-first responsive grid adapts seamlessly from 4K monitors to mobile screens, maintaining perfect visual hierarchy.</p>
+                            </div>
+                            <div class="solution-card">
+                                <h4>Micro-Interactions</h4>
+                                <p>Subtle hover effects and smooth transitions provide immediate feedback, adding polish to the experience.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Technical Toolkit</h3>
+                        <p><strong>Prototyping:</strong> Figma | <strong>Visual Assets:</strong> Canva | <strong>Methodology:</strong> User-Centered Design & Rapid Prototyping</p>
+                    </div>
+
+                    <div class="gallery-section">
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openLightbox(this)">
+                                <img src="assets/images/image1.jpeg" alt="Gallery 1" loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(this)">
+                                <img src="assets/images/image1.jpeg" alt="Gallery 2" loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(this)">
+                                <img src="assets/images/image1.jpeg" alt="Gallery 3" loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(this)">
+                                <img src="assets/images/image1.jpeg" alt="Gallery 4" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-cta">
+                        <a href="index.html" class="btn-primary">
+                            View Live Site <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <hr class="section-divider">
+
+            <!-- Project 2: Bloom-In-Motion -->
+            <article class="project-card reveal" id="bim">
+                <div class="card-header">
+                    <span class="card-label">UI/UX Case Study</span>
+                    <h2 class="card-title">Bloom-In-Motion: <em>Ticketing Web App</em></h2>
+                    <p class="card-role"><strong>Role:</strong> UI/UX Designer</p>
+                </div>
+                <div class="card-content">
+                    <div class="visual-section">
+                        <div class="main-visual" onclick="openLightbox(this)">
+                            <img src="assets/images/bg1.jpg" alt="Bloom-In-Motion Preview" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>The Challenge</h3>
+                        <p>Managing event registration for university clubs can be chaotic. Traditional manual sign-ups often lead to fragmented information and high cognitive load for students. The goal was to design a mobile-friendly ticketing web app that simplifies seat selection and payment verification.</p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>The Process</h3>
+                        <p><strong>Requirement Gathering:</strong> User interviews with club representatives identified "information clarity", "registration traffic" and "seat availability" as top priorities.</p>
+                        <p><strong>Flow Optimization:</strong> Applied HCI principles to design an intuitive user flow that minimizes booking steps.</p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Design Strategy & HCI Implementation</h3>
+                        <div class="solutions-grid">
+                            <div class="solution-card">
+                                <h4>Conversion-Optimized Landing</h4>
+                                <p>High-contrast hero section with clear CTA and clean information hierarchy for event specifics.</p>
+                            </div>
+                            <div class="solution-card">
+                                <h4>Interactive Seat Selection</h4>
+                                <p>Applied Fitts's Law to optimize button placement. Color-coded auditorium layout minimizes cognitive load.</p>
+                            </div>
+                            <div class="solution-card">
+                                <h4>Frictionless Payment</h4>
+                                <p>Progressive Disclosure breaks down forms into logical steps, preventing "form fatigue" and reducing drop-off.</p>
+                            </div>
+                            <div class="solution-card">
+                                <h4>Instant System Feedback</h4>
+                                <p>Visually distinct confirmation screen provides immediate closure following Nielsen's Visibility of System Status.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Technical Toolkit</h3>
+                        <p><strong>Prototyping:</strong> Figma | <strong>Visual Assets:</strong> Canva | <strong>Methodology:</strong> User-Centered Design & Rapid Prototyping</p>
+                    </div>
+
+                    <div class="gallery-section">
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openLightbox(this)">
+                                <img src="assets/images/image1.jpeg" alt="Gallery 1" loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(this)">
+                                <img src="assets/images/image1.jpeg" alt="Gallery 2" loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(this)">
+                                <img src="assets/images/image1.jpeg" alt="Gallery 3" loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(this)">
+                                <img src="assets/images/image1.jpeg" alt="Gallery 4" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-cta">
+                        <a href="https://bloom-in-motion-a04ee.web.app/" target="_blank" rel="noopener" class="btn-primary">
+                            View WebApp <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <hr class="section-divider">
+
+            <!-- Project 3: TravelGo -->
+            <article class="project-card reveal" id="trippie">
+                <div class="card-header">
+                    <span class="card-label">UI/UX Case Study</span>
+                    <h2 class="card-title">TravelGo: <em>Redesign Travel Apps</em></h2>
+                    <p class="card-role"><strong>Role:</strong> UX Researcher & UI Designer (HCI Academic Project)</p>
+                </div>
+                <div class="card-content">
+                    <div class="visual-section">
+                        <div class="main-visual" onclick="openLightbox(this)">
+                            <img src="assets/images/bg3.jpg" alt="TravelGo Preview" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>The Challenge</h3>
+                        <p>Travelers often struggle to balance itinerary logistics with budget constraints. My goal for this HCI project was to design a seamless management solution that integrates hotel/flight booking with real-time budget tracking, validated through rigorous user testing.</p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>User Research & Insights</h3>
+                        <p>Conducted quantitative research with 25 participants to measure usability and user satisfaction.</p>
+                        <p><strong>User Demographic:</strong> Target audience aged 18-25, focusing on tech-savvy frequent travelers.</p>
+                        <p><strong>Testing Setup:</strong> Within-Subject Design where users performed tasks (Login, Explore Navigation, Feedback) to test intuitiveness.</p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Design Strategy & Heuristic Evaluation</h3>
+                        <p>Leveraging Nielsen's 10 Usability Heuristics, I ensured the interface feels familiar and reliable.</p>
+                        <div class="heuristic-grid">
+                            <div class="solution-card">
+                                <h4>Recognition Over Recall</h4>
+                                <p>Clear iconography and visual cues reduce cognitive load. Users recognize actions instead of remembering locations.</p>
+                            </div>
+                            <div class="solution-card">
+                                <h4>System Match to Real World</h4>
+                                <p>Familiar gestures (pinch-to-zoom, drag) and logical booking flow mirror real-world sequences.</p>
+                            </div>
+                            <div class="solution-card">
+                                <h4>Consistency & Standards</h4>
+                                <p>Strict visual language across the app ensures users feel confident navigating.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>The Results & Discussion</h3>
+                        <p>The prototype was evaluated using the System Usability Scale (SUS) for quantitative validation.</p>
+
+                        <div class="metrics-bar">
+                            <div class="metric">
+                                <div class="metric-value">80.8%</div>
+                                <div class="metric-label">SUS Score</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">25</div>
+                                <div class="metric-label">Participants</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">84%</div>
+                                <div class="metric-label">Satisfaction</div>
+                            </div>
+                        </div>
+
+                        <p><strong>SUS Score:</strong> 80.8% is "Excellent/A-grade," indicating high user acceptability.</p>
+                        <p><strong>User Satisfaction:</strong> 84% of participants expressed intent to use TravelGo for future travel planning.</p>
+                        <p><strong>Key Insight:</strong> Post-test discussions revealed high demand for "Transportation Integration," earmarked for next iteration.</p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Technical Toolkit</h3>
+                        <p><strong>Prototyping:</strong> Figma | <strong>Visual Assets:</strong> Canva | <strong>Methodology:</strong> User-Centered Design & Rapid Prototyping</p>
+                    </div>
+
+                    <div class="gallery-section">
+                        <div class="gallery-grid">
+                            <div class="gallery-item" onclick="openLightbox(this)">
+                                <img src="assets/images/image2.jpg" alt="Wireframes" loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(this)">
+                                <img src="assets/images/image2.jpg" alt="UI Kit" loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(this)">
+                                <img src="assets/images/image2.jpg" alt="User Flow" loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openLightbox(this)">
+                                <img src="assets/images/image2.jpg" alt="Final UI" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-cta">
+                        <a href="https://www.figma.com/design/Z9bhfsa8DXiW72nAGPfmmI/Untitled?node-id=0-1&t=8kiJQ5jdRwCGWmjR-1" target="_blank" rel="noopener" class="btn-primary">
+                            View Prototype <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Simple CTA - Dark -->
+        <section class="simple-cta">
+            <h2>Let's Work Together</h2>
+            <p>Have a project in mind? I'd love to hear about it.</p>
+            <a href="index.html#contact" class="btn-primary">
+                Get In Touch <i class="fas fa-paper-plane"></i>
+            </a>
         </section>
     </main>
 
-    <footer class="footer" style="background: #fff; color: #666; border-top: 1px solid #eee;">
+    <!-- Footer -->
+    <footer class="footer">
         <p>&copy; 2026 Lee Wen Tyng. UI/UX Portfolio.</p>
     </footer>
 
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-close" onclick="closeLightbox(event)">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <img src="" alt="Lightbox Image" id="lightbox-img">
+        <div class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+    </div>
+
     <script>
+        // Scroll Reveal Animation
         const revealElements = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -223,8 +975,110 @@
                     entry.target.classList.add('revealed');
                 }
             });
-        }, { threshold: 0.1 });
+        }, { 
+            threshold: 0.05,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
         revealElements.forEach(el => observer.observe(el));
+
+        // Project Navigation Active State
+        const sections = document.querySelectorAll('.project-card');
+        const navItems = document.querySelectorAll('.project-nav-item');
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('data-target') === id) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        sections.forEach(section => sectionObserver.observe(section));
+
+        // Lightbox Functionality
+        let currentImageIndex = 0;
+        let galleryImages = [];
+
+        function openLightbox(element) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const img = element.querySelector('img');
+            
+            galleryImages = Array.from(document.querySelectorAll('.gallery-item img, .main-visual img'));
+            currentImageIndex = galleryImages.indexOf(img);
+            
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            if (event.target.id === 'lightbox' || event.target.closest('.lightbox-close')) {
+                const lightbox = document.getElementById('lightbox');
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function navigateLightbox(direction) {
+            currentImageIndex += direction;
+            
+            if (currentImageIndex < 0) {
+                currentImageIndex = galleryImages.length - 1;
+            } else if (currentImageIndex >= galleryImages.length) {
+                currentImageIndex = 0;
+            }
+            
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = galleryImages[currentImageIndex].src;
+        }
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                } else if (e.key === 'ArrowLeft') {
+                    navigateLightbox(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateLightbox(1);
+                }
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
     </script>
+
 </body>
 </html>
