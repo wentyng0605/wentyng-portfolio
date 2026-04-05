@@ -180,12 +180,91 @@
             display: block;
         }
 
+        /* --- Multimedia 专属 Skill Tags 样式 --- */
+.hero-skill-tags {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.skill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: rgba(45, 212, 191, 0.1); /* 青蓝色透明背景 */
+    border: 1px solid rgba(45, 212, 191, 0.2);
+    border-radius: 50px;
+    color: #2dd4bf; 
+    font-size: 0.85rem;
+    font-weight: 500;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-tag:hover {
+    background: rgba(45, 212, 191, 0.25);
+    border-color: rgba(45, 212, 191, 0.4);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(45, 212, 191, 0.2);
+}
+
+.skill-tag i {
+    font-size: 1rem;
+    color: #2dd4bf;
+}
+
+/* --- 统一的 Role Grid (Interest Grid) 样式 --- */
+.interest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin: 40px 0;
+}
+
+.interest-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: left;
+}
+
+.interest-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(45, 212, 191, 0.15); /* 青蓝色投影 */
+    border-color: #2dd4bf;
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    background: rgba(45, 212, 191, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: #2dd4bf;
+    font-size: 1.5rem;
+}
+
+.interest-card h4 { margin-bottom: 12px; color: #111; font-size: 1.1rem; }
+.interest-card p { font-size: 0.9rem; line-height: 1.6; color: #666; }
+
+
         /* 移动端适配 */
         @media (max-width: 768px) {
             .wide-content { grid-template-columns: 1fr; }
             .wide-img { height: 300px; }
             .showcase-grid { grid-template-columns: 1fr; }
             .project-nav { display: none; }
+            .interest-grid { grid-template-columns: 1fr; }
+            
         }
     </style>
 </head>
@@ -217,6 +296,17 @@
                 <p class="section-label" style="color: #2dd4bf;">Multimedia Production</p>
                 <h1 class="hero-text" style="font-size: 3.5rem; color: white;">Spatial <em>Aesthetics</em></h1>
                 <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">Exploring the intersection of cinematic reality and digital motion. From raw documentary narratives to high-fidelity motion graphics, crafting spaces that resonate through light, composition, and movement</p>
+            <div class="hero-skill-tags">
+                <span class="skill-tag">
+                    <i class="fas fa-video"></i> Premiere Pro
+                </span>
+                <span class="skill-tag">
+                    <i class="fas fa-magic"></i> After Effects
+                </span>
+                <span class="skill-tag">
+                    <i class="fas fa-camera"></i> Cinematography
+                </span>
+            </div>
             </div>
         </section>
 

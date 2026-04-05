@@ -14,8 +14,17 @@
         :root {
             --ui-accent: #2563eb;
             --ui-accent-light: #3b82f6;
-            --bg-dark: #0a0a0a;
-            --accent-blue: #60a5fa;
+            --bg-pure: #ffffff;
+            --bg-soft: #f8fafc;
+            --text-main: #111827;
+            --text-muted: #64748b;
+            --border-light: rgba(0, 0, 0, 0.06);
+            --radius-lg: 24px;
+        }
+
+        body {
+            background-color: var(--bg-pure);
+            color: var(--text-main);
         }
 
         /* Project Navigation Sidebar */
@@ -25,37 +34,25 @@
             top: 50%;
             transform: translateY(-50%);
             z-index: 100;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
             border-radius: 50px;
             padding: 20px 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-light);
         }
 
-        .project-nav-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+        .project-nav-list { display: flex; flex-direction: column; gap: 16px; list-style: none; padding: 0; margin: 0; }
 
         .project-nav-item {
             position: relative;
         }
 
         .project-nav-item a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: transparent;
-            color: var(--text-light);
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
+            display: flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; border-radius: 50%;
+            text-decoration: none; color: var(--text-muted); font-size: 0.85rem;
+            font-weight: 600; transition: all 0.3s ease;
         }
 
         .project-nav-item a::before {
@@ -84,8 +81,8 @@
         .project-nav-item.active a,
         .project-nav-item a:hover {
             background: var(--ui-accent);
-            color: white;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            color: white !important;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
         }
 
         .project-nav-item.active a {
@@ -94,12 +91,11 @@
 
         /* Hero Section - Dark (matching gamedev.html) */
         .project-hero {
-            padding: 160px 24px 80px;
-            background: var(--bg-dark);
-            color: white;
+            padding: 180px 24px 100px;
+            background: var(--bg-pure);
+            color: var(--text-main);
             text-align: center;
             position: relative;
-            overflow: hidden;
         }
 
         .project-hero::before {
@@ -121,26 +117,14 @@
             margin: 0 auto;
         }
 
-        .section-label {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(96, 165, 250, 0.15);
-            color: var(--accent-blue);
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border-radius: 50px;
-            margin-bottom: 24px;
-        }
 
         .hero-title {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 7vw, .5rem);
             font-weight: 500;
-            color: white;
-            margin-bottom: 20px;
-            line-height: 1.2;
+            color: var(--text-main);
+            margin-bottom: 24px;
+            line-height: 1.1;
         }
 
         .hero-title em {
@@ -149,48 +133,71 @@
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.7);
-            max-width: 600px;
-            margin: 0 auto 30px;
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 40px;
             line-height: 1.8;
         }
 
-        .skill-tags {
+        /* Skill Tags - Minimalist Pill Style */
+        .hero-skill-tags {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
             gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .skill-tags span {
-            font-size: 0.85rem;
-            padding: 8px 16px;
-            background: rgba(96, 165, 250, 0.1);
-            color: var(--accent-blue);
+        .skill-tag {
+            padding: 8px 20px;
+            background: var(--bg-soft);
+            border: 1px solid var(--border-light);
             border-radius: 50px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
             font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--ui-accent);
+            color: var(--ui-accent);
+            background: white;
+            transform: translateY(-2px);
+        }
+
+/* 图标样式 */
+.skill-tag i {
+    font-size: 1rem;
+    color: var(--accent); /* 使用你页面定义的亮蓝色 `#60a5fa` */
+}
+
+        .skill-badge {
+            background: rgba(96, 165, 250, 0.1);
+            color: #60a5fa;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
             border: 1px solid rgba(96, 165, 250, 0.2);
         }
 
         /* Case Study Container - Light */
         .case-study-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 24px 100px;
-            background: #ffffff;
+            padding: 0 24px 100px;
         }
 
         /* Project Card - Light */
         .project-card {
             background: white;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            margin-bottom: 60px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+            margin-bottom: 80px;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0;
-            transform: translateY(30px);
+            transition: all 0.5s ease;
         }
 
         .project-card.revealed {
@@ -199,8 +206,8 @@
         }
 
         .project-card:hover {
-            box-shadow: var(--card-shadow);
-            border-color: rgba(37, 99, 235, 0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.04);
+            border-color: rgba(37, 99, 235, 0.1);
         }
 
         /* Card Header */
@@ -209,16 +216,13 @@
         }
 
         .card-label {
-            display: inline-block;
-            padding: 6px 16px;
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--ui-accent);
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
+           color: var(--ui-accent); 
+            font-weight: 700; 
+            letter-spacing: 0.1em; 
+            font-size: 0.7rem; 
             text-transform: uppercase;
-            border-radius: 50px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
+            display: block;
         }
 
         .card-title {
@@ -305,29 +309,26 @@
         .solutions-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-top: 20px;
+            gap: 20px;
+            padding: 40px 60px;
         }
 
         .solution-card {
-            background: #f8fafc;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 24px;
-            transition: all 0.3s ease;
+            background: var(--bg-soft);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid transparent;
+            transition: 0.3s;
         }
 
         .solution-card:hover {
-            border-color: rgba(37, 99, 235, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            background: white;
+            border-color: var(--border-light);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.02);
         }
 
         .solution-card h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--ui-accent);
-            margin-bottom: 10px;
+            color: var(--ui-accent); margin-bottom: 10px;
         }
 
         .solution-card p {
@@ -348,12 +349,11 @@
         /* Metrics */
         .metrics-bar {
             display: flex;
-            gap: 24px;
-            margin: 24px 0;
-            padding: 24px;
-            background: #f8fafc;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border);
+            background: var(--text-main);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 60px;
         }
 
         .metric {
@@ -362,19 +362,11 @@
         }
 
         .metric-value {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: var(--ui-accent);
-            line-height: 1;
-            margin-bottom: 6px;
+           color: var(--ui-accent-light); font-size: 2.5rem; font-family: 'Playfair Display'; 
         }
 
         .metric-label {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            color: rgba(255,255,255,0.6); font-size: 0.7rem; text-transform: uppercase; 
         }
 
         /* Gallery */
@@ -439,24 +431,22 @@
         }
 
         .btn-primary {
+            background: var(--ui-accent);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 14px 32px;
-            background: linear-gradient(135deg, var(--ui-accent), var(--ui-accent-light));
-            color: white;
-            font-weight: 600;
-            font-size: 0.95rem;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
+            transition: 0.3s;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+           background: #1d4ed8;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
         }
 
         /* Divider */
@@ -468,23 +458,14 @@
 
         /* Bottom CTA - Dark */
         .simple-cta {
-            background: var(--text);
-            color: white;
-            padding: 100px 24px;
+            background: var(--bg-soft);
+            padding: 120px 24px;
             text-align: center;
+            border-top: 1px solid var(--border-light);
         }
 
-        .simple-cta h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: white;
-            margin-bottom: 12px;
-        }
-
-        .simple-cta p {
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 32px;
-        }
+        .simple-cta h2 { font-family: 'Playfair Display'; font-size: 2.8rem; margin-bottom: 16px; }
+        .simple-cta p { color: var(--text-muted); margin-bottom: 40px; }
 
         .simple-cta .btn-primary {
             background: var(--accent-blue);
@@ -596,13 +577,15 @@
                 font-size: 2.2rem;
             }
 
-            .card-header,
+             .card-header { padding: 40px 24px; }
+
             .card-content {
                 padding-left: 24px;
                 padding-right: 24px;
             }
 
-            .solutions-grid,
+            .solutions-grid { grid-template-columns: 1fr; padding: 20px 24px; }
+
             .heuristic-grid {
                 grid-template-columns: 1fr;
             }
@@ -611,10 +594,7 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .metrics-bar {
-                flex-direction: column;
-                gap: 20px;
-            }
+            .metrics-bar { margin: 20px 24px; flex-direction: column; text-align: center; }
         }
 
         @media (max-width: 480px) {
@@ -635,7 +615,7 @@
 <body>
 
     <!-- Navigation -->
-    <header id="header">
+    <header id="header" class="scrolled"> 
         <nav class="navbar">
             <a href="index.html" class="logo">WT<span class="dot">.</span></a>
             <a href="index.html#projects" class="btn btn-outline" style="padding: 8px 20px;">
@@ -643,6 +623,7 @@
             </a>
         </nav>
     </header>
+
 
     <!-- Project Navigation Sidebar -->
     <nav class="project-nav">
@@ -661,19 +642,21 @@
 
     <main>
         <!-- Hero Section - Dark (matching gamedev.html) -->
-        <section class="project-hero">
-            <div class="hero-content">
-                <span class="section-label">User Experience</span>
+         <section class="project-hero">
+            <div class="hero-content reveal">
+                <span class="card-label">Design & Research</span>
                 <h1 class="hero-title">Crafting Digital <br><em>Experiences</em></h1>
-                <p class="hero-subtitle">I'm obsessed with the 'why' behind every click. From sketching messy wireframes to polishing high-fidelity prototypes, I build interfaces that don't just look pretty, but feel like a helping hand.</p>
-                <div class="skill-tags">
-                    <span>Figma</span>
-                    <span>Adobe XD</span>
-                    <span>Prototyping</span>
-                    <span>Usability Testing</span>
+                <p class="hero-subtitle">Focused on the 'why' behind every interaction. I build interfaces that bridge the gap between human intent and digital execution.</p>
+                
+                <div class="hero-skill-tags">
+                    <span class="skill-tag">Figma</span>
+                    <span class="skill-tag">Adobe XD</span>
+                    <span class="skill-tag">UX Research</span>
+                    <span class="skill-tag">Prototyping</span>
                 </div>
             </div>
         </section>
+        
 
         <!-- Case Studies - Light -->
         <section class="case-study-container">
@@ -683,12 +666,12 @@
                 <div class="card-header">
                     <span class="card-label">UI/UX Case Study</span>
                     <h2 class="card-title">Building a Design-Centric <em>Portfolio</em></h2>
-                    <p class="card-role"><strong>Role:</strong> UI/UX Designer & Front-end Developer</p>
+                    
                 </div>
                 <div class="card-content">
                     <div class="visual-section">
                         <div class="main-visual" onclick="openLightbox(this)">
-                            <img src="assets/images/bg1.jpg" alt="Portfolio Website Preview" loading="lazy">
+                            <img src="assets/images/image1.jpg" alt="Portfolio Website Preview" loading="lazy">
                         </div>
                     </div>
 
@@ -725,10 +708,6 @@
                         </div>
                     </div>
 
-                    <div class="content-section">
-                        <h3>Technical Toolkit</h3>
-                        <p><strong>Prototyping:</strong> Figma | <strong>Visual Assets:</strong> Canva | <strong>Methodology:</strong> User-Centered Design & Rapid Prototyping</p>
-                    </div>
 
                     <div class="gallery-section">
                         <div class="gallery-grid">
@@ -762,7 +741,6 @@
                 <div class="card-header">
                     <span class="card-label">UI/UX Case Study</span>
                     <h2 class="card-title">Bloom-In-Motion: <em>Ticketing Web App</em></h2>
-                    <p class="card-role"><strong>Role:</strong> UI/UX Designer</p>
                 </div>
                 <div class="card-content">
                     <div class="visual-section">
@@ -804,11 +782,6 @@
                         </div>
                     </div>
 
-                    <div class="content-section">
-                        <h3>Technical Toolkit</h3>
-                        <p><strong>Prototyping:</strong> Figma | <strong>Visual Assets:</strong> Canva | <strong>Methodology:</strong> User-Centered Design & Rapid Prototyping</p>
-                    </div>
-
                     <div class="gallery-section">
                         <div class="gallery-grid">
                             <div class="gallery-item" onclick="openLightbox(this)">
@@ -841,7 +814,6 @@
                 <div class="card-header">
                     <span class="card-label">UI/UX Case Study</span>
                     <h2 class="card-title">TravelGo: <em>Redesign Travel Apps</em></h2>
-                    <p class="card-role"><strong>Role:</strong> UX Researcher & UI Designer (HCI Academic Project)</p>
                 </div>
                 <div class="card-content">
                     <div class="visual-section">
@@ -1066,18 +1038,7 @@
             });
         });
 
-        // Header scroll effect
-        const header = document.getElementById('header');
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+       
     </script>
 
 </body>

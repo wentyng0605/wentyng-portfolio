@@ -94,7 +94,7 @@
 
         .showcase-item:hover { transform: translateY(-5px); }
 
-        /* --- Project Navigation (完全同步 UI/UX 模板) --- */
+        /* --- Project Navigation (完全同步 UI/UX 模板样式) --- */
         .project-nav {
             position: fixed;
             right: 30px;
@@ -116,6 +116,7 @@
             width: 40px; height: 40px; border-radius: 50%;
             text-decoration: none; color: #666; font-size: 0.85rem;
             font-weight: 600; transition: all 0.3s ease;
+            position: relative;
         }
 
         .project-nav-item a::before {
@@ -123,17 +124,59 @@
             position: absolute; right: 50px; background: #111; color: white;
             padding: 6px 12px; border-radius: 6px; font-size: 0.75rem;
             white-space: nowrap; opacity: 0; visibility: hidden;
-            transform: translateX(10px); transition: 0.3s;
+            transform: translateX(10px); transition: all 0.3s ease;
         }
 
         .project-nav-item a:hover::before { opacity: 1; visibility: visible; transform: translateX(0); }
 
-        .project-nav-item.active a {
-            background: var(--ui-accent) !important;
+        .project-nav-item.active a,
+        .project-nav-item a:hover {
+            background: var(--ui-accent);
             color: white !important;
-            transform: scale(1.1);
             box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
+
+        .project-nav-item.active a { transform: scale(1.1); }
+
+        /* ========================================================
+   Hero Skill Tags 样式
+   ======================================================== */
+.hero-skill-tags {
+    display: flex;
+    gap: 12px; /* 标签之间的间距 */
+    justify-content: center; /* 居中显示 */
+    margin-top: 30px; /* 与上方文字的距离 */
+    flex-wrap: wrap; /* 手机端自动换行 */
+}
+
+.skill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* 图标和文字之间的间距 */
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.05); /* 半透明背景 */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* 极其细微的边框 */
+    border-radius: 50px; /* 胶囊形状 */
+    color: rgba(255, 255, 255, 0.9); /* 文字颜色 */
+    font-size: 0.85rem;
+    font-weight: 500;
+    backdrop-filter: blur(5px); /* 毛玻璃效果 */
+    transition: all 0.3s ease;
+}
+
+/* 悬停时的亮蓝效果 */
+.skill-tag:hover {
+    background: rgba(37, 99, 235, 0.15); /* var(--ui-accent) 的透明版 */
+    border-color: rgba(37, 99, 235, 0.3);
+    color: white;
+    transform: translateY(-2px); /* 轻微上浮 */
+}
+
+/* 图标样式 */
+.skill-tag i {
+    font-size: 1rem;
+    color: var(--accent); /* 使用你页面定义的亮蓝色 `#60a5fa` */
+}
 
         .skill-badge {
             background: rgba(96, 165, 250, 0.1);
@@ -201,9 +244,60 @@
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
         .gallery-item:hover img { transform: scale(1.05); }
 
+        /* Gameplay Highlight 网格样式 */
+.interest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 三列布局 */
+    gap: 25px;
+    margin: 40px 0;
+}
+
+.interest-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: left;
+}
+
+.interest-card:hover {
+    transform: translateY(-10px); /* 悬停上浮效果 */
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1); /* 使用 GameDev 页面原本的蓝色投影 */
+    border-color: var(--ui-accent); /* 使用页面定义的蓝色 */
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    background: rgba(37, 99, 235, 0.1); /* 浅蓝色背景 */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--ui-accent); /* 图标颜色 */
+    font-size: 1.5rem;
+}
+
+.interest-card h4 {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    color: #111;
+}
+
+.interest-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #666;
+}
+
         @media (max-width: 768px) {
             .showcase-grid { grid-template-columns: 1fr; }
             .project-nav { display: none; }
+            .interest-grid {
+        grid-template-columns: 1fr;
+    }
         }
     </style>
 </head>
@@ -216,6 +310,12 @@
             </li>
             <li class="project-nav-item" data-target="project-2">
                 <a href="#project-2" data-label="Environment Design">02</a>
+            </li>
+            <li class="project-nav-item" data-target="project-3">
+                <a href="#project-3" data-label="Environment Design">03</a>
+            </li>
+            <li class="project-nav-item" data-target="project-4">
+                <a href="#project-4" data-label="Environment Design">04</a>
             </li>
         </ul>
     </nav>
@@ -235,6 +335,19 @@
                 <p class="section-label" style="color: #60a5fa;">Game Development</p>
                 <h1 class="hero-text" style="font-size: 3.5rem; color: white;">Building <br><em>Virtual Universes</em></h1>
                 <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">Bridging technical logic with immersive storytelling</p>
+                <div class="hero-skill-tags">
+                    <span class="skill-tag">
+                        <i class="fab fa-unity"></i> Unity C#
+                    </span>
+                    
+                    <span class="skill-tag unreal-tag">
+                        <i class="fab fa-unreal-engine"></i> Unreal Engine C++
+                    </span>
+                    
+                    <span class="skill-tag maya-tag">
+                        <i class="fas fa-cube"></i> Autodesk Maya
+                    </span>
+                </div>
             </div>
         </section>
 
@@ -252,11 +365,25 @@
                         Unbeknownst to Ares, he is a pawn in a grander scheme: Cronus, the Titan King, is secretly manipulating his journey to seize the Emblem’s power for his own dark ambitions.</p>
                     
                     <h3>My Role: <em>Project Leader & Gameplay Programmer</em></h3>
-                    <ul>
-                        <li>- I managed team coordination and streamlined the development workflow, ensuring a cohesive vision across all departments.</li>
-                        <li>- Designed and implemented interactive puzzle and interaction mechanics.</li>
-                        <li>- Created intuitive HUDs, menus, and UI interactions.</li>
-                    </ul>
+                    <div class="interest-grid">
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-users"></i></div>
+                            <h4>Project Leader</h4>
+                            <p>I managed team coordination and streamlined the development workflow, ensuring a cohesive vision across all departments.</p>
+                        </div>
+                        
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-puzzle-piece"></i></div>
+                            <h4>Gameplay Programmer</h4>
+                            <p>Designed and implemented interactive puzzle and interaction mechanics to enhance player engagement.</p>
+                        </div>
+                        
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-window-restore"></i></div>
+                            <h4>UI Designer & Programmer</h4>
+                            <p>Created intuitive HUDs, menus, and UI interactions to provide a seamless user interface experience.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="gallery-grid">
@@ -266,31 +393,15 @@
                     <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
                 </div>
 
-                <div class="tech-stack-grid">
-                    <div class="tech-item">
-                        <i class="fab fa-unity fa-2x" style="color: #222;"></i>
-                        <p>Unity 3D</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-code fa-2x" style="color: var(--accent);"></i>
-                        <p>Gameplay Programmer</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-vr-cardboard fa-2x" style="color: #f43f5e;"></i>
-                        <p>UI/UX Designer & Programmer</p>
-                    </div>
-                </div>
-
                 <div style="text-align: center; margin-top: 40px;">
                     <a href="https://youtu.be/RWYMJJJmBjA" target="_blank" class="btn btn-primary">
                         View Full Gameplay </i>
                     </a>
                 </div>
-
             </div>
+        </section>
 
-            <hr style="border: none; border-top: 1px solid #eee; margin: 0;">
-
+        <section id="project-2" class="case-study-container reveal">
             <div class="project-content">
                 <p class="section-label">Game Programming & Development</p>
                 <h2 class="section-heading">First-Person Shooting Game: <em>The Solaria</em></h2>
@@ -304,25 +415,24 @@
                         As players navigate this abandoned realm, they must unravel the island’s dark secrets while surviving the horrors that dwell within.</p>
                     
                     <h3>My Role: <em>Team Leader</em></h3>
-                    <ul>
-                        <li>- I managed the team’s development pipeline, ensuring high-quality execution from concept to final build.</li>
-                        <li>- Designed and programmed interactive puzzles and dialogue interactions.</li>
-                        <li>- Developed in-game cinematics using Cinemachine and Timeline for immersive storytelling.</li>
-                    </ul>
-                </div>
-
-                <div class="tech-stack-grid">
-                    <div class="tech-item">
-                        <i class="fab fa-unity fa-2x" style="color: #222;"></i>
-                        <p>Project Leader</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-code fa-2x" style="color: var(--accent);"></i>
-                        <p>Puzzle & Dialogue Interaction</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-vr-cardboard fa-2x" style="color: #f43f5e;"></i>
-                        <p>In-Game Cutscene & Cinematics</p>
+                    <div class="interest-grid">
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-users"></i></div>
+                            <h4>Project Leader</h4>
+                            <p>I managed the team’s development pipeline, ensuring high-quality execution from concept to final build.</p>
+                        </div>
+                        
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-puzzle-piece"></i></div>
+                            <h4>Gameplay Programmer</h4>
+                            <p>Designed and programmed interactive puzzles and dialogue interactions.</p>
+                        </div>
+                        
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-window-restore"></i></div>
+                            <h4>Cinematic Programmer</h4>
+                            <p>Developed in-game cinematics using Cinemachine and Timeline for immersive storytelling.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -339,9 +449,11 @@
                     </a>
                 </div>
             </div>
+        </section>
 
             <hr style="border: none; border-top: 1px solid #eee; margin: 0;">
 
+        <section id="project-3" class="case-study-container reveal">
             <div class="project-content">
                 <p class="section-label">Game Programming & Development</p>
                 <h2 class="section-heading">Mobile Endless Runner Game: <em>Zi Xuan In The Wonderland</em></h2>
@@ -354,26 +466,26 @@
                         The game explores the theme of the subconscious, featuring ever-changing dreamscapes filled with both beauty and hidden dangers.</p>
                     
                     <h3>My Role: <em>Solo Developer</em></h3>
-                    <ul>
-                        <li>- I managed the entire lifecycle from conceptualization to deployment, focusing on performance optimization and user engagement</li>
-                        <li>- Developed endless runner mechanics, obstacle logic, and player movement.</li>
-                        <li>- Created mobile-friendly interface for smooth gameplay.</li>
-                    </ul>
-                </div>
-
-                 <div class="tech-stack-grid">
-                    <div class="tech-item">
-                        <i class="fab fa-unity fa-2x" style="color: #222;"></i>
-                        <p>Project Leader</p>
+                    <div class="interest-grid">
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-users"></i></div>
+                            <h4>Project Leader</h4>
+                            <p>I managed the entire lifecycle from conceptualization to deployment, focusing on performance optimization and user engagement</p>
+                        </div>
+                        
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-puzzle-piece"></i></div>
+                            <h4>Gameplay Programmer</h4>
+                            <p>Developed endless runner mechanics, obstacle logic, and player movement.</p>
+                        </div>
+                        
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-window-restore"></i></div>
+                            <h4>UI/UX Designer</h4>
+                            <p>Created mobile-friendly interface for smooth gameplay.</p>
+                        </div>
                     </div>
-                    <div class="tech-item">
-                        <i class="fas fa-code fa-2x" style="color: var(--accent);"></i>
-                        <p>Puzzle & Dialogue Interaction</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-vr-cardboard fa-2x" style="color: #f43f5e;"></i>
-                        <p>In-Game Cutscene & Cinematics</p>
-                    </div>
+                
                 </div>
 
                 <div class="gallery-grid">
@@ -384,18 +496,14 @@
                 </div>
                 
             </div>
-
         </section>
 
         <hr style="border: none; border-top: 1px solid #eee; margin: 0;">
-        
-        <section id="project-2" class="section-dark reveal" style="background: #0a0a0a; width: 100%; padding: 100px 0;">
-    
+
+        <section id="project-4" class="section-dark reveal" style="background: #0a0a0a; width: 100%; padding: 100px 0;">
         <div class="case-study-container" style="background: transparent; padding-top: 0; padding-bottom: 0;">
-            <div class="project-content">
                 <p class="section-label">Environment Design</p>
-                    <h2 class="section-heading" style="color: white;">Level & <em>World Building</em></h2>
-                    
+                    <h2 class="section-heading" style="color: white;">Level & <em>World Building</em></h2>                  
                     <div class="showcase-grid">
                         <div class="showcase-item">
                             <div class="video-wrapper">
@@ -509,7 +617,6 @@
 
                     </div>
             </div>
-        </div>
         </section>
 
         <section class="section reveal" style="text-align: center;">
@@ -533,21 +640,12 @@
     </footer>
 
     <script>
-        // 基础 Reveal 动画
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('revealed');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-        // --- 完全同步 UI/UX 模板的侧边栏逻辑 ---
-        const sections = document.querySelectorAll('.case-study-container');
+        // --- 1. 完全同步 UI/UX 模板的侧边栏逻辑 ---
+        const sections = document.querySelectorAll('section[id^="project-"]');
         const navItems = document.querySelectorAll('.project-nav-item');
 
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // 当项目进入视口达到 30% 时触发高亮
                 if (entry.isIntersecting) {
                     const id = entry.target.getAttribute('id');
                     navItems.forEach(item => {
@@ -558,7 +656,7 @@
                     });
                 }
             });
-        }, { threshold: 0.3 }); // 与 UI/UX 模板完全一致的阈值
+        }, { threshold: 0.3 }); // 与 uiux.html 模板一致
 
         sections.forEach(section => sectionObserver.observe(section));
 
@@ -588,7 +686,6 @@
             document.getElementById('lightbox-img').src = galleryImgs[currentImgIndex].src;
         }
 
-
         // 平滑跳转
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -599,6 +696,14 @@
                 }
             });
         });
+
+        // 基础动画
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('revealed');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     </script>
 </body>

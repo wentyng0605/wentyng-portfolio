@@ -299,6 +299,91 @@
             opacity: 0.9;
         }
 
+        /* Gameplay Highlight 网格样式 */
+.interest-grid {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px; 
+    margin: 40px 0;
+}
+
+.interest-card {
+    background: #fff; 
+    padding: 30px; 
+    border-radius: 16px; 
+    border: 1px solid rgba(0,0,0,0.05); 
+    text-align: left;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.interest-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(147, 51, 234, 0.15); /* 紫色投影 */
+    border-color: #9333ea;
+}
+
+.icon-box {
+    width: 50px; 
+    height: 50px; 
+    background: rgba(147, 51, 234, 0.1); 
+    border-radius: 12px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 20px; 
+    color: #9333ea; 
+    font-size: 1.5rem;
+}
+
+.interest-card h4 {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    color: #111;
+}
+
+.interest-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+ /* --- XR 专属 Skill Tags 样式 --- */
+.hero-skill-tags {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.skill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: rgba(147, 51, 234, 0.1); /* 紫色透明背景 */
+    border: 1px solid rgba(147, 51, 234, 0.2);
+    border-radius: 50px;
+    color: #c084fc; /* 亮紫色文字 */
+    font-size: 0.85rem;
+    font-weight: 500;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-tag:hover {
+    background: rgba(147, 51, 234, 0.25);
+    border-color: rgba(147, 51, 234, 0.4);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(147, 51, 234, 0.2);
+}
+
+.skill-tag i {
+    font-size: 1rem;
+    color: #c084fc;
+}
+
         /* 移动端微调 */
         @media (max-width: 768px) {
             .project-hero h1 { font-size: 2.5rem; }
@@ -308,6 +393,8 @@
                 grid-template-columns: 1fr;
             }
              .project-nav { display: none; }
+             .interest-grid {
+        grid-template-columns: 1fr;}
 
         }
     </style>
@@ -339,6 +426,19 @@
                 <p class="section-label" style="color: #c084fc;">Extended Reality (XR)</p>
                 <h1 class="hero-text" style="font-size: 3.5rem; color: white;">XR & Immersive <br><em>Interaction</em></h1>
                 <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">Crafting high-fidelity VR/AR environments that challenge the boundaries of perception and redefine human-computer engagement.</p>
+                <div class="hero-skill-tags">
+                    <span class="skill-tag">
+                        <i class="fab fa-unity"></i> Unity C#
+                    </span>
+                    
+                    <span class="skill-tag unreal-tag">
+                        <i class="fab fa-unreal-engine"></i> Pico XR
+                    </span>
+                    
+                    <span class="skill-tag maya-tag">
+                        <i class="fas fa-cube"></i> Vuforia AR
+                    </span>
+                </div>
             </div>
         </section>
 
@@ -356,50 +456,31 @@
                         Players embark on a journey to discover the echoes of those who came before, using melody as a key to unlock the secrets of a mysterious, evolving environment.</p>
                     
                     <h3>My Role: <em>Project Leader & Gameplay Programmer</em></h3>
-                    <div class="feature-grid">
-                    <div class="feature-card reveal" data-tilt>
-                        <div class="feature-icon">
-                            <i class="fas fa-magic"></i>
+                    <div class="interest-grid">
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-users"></i></div>
+                            <h4>Project Leader</h4>
+                            <p>Managed team coordination, ensuring smooth development and task delegation.</p>
                         </div>
-                        <h4>Project Leader</h4>
-                        <p> Managed team coordination, ensuring smooth development and task delegation.</p>
-                    </div>
-                    <div class="feature-card reveal" data-tilt>
-                        <div class="feature-icon">
-                            <i class="fas fa-puzzle-piece"></i>
+                        
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-puzzle-piece"></i></div>
+                            <h4>VR Interaction Programming</h4>
+                            <p>Developed core gameplay mechanics, including note collection, puzzle interactions, and object manipulation in VR. </p>
                         </div>
-                        <h4>VR Interaction Programming</h4>
-                        <p>Developed core gameplay mechanics, including note collection, puzzle interactions, and object manipulation in VR. </p>
-                    </div>
-                    <div class="feature-card reveal" data-tilt>
-                        <div class="feature-icon">
-                            <i class="fas fa-wind"></i>
+                        
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-window-restore"></i></div>
+                            <h4>Dialogue & Locomotion</h4>
+                            <p>Implemented character dialogues and movement systems, ensuring a smooth and immersive VR navigation experience.</p>
                         </div>
-                        <h4>Dialogue & VR Locomotion</h4>
-                        <p> Implemented character dialogues and movement systems, ensuring a smooth and immersive VR navigation experience.</p>
                     </div>
-                </div>
 
                 <div class="gallery-grid">
                     <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/fypcert.png" alt="Gallery"></div>
                     <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
                     <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
                     <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
-                </div>
-
-                <div class="tech-stack-grid">
-                    <div class="tech-item">
-                        <i class="fab fa-unity fa-2x" style="color: #222;"></i>
-                        <p>Unity 3D</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-code fa-2x" style="color: var(--accent);"></i>
-                        <p>Gameplay Programmer</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-vr-cardboard fa-2x" style="color: #f43f5e;"></i>
-                        <p>UI/UX Designer & Programmer</p>
-                    </div>
                 </div>
 
                 <div style="text-align: center; margin-top: 40px;">
@@ -425,44 +506,25 @@
                         they succumb to the irresistible aroma of a local diner.
                         The story follows Mia, Jack, Papa, and Mama as they "escape" their household chores to follow a delicious scent through the city.</p>
                 <h3>Core AR Features & Interactions</h3>
-                <div class="feature-grid">
-                    <div class="feature-card reveal" data-tilt>
-                        <div class="feature-icon">
-                            <i class="fas fa-magic"></i>
+                <div class="interest-grid">
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-users"></i></div>
+                            <h4>Project Leader</h4>
+                            <p>Managed team coordination, ensuring smooth development and task delegation.</p>
                         </div>
-                        <h4>Gamified Storytelling</h4>
-                        <p>Each character's journey is paired with a unique mini-game, such as a Math Challenge with Papa or rhythm-based tasks to progress through the town.</p>
-                    </div>
-                    <div class="feature-card reveal" data-tilt>
-                        <div class="feature-icon">
-                            <i class="fas fa-puzzle-piece"></i>
+                        
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-puzzle-piece"></i></div>
+                            <h4>VR Interaction Programming</h4>
+                            <p>Developed core gameplay mechanics, including note collection, puzzle interactions, and object manipulation in VR. </p>
                         </div>
-                        <h4>Interactive Narrative</h4>
-                        <p>Players don't just read; they actively "help" characters navigate streets and overcome obstacles to reach their goal. </p>
-                    </div>
-                    <div class="feature-card reveal" data-tilt>
-                        <div class="feature-icon">
-                            <i class="fas fa-wind"></i>
+                        
+                        <div class="interest-card">
+                            <div class="icon-box"><i class="fas fa-window-restore"></i></div>
+                            <h4>Dialogue & Locomotion</h4>
+                            <p>Implemented character dialogues and movement systems, ensuring a smooth and immersive VR navigation experience.</p>
                         </div>
-                        <h4>Audio-Visual Immersion</h4>
-                        <p>The experience features synchronized voice-over narration and sound effects that trigger as AR content appears, enhancing the emotional connection to the story.</p>
                     </div>
-                </div>
-
-                <div class="tech-stack-grid">
-                    <div class="tech-item">
-                        <i class="fab fa-unity fa-2x" style="color: #222;"></i>
-                        <p>Unity 3D</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-code fa-2x" style="color: var(--accent);"></i>
-                        <p>Game Programming</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-vr-cardboard fa-2x" style="color: #f43f5e;"></i>
-                        <p>Game Design</p>
-                    </div>
-                </div>
 
                 <div class="gallery-grid">
                     <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/fypcert.png" alt="Gallery"></div>
@@ -470,11 +532,8 @@
                     <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
                     <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
                 </div>
-
              </div>
 
-             
-             
         </section>
 
         <section class="section section-dark reveal" style="text-align: center; padding: 80px 0; background: #05070a;">
