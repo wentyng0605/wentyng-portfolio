@@ -94,6 +94,7 @@
 
         .showcase-item:hover { transform: translateY(-5px); }
 
+        /* --- Project Navigation (完全同步 UI/UX 模板) --- */
         .project-nav {
             position: fixed;
             right: 30px;
@@ -111,24 +112,27 @@
         .project-nav-list { display: flex; flex-direction: column; gap: 16px; list-style: none; padding: 0; margin: 0; }
         
         .project-nav-item a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            text-decoration: none;
-            color: #666;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; border-radius: 50%;
+            text-decoration: none; color: #666; font-size: 0.85rem;
+            font-weight: 600; transition: all 0.3s ease;
         }
+
+        .project-nav-item a::before {
+            content: attr(data-label);
+            position: absolute; right: 50px; background: #111; color: white;
+            padding: 6px 12px; border-radius: 6px; font-size: 0.75rem;
+            white-space: nowrap; opacity: 0; visibility: hidden;
+            transform: translateX(10px); transition: 0.3s;
+        }
+
+        .project-nav-item a:hover::before { opacity: 1; visibility: visible; transform: translateX(0); }
 
         .project-nav-item.active a {
             background: var(--ui-accent) !important;
             color: white !important;
-            transform: scale(1.2);
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
 
         .skill-badge {
@@ -142,6 +146,61 @@
             border: 1px solid rgba(96, 165, 250, 0.2);
         }
 
+        /* --- Lightbox Styles --- */
+        .lightbox {
+            position: fixed; 
+            inset: 0; 
+            background: rgba(0,0,0,0.95);
+            z-index: 2000; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            opacity: 0; 
+            visibility: hidden; 
+            transition: all 0.3s ease;
+        }
+        .lightbox.active { 
+            opacity: 1; 
+            visibility: visible; }
+        .lightbox img { 
+            max-width: 90%; 
+            max-height: 90%; 
+            object-fit: contain; 
+            transform: scale(0.9); 
+            transition: 0.3s; }
+        .lightbox.active img { 
+            transform: scale(1); }
+        .lightbox-close { 
+            position: absolute; 
+            top: 30px; 
+            right: 30px; 
+            color: white; 
+            font-size: 2rem; 
+            cursor: pointer; }
+        .lightbox-nav { 
+            position: absolute; 
+            top: 50%; 
+            color: white; 
+            font-size: 1.5rem; 
+            cursor: pointer; 
+            padding: 20px; }
+        .lightbox-prev { 
+            left: 20px; }
+        .lightbox-next { 
+            right: 20px; }
+
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1; border-radius: 8px; overflow: hidden; cursor: zoom-in;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+
         @media (max-width: 768px) {
             .showcase-grid { grid-template-columns: 1fr; }
             .project-nav { display: none; }
@@ -153,10 +212,10 @@
     <nav class="project-nav">
         <ul class="project-nav-list">
             <li class="project-nav-item active" data-target="project-1">
-                <a href="#project-1">01</a>
+                <a href="#project-1" data-label="Game Projects">01</a>
             </li>
             <li class="project-nav-item" data-target="project-2">
-                <a href="#project-2">02</a>
+                <a href="#project-2" data-label="Environment Design">02</a>
             </li>
         </ul>
     </nav>
@@ -176,21 +235,17 @@
                 <p class="section-label" style="color: #60a5fa;">Game Development</p>
                 <h1 class="hero-text" style="font-size: 3.5rem; color: white;">Building <br><em>Virtual Universes</em></h1>
                 <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">Bridging technical logic with immersive storytelling</p>
-                <div class="skill-tags" style="display: flex; gap: 10px; justify-content: center;">
-                    <span class="skill-badge">Unity C#</span>
-                    <span class="skill-badge">Unreal Engine C++</span>
-                    <span class="skill-badge">Autodesk Maya</span>
-                </div>
             </div>
         </section>
-    
-        <section id="project-1" class="case-study-container">
-            <div class="reveal">
+
+        <section id="project-1" class="case-study-container reveal">
+            <div class="project-content">
                 <p class="section-label">Game Programming & Development</p>
                 <h2 class="section-heading">Action-Adventure: <em>The Fallen Olympus</em></h2>
                 <div class="video-responsive">
                     <iframe src="https://www.youtube.com/embed/cMsPDnmnh2k" frameborder="0" allowfullscreen></iframe>
                 </div>
+
                 <div class="about-content">
                     <h3>Project Overview</h3>
                     <p>The Fallen Olympus is a mythological action-adventure built in Unity, where players step into the role of Ares, the fallen God of War. 
@@ -204,32 +259,11 @@
                     </ul>
                 </div>
 
-                <div class="project-gallery">
-                    <div class="gallery-grid">
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Level Design Process" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Character Rigging" loading="lazy">
-                        </div>
-                        <div class="gallery-item"> <img src="assets/images/image1.jpg" alt="Final Environment Render" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="UI Implementation" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                    </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/fypcert.png" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
                 </div>
 
                 <div class="tech-stack-grid">
@@ -246,17 +280,18 @@
                         <p>UI/UX Designer & Programmer</p>
                     </div>
                 </div>
+
                 <div style="text-align: center; margin-top: 40px;">
                     <a href="https://youtu.be/RWYMJJJmBjA" target="_blank" class="btn btn-primary">
                         View Full Gameplay </i>
                     </a>
                 </div>
+
             </div>
-                
 
-            <hr style="border: none; border-top: 1px solid var(--border); margin: 80px 0;">
+            <hr style="border: none; border-top: 1px solid #eee; margin: 0;">
 
-            <div class="reveal">
+            <div class="project-content">
                 <p class="section-label">Game Programming & Development</p>
                 <h2 class="section-heading">First-Person Shooting Game: <em>The Solaria</em></h2>
                 <div class="video-responsive">
@@ -291,33 +326,13 @@
                     </div>
                 </div>
 
-                <div class="project-gallery">
-                    <div class="gallery-grid">
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Level Design Process" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Character Rigging" loading="lazy">
-                        </div>
-                        <div class="gallery-item"> <img src="assets/images/image1.jpg" alt="Final Environment Render" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="UI Implementation" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                    </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/fypcert.png" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
                 </div>
+
                 <div style="text-align: center; margin-top: 40px;">
                     <a href="https://youtu.be/RWYMJJJmBjA" target="_blank" class="btn btn-primary">
                         View Full Gameplay </i>
@@ -325,9 +340,9 @@
                 </div>
             </div>
 
-            <hr style="border: none; border-top: 1px solid var(--border); margin: 80px 0;">
+            <hr style="border: none; border-top: 1px solid #eee; margin: 0;">
 
-            <div class="reveal">
+            <div class="project-content">
                 <p class="section-label">Game Programming & Development</p>
                 <h2 class="section-heading">Mobile Endless Runner Game: <em>Zi Xuan In The Wonderland</em></h2>
                 <div class="video-responsive">
@@ -361,40 +376,24 @@
                     </div>
                 </div>
 
-                <div class="project-gallery">
-                    <div class="gallery-grid">
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Level Design Process" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Character Rigging" loading="lazy">
-                        </div>
-                        <div class="gallery-item"> <img src="assets/images/image1.jpg" alt="Final Environment Render" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="UI Implementation" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                    </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/fypcert.png" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
                 </div>
+                
             </div>
+
         </section>
 
-        <section id="project-2" class="section-dark" style="background: #0a0a0a; padding: 100px 0;">
-            <div class="case-study-container">
-                <div class="reveal">
-                    <p class="section-label">Environment Design</p>
+        <hr style="border: none; border-top: 1px solid #eee; margin: 0;">
+        
+        <section id="project-2" class="section-dark reveal" style="background: #0a0a0a; width: 100%; padding: 100px 0;">
+    
+        <div class="case-study-container" style="background: transparent; padding-top: 0; padding-bottom: 0;">
+            <div class="project-content">
+                <p class="section-label">Environment Design</p>
                     <h2 class="section-heading" style="color: white;">Level & <em>World Building</em></h2>
                     
                     <div class="showcase-grid">
@@ -509,8 +508,8 @@
                         </div>
 
                     </div>
-                </div>
             </div>
+        </div>
         </section>
 
         <section class="section reveal" style="text-align: center;">
@@ -522,80 +521,85 @@
         </section>
     </main>
 
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close"><i class="fas fa-times"></i></span>
+        <div class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)"><i class="fas fa-chevron-left"></i></div>
+        <img src="" id="lightbox-img">
+        <div class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)"><i class="fas fa-chevron-right"></i></div>
+    </div>
+
     <footer class="footer" style="text-align: center; padding: 40px; opacity: 0.6;">
         <p>&copy; 2026 Lee Wen Tyng. Game Dev Portfolio.</p>
     </footer>
 
     <script>
-        // 1. Reveal Animation
-        const revealElements = document.querySelectorAll('.reveal');
+        // 基础 Reveal 动画
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('revealed');
             });
         }, { threshold: 0.1 });
-        revealElements.forEach(el => revealObserver.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // --- 终极修复：确保双向滚动都能精准亮起 ---
-const navItems = document.querySelectorAll('.project-nav-item');
-const projectSections = [document.getElementById('project-1'), document.getElementById('project-2')];
+        // --- 完全同步 UI/UX 模板的侧边栏逻辑 ---
+        const sections = document.querySelectorAll('.case-study-container');
+        const navItems = document.querySelectorAll('.project-nav-item');
 
-const navObserverOptions = {
-    root: null,
-    // 增加顶部触发面积，确保向上滚动时能更早抓取到上一个 Section
-    rootMargin: '-20% 0px -40% 0px',
-    // 使用多个阈值，增加检测灵敏度
-    threshold: [0.05, 0.1, 0.2]
-};
-
-const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        // 只有当该 Section 占据视口一定比例且正在交叉时才触发
-        if (entry.isIntersecting && entry.intersectionRatio > 0.05) {
-            const id = entry.target.getAttribute('id');
-            
-            navItems.forEach(item => {
-                if (item.getAttribute('data-target') === id) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // 当项目进入视口达到 30% 时触发高亮
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('data-target') === id) {
+                            item.classList.add('active');
+                        }
+                    });
                 }
             });
+        }, { threshold: 0.3 }); // 与 UI/UX 模板完全一致的阈值
+
+        sections.forEach(section => sectionObserver.observe(section));
+
+        // --- 2. Lightbox 逻辑 ---
+        let currentImgIndex = 0;
+        let galleryImgs = [];
+
+        function openLightbox(el) {
+            const lightbox = document.getElementById('lightbox');
+            const img = el.querySelector('img');
+            galleryImgs = Array.from(document.querySelectorAll('.gallery-item img'));
+            currentImgIndex = galleryImgs.indexOf(img);
+            document.getElementById('lightbox-img').src = img.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
-    });
-}, navObserverOptions);
 
-projectSections.forEach(section => {
-    if (section) navObserver.observe(section);
-});
-
-// 修复点击跳转后的瞬间高亮逻辑
-document.querySelectorAll('.project-nav-item a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.parentElement.getAttribute('data-target');
-        const targetElement = document.getElementById(targetId);
-        
-        if (targetElement) {
-            // 先手动亮起点击的那个点，不等滚动监听，提升反馈感
-            navItems.forEach(nav => nav.classList.remove('active'));
-            this.parentElement.classList.add('active');
-            
-            targetElement.scrollIntoView({ behavior: 'smooth' });
+        function closeLightbox(e) {
+            if (e.target.id === 'lightbox' || e.target.closest('.lightbox-close')) {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = '';
+            }
         }
-    });
-});
 
-        // 3. Smooth Scroll
-        document.querySelectorAll('.project-nav-item a').forEach(anchor => {
+        function navigateLightbox(dir) {
+            currentImgIndex = (currentImgIndex + dir + galleryImgs.length) % galleryImgs.length;
+            document.getElementById('lightbox-img').src = galleryImgs[currentImgIndex].src;
+        }
+
+
+        // 平滑跳转
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                const targetId = this.parentElement.getAttribute('data-target');
-                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             });
         });
+
     </script>
 </body>
 </html>

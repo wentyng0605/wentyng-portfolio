@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        
-        /* 针对作品详情页的微调 */
         :root {
             --bg-dark: #0a0a0a;
             --text-white: #ffffff;
@@ -21,67 +19,8 @@
             --ui-accent-light: #3b82f6;
             --accent-blue: #60a5fa;
         }
-        .project-hero {
-            padding: 160px 24px 80px;
-            background: var(--bg-dark);
-            color: var(--text-white);
-            text-align: center;
-        }
 
-        .project-hero::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 70%;
-            height: 70%;
-            background: radial-gradient(circle, rgba(51, 54, 234, 0.12) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
-        .case-study-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 80px 24px;
-        }
-        .demo-video {
-            width: 100%;
-            border-radius: var(--radius);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            margin-bottom: 40px;
-        }
-        .tech-stack-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-        .tech-item {
-            padding: 20px;
-            background: #fff;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            text-align: center;
-        }
-        .code-snippet {
-            background: #1e1e1e;
-            color: #d4d4d4;
-            padding: 24px;
-            border-radius: var(--radius-sm);
-            font-family: 'Courier New', Courier, monospace;
-            overflow-x: auto;
-            margin: 20px 0;
-        }
-
-        /* 视频展示网格布局 */
-.showcase-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin: 40px 0;
-}
-
-/* Project Navigation Sidebar */
+        /* --- Project Navigation --- */
         .project-nav {
             position: fixed;
             right: 30px;
@@ -93,205 +32,112 @@
             border-radius: 50px;
             padding: 20px 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            border: 1px solid var(--border);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .project-nav-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .project-nav-item {
-            position: relative;
-        }
-
+        .project-nav-list { display: flex; flex-direction: column; gap: 16px; list-style: none; padding: 0; margin: 0; }
+        
         .project-nav-item a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: transparent;
-            color: var(--text-light);
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
+            display: flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; border-radius: 50%;
+            text-decoration: none; color: #666; font-size: 0.85rem;
+            font-weight: 600; transition: all 0.3s ease;
         }
 
         .project-nav-item a::before {
             content: attr(data-label);
-            position: absolute;
-            right: 50px;
-            background: var(--text);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateX(10px);
-            transition: all 0.3s ease;
+            position: absolute; right: 50px; background: #111; color: white;
+            padding: 6px 12px; border-radius: 6px; font-size: 0.75rem;
+            white-space: nowrap; opacity: 0; visibility: hidden;
+            transform: translateX(10px); transition: 0.3s;
         }
 
-        .project-nav-item a:hover::before {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0);
-        }
+        .project-nav-item a:hover::before { opacity: 1; visibility: visible; transform: translateX(0); }
 
-        .project-nav-item.active a,
-        .project-nav-item a:hover {
+        .project-nav-item.active a {
             background: var(--ui-accent) !important;
-    color: white !important;
-    transform: scale(1.2);
-    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            color: white !important;
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
 
-        
+        /* --- Lightbox Styles --- */
+        .lightbox {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+            z-index: 2000; display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
+        }
+        .lightbox.active { opacity: 1; visibility: visible; }
+        .lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; transform: scale(0.9); transition: 0.3s; }
+        .lightbox.active img { transform: scale(1); }
+        .lightbox-close { position: absolute; top: 30px; right: 30px; color: white; font-size: 2rem; cursor: pointer; }
+        .lightbox-nav { position: absolute; top: 50%; color: white; font-size: 1.5rem; cursor: pointer; padding: 20px; }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
 
-/* 卡片容器样式 */
-.showcase-item {
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-}
-
-.showcase-item:hover {
-    transform: translateY(-5px);
-}
-
-/* 1. 定义缺失的变量，确保基础颜色可见 */
-
-
-/* 2. 视频容器响应式修复 */
-.video-responsive {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 比例 */
-    height: 0;
-    overflow: hidden;
-    border-radius: var(--radius);
-    margin-bottom: 30px;
-    background: #000;
-}
-.video-responsive iframe {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-}
-
-.skill-tags {
- display: flex;
- flex-wrap: wrap;
- gap: 6px;
-}
-
-.skill-tags span {
- font-size: 0.72rem;
- padding: 4px 10px;
- background: rgba(37, 99, 235, 0.1);
- color: var(--accent);
- border-radius: 50px;
- font-weight: 500;
-}
-
-/* 技能标签容器布局 */
-.item-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 12px 0 16px 0; /* 控制与标题和描述的间距 */
-}
-
-/* 单个标签样式 */
-.skill-badge {
-    background: rgba(96, 165, 250, 0.1); /* 使用你常用的蓝色，带透明度 */
-    color: #60a5fa;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    border: 1px solid rgba(96, 165, 250, 0.2);
-    transition: all 0.3s ease;
-}
-
-.showcase-item:hover .skill-badge {
-    background: rgba(96, 165, 250, 0.2);
-    transform: translateY(-1px);
-}
-
-        .case-study-container .btn-primary {
-            padding: 12px 32px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            background-color: var(--accent); /* 使用你定义的紫色 */
-            border: none;
+        /* --- Layout Styles --- */
+        .project-hero {
+            padding: 160px 24px 80px;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            text-align: center;
+            position: relative;
         }
 
-        .case-study-container .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(147, 51, 234, 0.3);
-            opacity: 0.9;
+        .case-study-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 24px;
         }
 
-/* 3. 手机端适配逻辑 (核心修复) */
-@media (max-width: 768px) {
-    .project-hero {
-        padding: 100px 20px 60px; /* 减小间距防止首屏过长 */
-    }
-    .hero-text {
-        font-size: 2.2rem !important; /* 缩小标题防止折行 */
-    }
-    .side-nav {
-        display: none; /* 手机端隐藏侧边点导航，避免遮挡 */
-    }
-    .case-study-container {
-        padding: 40px 15px; /* 增加边缘间距 */
-    }
-    .showcase-grid, .gallery-grid, .hub-selection {
-        grid-template-columns: 1fr !important; /* 强制所有网格变为单列 */
-        gap: 20px;
-    }
-    .gallery-item {
-        height: 200px; /* 限制手机端图片高度 */
-    }
-    .video-wrapper {
-        aspect-ratio: 16 / 9; /* 保持 YouTube 比例 */
-    }
-    .project-nav {
-                display: none;
-            }
-}
+        .video-responsive {
+            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+            border-radius: var(--radius); margin-bottom: 30px; background: #000;
+        }
 
+        .video-responsive iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1; border-radius: 8px; overflow: hidden; cursor: zoom-in;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+
+        .tech-stack-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px; margin: 40px 0;
+        }
+
+        .tech-item { padding: 20px; background: #f8fafc; border-radius: 8px; text-align: center; border: 1px solid #eee; }
+
+        .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 40px 0; }
+        .showcase-item { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); transition: 0.3s; }
+        .showcase-item:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .anim-meta { padding: 20px; }
+
+        @media (max-width: 1024px) { .project-nav { display: none; } }
+        @media (max-width: 768px) { .showcase-grid, .gallery-grid { grid-template-columns: 1fr 1fr; } }
     </style>
 </head>
 <body>
 
-    <!-- Project Navigation Sidebar -->
     <nav class="project-nav">
         <ul class="project-nav-list">
-            <li class="project-nav-item active" data-target="project-1">
-                <a href="#project-1" data-label="Portfolio">01</a>
-            </li>
-            <li class="project-nav-item" data-target="project-2">
-                <a href="#project-2" data-label="Bloom-In-Motion">02</a>
-            </li>
+            <li class="project-nav-item active" data-target="project-1"><a href="#project-1" data-label="Game Programming">01</a></li>
+            <li class="project-nav-item" data-target="project-2"><a href="#project-2" data-label="Environment Design">02</a></li>
         </ul>
     </nav>
 
-    <header id="header" class="scrolled"> <nav class="navbar">
+    <header id="header" class="scrolled"> 
+        <nav class="navbar">
             <a href="index.html" class="logo">WT<span class="dot">.</span></a>
-            <a href="index.html#projects" class="btn btn-outline" style="padding: 8px 20px;">
-                <i class="fas fa-arrow-left"></i> Back
-            </a>
+            <a href="index.html#projects" class="btn btn-outline" style="padding: 8px 20px;"><i class="fas fa-arrow-left"></i> Back</a>
         </nav>
     </header>
 
@@ -300,525 +146,131 @@
             <div class="section-container">
                 <p class="section-label" style="color: #60a5fa;">Game Development</p>
                 <h1 class="hero-text" style="font-size: 3.5rem; color: white;">Building <br><em>Virtual Universes</em></h1>
-                <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">Bridging technical logic with immersive storytelling to build high-performance virtual experiences</p>
+                <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">Bridging technical logic with immersive storytelling</p>
             </div>
-            <div class="skill-tags" style="justify-content: center; font-size: 1.2rem;">
-                    <span>Unity C#</span>
-                    <span>Unreal Engine C++</span>
-                    <span>Autodesk Maya</span>
-                </div>
         </section>
-    
-        <section id="project-1" class="case-study-container">
-            <section class="project-section reveal">
-            
-                <p class="section-label">Game Programming & Development</p>
+
+        <section id="project-1" class="case-study-container reveal">
+            <div class="project-content">
+                <p class="section-label">Game Programming</p>
                 <h2 class="section-heading">Action-Adventure: <em>The Fallen Olympus</em></h2>
                 <div class="video-responsive">
-                    <iframe 
-                        src="https://www.youtube.com/embed/cMsPDnmnh2k" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
+                    <iframe src="https://www.youtube.com/embed/cMsPDnmnh2k" frameborder="0" allowfullscreen></iframe>
                 </div>
-                
+
                 <div class="about-content">
                     <h3>Project Overview</h3>
-                    <p>The Fallen Olympus is a mythological action-adventure built in Unity, where players step into the role of Ares, the fallen God of War. 
-                        Unbeknownst to Ares, he is a pawn in a grander scheme: Cronus, the Titan King, is secretly manipulating his journey to seize the Emblem’s power for his own dark ambitions.</p>
-                    
+                    <p>The Fallen Olympus is a mythological action-adventure built in Unity...</p>
                     <h3>My Role: <em>Project Leader & Gameplay Programmer</em></h3>
                     <ul>
-                        <li>- I managed team coordination and streamlined the development workflow, ensuring a cohesive vision across all departments.</li>
-                        <li>- Designed and implemented interactive puzzle and interaction mechanics.</li>
-                        <li>- Created intuitive HUDs, menus, and UI interactions.</li>
+                        <li>- I managed team coordination and streamlined development workflow.</li>
+                        <li>- Designed and implemented interactive puzzle mechanics.</li>
                     </ul>
                 </div>
 
-                <div class="project-gallery">
-                    <div class="gallery-grid">
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Level Design Process" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Character Rigging" loading="lazy">
-                        </div>
-                        <div class="gallery-item"> <img src="assets/images/image1.jpg" alt="Final Environment Render" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="UI Implementation" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                    </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
                 </div>
 
                 <div class="tech-stack-grid">
-                    <div class="tech-item">
-                        <i class="fab fa-unity fa-2x" style="color: #222;"></i>
-                        <p>Unity 3D</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-code fa-2x" style="color: var(--accent);"></i>
-                        <p>Gameplay Programmer</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-vr-cardboard fa-2x" style="color: #f43f5e;"></i>
-                        <p>UI/UX Designer & Programmer</p>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 40px;">
-                    <a href="https://youtu.be/RWYMJJJmBjA" target="_blank" class="btn btn-primary">
-                        View Full Gameplay </i>
-                    </a>
+                    <div class="tech-item"><i class="fab fa-unity fa-2x"></i><p>Unity 3D</p></div>
+                    <div class="tech-item"><i class="fas fa-code fa-2x"></i><p>C# Scripting</p></div>
                 </div>
             </div>
-                        <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
-
-            <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
-
-                <p class="section-label">Game Programming & Development</p>
-                <h2 class="section-heading">First-Person Shooting Game: <em>The Solaria</em></h2>
-                <div class="video-responsive">
-                    <iframe 
-                        src="https://www.youtube.com/embed/6C6HWAQQD5s" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                
-                <div class="about-content">
-                    <h3>Project Overview</h3>
-                    <p>On a mysterious, cursed island, once-human monsters roam, their bodies twisted by an ancient curse. 
-                        Deep within this desolate land lies Solaria, a legendary flower rumored to possess the power to cure any illness.</p>
-                    <p>To save his beloved, the protagonist embarks on a perilous journey to retrieve the flower. 
-                        As players navigate this abandoned realm, they must unravel the island’s dark secrets while surviving the horrors that dwell within.</p>
-                    
-                    <h3>My Role: <em>Team Leader</em></h3>
-                    <ul>
-                        <li>- I managed the team’s development pipeline, ensuring high-quality execution from concept to final build.</li>
-                        <li>- Designed and programmed interactive puzzles and dialogue interactions.</li>
-                        <li>- Developed in-game cinematics using Cinemachine and Timeline for immersive storytelling.</li>
-                    </ul>
-                </div>
-
-                <div class="tech-stack-grid">
-                    <div class="tech-item">
-                        <i class="fab fa-unity fa-2x" style="color: #222;"></i>
-                        <p>Project Leader</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-code fa-2x" style="color: var(--accent);"></i>
-                        <p>Puzzle & Dialogue Interaction</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-vr-cardboard fa-2x" style="color: #f43f5e;"></i>
-                        <p>In-Game Cutscene & Cinematics</p>
-                    </div>
-                </div>
-
-                <div class="project-gallery">
-                    <div class="gallery-grid">
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Level Design Process" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Character Rigging" loading="lazy">
-                        </div>
-                        <div class="gallery-item"> <img src="assets/images/image1.jpg" alt="Final Environment Render" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="UI Implementation" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 40px;">
-                    <a href="https://youtu.be/RWYMJJJmBjA" target="_blank" class="btn btn-primary">
-                        View Full Gameplay </i>
-                    </a>
-                </div>
-            </div>
-
-            <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
-            <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
-
-                <p class="section-label">Game Programming & Development</p>
-                <h2 class="section-heading">Mobile Endless Runner Game: <em>Zi Xuan In The Wonderland</em></h2>
-                <div class="video-responsive">
-                    <iframe 
-                        src="https://www.youtube.com/embed/VYLMC5GAXCI" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                
-                <div class="about-content">
-                    <h3>Project Overview</h3>
-                    <p>Trapped within a mystical dreamworld, Zi Xuan must navigate a surreal landscape to escape before time runs out. 
-                        Players embark on a high-speed, visually immersive journey where they must run, dodge, and overcome obstacles. 
-                        The game explores the theme of the subconscious, featuring ever-changing dreamscapes filled with both beauty and hidden dangers.</p>
-                    
-                    <h3>My Role: <em>Solo Developer</em></h3>
-                    <ul>
-                        <li>- I managed the entire lifecycle from conceptualization to deployment, focusing on performance optimization and user engagement</li>
-                        <li>- Developed endless runner mechanics, obstacle logic, and player movement.</li>
-                        <li>- Created mobile-friendly interface for smooth gameplay.</li>
-                    </ul>
-                </div>
-
-                <div class="tech-stack-grid">
-                    <div class="tech-item">
-                        <i class="fab fa-unity fa-2x" style="color: #222;"></i>
-                        <p>Project Leader</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-code fa-2x" style="color: var(--accent);"></i>
-                        <p>Puzzle & Dialogue Interaction</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-vr-cardboard fa-2x" style="color: #f43f5e;"></i>
-                        <p>In-Game Cutscene & Cinematics</p>
-                    </div>
-                </div>
-
-                <div class="project-gallery">
-                    <div class="gallery-grid">
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Level Design Process" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Character Rigging" loading="lazy">
-                        </div>
-                        <div class="gallery-item"> <img src="assets/images/image1.jpg" alt="Final Environment Render" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="UI Implementation" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
-        </section>
         </section>
 
-        
-            
-            <section id="project-2" class="section section-dark reveal">
-
-                <section class="case-study-container">
-                    <div class="reveal">
-                    <p class="section-label">Environment Design</p>
-                    <h2 class="section-heading">Level & <em>World Building</em></h2>
-                    
-                    <div class="showcase-grid">
-                        <div class="showcase-item">
-                            <div class="video-wrapper">
-                                <iframe 
-                                    src="https://www.youtube.com/embed/pppBEx46Qb8" 
-                                    title="YouTube video player" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="anim-meta">
-                                <span class="anim-tag" style="color: #60a5fa;">ENVIRONMENT DESIGN</span>
-                                <h3>The Sakura Skyhouse</h3>
-                                <div class="item-skills">
-                                    <span class="skill-badge">Unity</span>
-                                    <span class="skill-badge">3D Modeling</span>
-                                    <span class="skill-badge">VR Space Design</span>
-                                </div>
-                                <p>Wonder how it feels living above the cloud? This virtual (VR) environment -- Sakura Skyhouse is built high above the clouds. 
-                                    It is designed to evoke the feeling of "a hidden paradise beyond the world", allows users to immerse themselves in a tranquil, floating sanctuary using a VR device.</p>
-                                <p>With a soft purple color palette, handcrafted cloud formations, and self-modeled sakura trees and structures using Maya, the environment creates a dreamlike, meditative atmosphere, perfect for relaxation and exploration.</p>
-                                <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
-                                    <i class="fab fa-youtube"></i> Behind the scenes
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="showcase-item">
-                            <div class="video-wrapper">
-                                <iframe 
-                                    src="https://www.youtube.com/embed/1vEILyL2mDc" 
-                                    title="YouTube video player" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="anim-meta">
-                                <span class="anim-tag" style="color: #60a5fa;">ENVIRONMENT DESIGN</span>
-                                <h3>Moonlit Jing Guan Temple</h3>
-                                <div class="item-skills">
-                                    <span class="skill-badge">Unreal Engine</span>
-                                    <span class="skill-badge">Cinematics</span>
-                                    <span class="skill-badge">Level Design</span>
-                                </div>
-                                <p>A peaceful sanctuary inspired by the aesthetics of Lotus Pier and ancient Chang’an. 
-                                    Set under the fifteenth lunar moon, this environment features handcrafted terrains and a sculpted central lake. 
-                                    By orchestrating volumetric moonlight with dynamic particle-effect lanterns, the scene evokes a calm, celebratory atmosphere perfect for immersive exploration. </p>
-                                <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
-                                    <i class="fab fa-youtube"></i> Behind the scenes
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="showcase-item">
-                            <div class="video-wrapper">
-                                <iframe 
-                                    src="https://www.youtube.com/embed/CUZMwPjbkSA" 
-                                    title="YouTube video player" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="anim-meta">
-                                <span class="anim-tag" style="color: #60a5fa;">ENVIRONMENT DESIGN</span>
-                                <h3>The Isolated Island</h3>
-                                <div class="item-skills">
-                                    <span class="skill-badge">Unity</span>
-                                    <span class="skill-badge">Atmospheric Lighting</span>
-                                    <span class="skill-badge">Level Design</span>
-                                </div>
-                                <p>Inspired by Ancient Greek mythology, This Athena-themed island is inspired by Ancient Greek mythology. 
-                                    The mountain is sculpted using terrain tool, and the island is surrounded by a vast ocean. 
-                                    The sunset aesthetic and the warm red-orange palette enhances the mystical atmosphere.</p>
-                                <p>The animations is created to improve a sense of immersiveness. 
-                                    It blends mythology, storytelling, and exploration to create a captivating game environment.</p>
-                                <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
-                                    <i class="fab fa-youtube"></i> Behind the scenes
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="showcase-item">
-                            <div class="video-wrapper">
-                                <iframe 
-                                    src="https://www.youtube.com/embed/27E8KOjBZTs" 
-                                    title="YouTube video player" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="anim-meta">
-                                <span class="anim-tag" style="color:#60a5fa;">ENVIRONMENT DESIGN</span>
-                                <h3>Mayan Temple</h3>
-                                <div class="item-skills">
-                                    <span class="skill-badge">Unity</span>
-                                    <span class="skill-badge">ProBuilder</span>
-                                    <span class="skill-badge">Level Design</span>
-                                </div>
-                                <p>A dark, atmospheric battleground built entirely with Unity’s ProBuilder to balance verticality and tactical engagement.
-                                    The aesthetic is driven by dynamic torchlight casting eerie shadows across ancient stone structures，enhancing the immersive FPS experience.
-                                    Designed for strategic combat，the map features elevated vantage points，hidden tactical cover，and a high-intensity central arena.</p>
-                                <a href="https://youtube.com/your-video-link" target="_blank" class="btn-small">
-                                    <i class="fab fa-youtube"></i> Behind the scenes
-                                </a>
-                            </div>
-                        </div>
-                </div>
-
-            </div>
-
-            </section>
-            </section>
-
-        <section class="section reveal" style="text-align: center;">
-            <div class="section-container">
-                <h2 class="section-heading">Have a game idea?</h2>
+        <section id="project-2" class="section-dark reveal" style="background: #0a0a0a; width: 100%; padding: 100px 0;">
+            <div class="case-study-container" style="background: transparent;">
+                <p class="section-label" style="color: #60a5fa;">Environment Design</p>
+                <h2 class="section-heading" style="color: white;">Level & <em>World Building</em></h2>
                 
-                <a href="index.html#contact" class="btn btn-primary">Let's Talk <i class="fas fa-paper-plane"></i></a>
+                <div class="showcase-grid">
+                    <div class="showcase-item">
+                        <div class="video-responsive" style="margin-bottom:0;"><iframe src="https://www.youtube.com/embed/pppBEx46Qb8" frameborder="0" allowfullscreen></iframe></div>
+                        <div class="anim-meta">
+                            <span class="anim-tag" style="color: #60a5fa;">ENVIRONMENT</span>
+                            <h3>The Sakura Skyhouse</h3>
+                            <p style="color: #666; font-size: 0.9rem;">Built in Unity for a tranquil VR experience.</p>
+                        </div>
+                    </div>
+                    <div class="showcase-item">
+                        <div class="video-responsive" style="margin-bottom:0;"><iframe src="https://www.youtube.com/embed/1vEILyL2mDc" frameborder="0" allowfullscreen></iframe></div>
+                        <div class="anim-meta">
+                            <span class="anim-tag" style="color: #60a5fa;">ENVIRONMENT</span>
+                            <h3>Moonlit Jing Guan Temple</h3>
+                            <p style="color: #666; font-size: 0.9rem;">Handcrafted terrains in Unreal Engine.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close"><i class="fas fa-times"></i></span>
+        <div class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)"><i class="fas fa-chevron-left"></i></div>
+        <img src="" id="lightbox-img">
+        <div class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)"><i class="fas fa-chevron-right"></i></div>
+    </div>
+
+    <footer class="footer" style="text-align: center; padding: 40px; opacity: 0.6;">
         <p>&copy; 2026 Lee Wen Tyng. Game Dev Portfolio.</p>
     </footer>
 
     <script>
-        const revealElements = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
+        // --- 1. 导航逻辑 (同步 UI/UX 模板) ---
+        const sections = document.querySelectorAll('section[id^="project-"]');
+        const navItems = document.querySelectorAll('.project-nav-item');
+
+        const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
+                    const id = entry.target.getAttribute('id');
+                    navItems.forEach(item => {
+                        item.classList.toggle('active', item.getAttribute('data-target') === id);
+                    });
                 }
             });
-        }, { threshold: 0.05 });
-        revealElements.forEach(el => observer.observe(el));
-        
-        
-        
- // Smooth scroll 修复版
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            
-            // 修复关键：增加一个判断，防止在没有 .nav-links 的页面报错
-            const navLinks = document.querySelector('.nav-links');
-            if (navLinks) {
-                navLinks.classList.remove('open');
-            }
-        }
-    });
-});
+        }, { threshold: 0.3 });
 
- // --- 强化版 Project Navigation 逻辑 ---
-const navItems = document.querySelectorAll('.project-nav-item');
-// 直接根据 ID 抓取 section
-const projectSections = document.querySelectorAll('section[id^="project-"]');
+        sections.forEach(s => sectionObserver.observe(s));
 
-const navObserverOptions = {
-    root: null,
-    // rootMargin 的负值代表：视口顶部往下一部分、底部往上一部分才算“进入”
-    // 这样可以防止两个 section 同时亮起，或亮得太早/太晚
-    rootMargin: '-30% 0px -30% 0px',
-    threshold: 0.1
-};
+        // --- 2. Lightbox 逻辑 ---
+        let currentImgIndex = 0;
+        let galleryImgs = [];
 
-const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        // 调试用：如果控制台有输出，说明观察器在工作
-        if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            console.log("当前可见的 Section:", id); 
-
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('data-target') === id) {
-                    item.classList.add('active');
-                }
-            });
-        }
-    });
-}, navObserverOptions);
-
-// 确保观察器绑定到了对应的 section
-projectSections.forEach(section => {
-    navObserver.observe(section);
-});
-
-    // Lightbox Functionality
-        let currentImageIndex = 0;
-        let galleryImages = [];
-
-        function openLightbox(element) {
+        function openLightbox(el) {
             const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const img = element.querySelector('img');
-            
-            galleryImages = Array.from(document.querySelectorAll('.gallery-item img, .main-visual img'));
-            currentImageIndex = galleryImages.indexOf(img);
-            
-            lightboxImg.src = img.src;
+            const img = el.querySelector('img');
+            galleryImgs = Array.from(document.querySelectorAll('.gallery-item img'));
+            currentImgIndex = galleryImgs.indexOf(img);
+            document.getElementById('lightbox-img').src = img.src;
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeLightbox(event) {
-            if (event.target.id === 'lightbox' || event.target.closest('.lightbox-close')) {
-                const lightbox = document.getElementById('lightbox');
-                lightbox.classList.remove('active');
+        function closeLightbox(e) {
+            if (e.target.id === 'lightbox' || e.target.closest('.lightbox-close')) {
+                document.getElementById('lightbox').classList.remove('active');
                 document.body.style.overflow = '';
             }
         }
 
-        function navigateLightbox(direction) {
-            currentImageIndex += direction;
-            
-            if (currentImageIndex < 0) {
-                currentImageIndex = galleryImages.length - 1;
-            } else if (currentImageIndex >= galleryImages.length) {
-                currentImageIndex = 0;
-            }
-            
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = galleryImages[currentImageIndex].src;
+        function navigateLightbox(dir) {
+            currentImgIndex = (currentImgIndex + dir + galleryImgs.length) % galleryImgs.length;
+            document.getElementById('lightbox-img').src = galleryImgs[currentImgIndex].src;
         }
 
-        // Keyboard navigation for lightbox
-        document.addEventListener('keydown', (e) => {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') {
-                    lightbox.classList.remove('active');
-                    document.body.style.overflow = '';
-                } else if (e.key === 'ArrowLeft') {
-                    navigateLightbox(-1);
-                } else if (e.key === 'ArrowRight') {
-                    navigateLightbox(1);
-                }
-            }
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+        // --- 3. 基础动画 ---
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('revealed');
             });
-        });
-
-        // Header scroll effect
-        const header = document.getElementById('header');
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     </script>
 </body>
 </html>

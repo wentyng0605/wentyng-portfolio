@@ -16,6 +16,81 @@
             --border: rgba(255, 255, 255, 0.1);
             --radius: 12px;
             --radius-sm: 8px;
+             --ui-accent: #f43f5e; /* 侧边栏高亮使用动画频道的粉红色 */
+        }
+
+        /* --- Lightbox Styles --- */
+        .lightbox {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+            z-index: 2000; display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
+        }
+        .lightbox.active { opacity: 1; visibility: visible; }
+        .lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; transform: scale(0.9); transition: 0.3s; }
+        .lightbox.active img { transform: scale(1); }
+        .lightbox-close { position: absolute; top: 30px; right: 30px; color: white; font-size: 2rem; cursor: pointer; }
+        .lightbox-nav { position: absolute; top: 50%; color: white; font-size: 1.5rem; cursor: pointer; padding: 20px; }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+
+        .video-responsive {
+            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+            border-radius: var(--radius); margin-bottom: 30px; background: #000;
+        }
+
+        .video-responsive iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1; border-radius: 8px; overflow: hidden; cursor: zoom-in;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+
+        /* --- Project Navigation (完全同步模板) --- */
+        .project-nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 20px 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+
+        .project-nav-list { display: flex; flex-direction: column; gap: 16px; list-style: none; padding: 0; margin: 0; }
+        
+        .project-nav-item a {
+            display: flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; border-radius: 50%;
+            text-decoration: none; color: #666; font-size: 0.85rem;
+            font-weight: 600; transition: all 0.3s ease;
+        }
+
+        .project-nav-item a::before {
+            content: attr(data-label);
+            position: absolute; right: 50px; background: #111; color: white;
+            padding: 6px 12px; border-radius: 6px; font-size: 0.75rem;
+            white-space: nowrap; opacity: 0; visibility: hidden;
+            transform: translateX(10px); transition: 0.3s;
+        }
+
+        .project-nav-item a:hover::before { opacity: 1; visibility: visible; transform: translateX(0); }
+
+        .project-nav-item.active a {
+            background: var(--ui-accent) !important;
+            color: white !important;
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
         }
 
         .project-hero {
@@ -36,6 +111,52 @@
             background: radial-gradient(circle, rgba(244, 63, 94, 0.1) 0%, transparent 70%); /* 采用粉红/红色调区分动画频道 */
             transform: translate(-50%, -50%);
             pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 500;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-title em {
+            color: var(--accent-blue);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .skill-tags span {
+            font-size: 0.85rem;
+            padding: 8px 16px;
+            background: rgba(96, 165, 250, 0.1);
+            color: var(--accent);
+            border-radius: 50px;
+            font-weight: 500;
+            border: 1px solid rgba(96, 165, 250, 0.2);
         }
 
         .case-study-container {
@@ -180,10 +301,33 @@
             .feature-grid {
                 grid-template-columns: 1fr;
             }
+            .project-nav { display: none; } 
+
+            .project-hero {
+                padding: 120px 20px 60px;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
 <body>
+
+    <nav class="project-nav">
+        <ul class="project-nav-list">
+             <li class="project-nav-item active" data-target="project-anim">
+                <a href="#project-anim" data-label="3D Animation">01</a>
+            </li>
+            <li class="project-nav-item" data-target="project-3d">
+                <a href="#project-3d" data-label="3D Animation">02</a>
+            </li>
+            <li class="project-nav-item" data-target="project-2d">
+                <a href="#project-2d" data-label="2D Motion">03</a>
+            </li>
+        </ul>
+    </nav>
 
     <header id="header" class="scrolled"> 
         <nav class="navbar">
@@ -196,17 +340,21 @@
 
     <main>
         <section class="project-hero">
-            <div class="section-container">
+            <div class="hero-content">
                 <p class="section-label" style="color: #fb7185;">Motion Graphics</p>
-                <h1 class="hero-text" style="font-size: 3.5rem; color: white;">Moving <em>Stories</em></h1>
+                 <h1 class="hero-text" style="font-size: 3.5rem; color: white;">Moving <em>Stories</em></h1>
                 <p style="opacity: 0.8; max-width: 600px; margin: 20px auto;">从角色建模到动态图形，通过帧与帧之间的艺术赋予数字生命。</p>
+                <div class="skill-tags">
+                    <span>Figma</span>
+                    <span>Adobe XD</span>
+                    <span>Prototyping</span>
+                    <span>Usability Testing</span>
+                </div>
             </div>
         </section>
 
-        <section class="case-study-container">
-            <section id="project-1" class="project-section reveal">
-            
-                <p class="section-label">3D Animation</p>
+        <section id="project-anim" class="case-study-container reveal">
+            <p class="section-label">3D Animation</p>
                 <h2 class="section-heading">The Legacy To A <em>True Man</em></h2>
                 <div class="video-responsive">
                     <iframe 
@@ -249,42 +397,20 @@
                     </div>
                 </div>
 
-                <div class="project-gallery">
-                    <div class="gallery-grid">
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Level Design Process" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Character Rigging" loading="lazy">
-                        </div>
-                        <div class="gallery-item"> <img src="assets/images/image1.jpg" alt="Final Environment Render" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="UI Implementation" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                        <div class="gallery-item">
-                            <img src="assets/images/image1.jpg" alt="Code Snippet" loading="lazy">
-                        </div>
-                    </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
                 </div>
-
             </div>
 
         </section>
-        </section>
 
-        <section class="case-study-container">
-            <div class="reveal">
-                <h2 class="section-heading">3D Modeling &<em>Rigging</em></h2>
+         <hr style="border: none; border-top: 1px solid #eee; margin: 0;">
+
+        <section id="project-3d" class="case-study-container reveal">
+            <h2 class="section-heading">3D Modeling &<em>Rigging</em></h2>
                 <div class="showcase-grid">
                     <div class="showcase-item">
                             <div class="video-wrapper">
@@ -335,20 +461,13 @@
                                 </a>
                             </div>
                         </div>
-
-                    
                 </div>
-            </div>
-
-            <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
 
         </section>
 
-        <section id="project-2" class="section section-dark reveal">
-
-                <section class="case-study-container">
-                    <div class="reveal">
-                    <p class="section-label">2D Animation</p>
+        <section id="project-2d" class="section-dark reveal" style="background: #0a0a0a; width: 100%; padding: 80px 0;">
+            <div class="case-study-container" style="background: transparent;">
+                <p class="section-label">2D Animation</p>
                     <h2 class="section-heading">2D Motion <em>Design</em></h2>
                     
                     <div class="showcase-grid">
@@ -394,13 +513,11 @@
                         </div>
 
                 </div>
-
             </div>
+        </section>
 
-            </section>
-            </section>
 
-        <section class="section section-dark reveal" style="text-align: center;">
+        <section class="section reveal" style="text-align: center;">
             <div class="section-container">
                 <h2 class="section-heading">The Creative <em>Toolbox</em></h2>
                 <div class="skill-tags" style="justify-content: center; font-size: 1.2rem;">
@@ -416,20 +533,83 @@
         </section>
     </main>
 
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close"><i class="fas fa-times"></i></span>
+        <div class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)"><i class="fas fa-chevron-left"></i></div>
+        <img src="" id="lightbox-img">
+        <div class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)"><i class="fas fa-chevron-right"></i></div>
+    </div>
+
     <footer class="footer">
         <p>&copy; 2026 Lee Wen Tyng. Animation Portfolio.</p>
     </footer>
 
     <script>
-        const revealElements = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
+         // --- 完全同步模板逻辑 ---
+        const sections = document.querySelectorAll('section[id^="project-"]');
+        const navItems = document.querySelectorAll('.project-nav-item');
+
+        const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
+                    const id = entry.target.getAttribute('id');
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('data-target') === id) {
+                            item.classList.add('active');
+                        }
+                    });
                 }
             });
+        }, { threshold: 0.3 });
+
+        sections.forEach(section => sectionObserver.observe(section));
+
+        // --- 2. Lightbox 逻辑 ---
+        let currentImgIndex = 0;
+        let galleryImgs = [];
+
+        function openLightbox(el) {
+            const lightbox = document.getElementById('lightbox');
+            const img = el.querySelector('img');
+            galleryImgs = Array.from(document.querySelectorAll('.gallery-item img'));
+            currentImgIndex = galleryImgs.indexOf(img);
+            document.getElementById('lightbox-img').src = img.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(e) {
+            if (e.target.id === 'lightbox' || e.target.closest('.lightbox-close')) {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function navigateLightbox(dir) {
+            currentImgIndex = (currentImgIndex + dir + galleryImgs.length) % galleryImgs.length;
+            document.getElementById('lightbox-img').src = galleryImgs[currentImgIndex].src;
+        }
+
+        // 平滑跳转
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // 基础 Reveal 动画
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('revealed');
+            });
         }, { threshold: 0.1 });
-        revealElements.forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
     </script>
 </body>
 </html>
