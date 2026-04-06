@@ -24,11 +24,11 @@
             top: 50%;
             transform: translateY(-50%);
             z-index: 100;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 50px;
             padding: 20px 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             border: 1px solid var(--border);
         }
 
@@ -669,6 +669,43 @@
     top: 0; left: 0; width: 100%; height: 100%;
 }
 
+/* --- Multimedia 专属 Skill Tags 样式 --- */
+.hero-skill-tags {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.skill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: rgba(212, 162, 45, 0.1); /* 青蓝色透明背景 */
+    border: 1px solid rgba(212, 151, 45, 0.2);
+    border-radius: 50px;
+    color: #f59e0b; 
+    font-size: 0.85rem;
+    font-weight: 500;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-tag:hover {
+    background: rgba(212, 159, 45, 0.25);
+    border-color: rgba(212, 140, 45, 0.4);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(212, 165, 45, 0.2);
+}
+
+.skill-tag i {
+    font-size: 1rem;
+    color: #f59e0b;
+}
+
 
 
 
@@ -781,12 +818,18 @@
                 </p>
             </div>
 
-            <div class="skill-tags" style="justify-content: center; font-size: 1.2rem;">
-                    <span>Autodesk Maya</span>
-                    <span>Blender</span>
-                    <span>After Effects</span>
-                    <span>Premiere Pro</span>
-                </div>
+            <div class="hero-skill-tags">
+                <span class="skill-tag">
+                    Unreal Engine
+                </span>
+                <span class="skill-tag">
+                     C++ & Blueprints
+                </span>
+                <span class="skill-tag">
+                     Level Design
+                </span>
+            </div>
+
         </section>
 
         <section id="part-1" class="full-width-section">
@@ -810,12 +853,16 @@
                     By blending platforming and RPG elements, the game invites players to embark on a journey through a semi-open world filled with secrets, puzzles, and challenges. 
                     As the mystery of the kingdom unfolds, the player must master movement, solve puzzles, and battle enemies to confront the spreading curse at the heart of the decay.</p>
                 
-                <h3>Production Process</h3>
+                <h3>Game Highlight</h3>
                 <div class="gallery-grid">
-                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
-                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
-                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
-                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/fyp/Screenshot 2.png" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/fyp/Screenshot 3.png" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/fyp/Screenshot 8.png" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/fyp/Screenshot7.png" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/fyp/Screenshot 5.png" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/fyp/Screenshot 9.png" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/fyp/Screenshot 11.png" alt="Gallery"></div>
+                    <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/fyp/Screenshot 1.png" alt="Gallery"></div>
                 </div>
             </div>
             <hr style="border: none; border-top: 1px solid var(--border); margin: 60px 0;">
@@ -831,35 +878,39 @@
         
         <div class="video-responsive">
             <iframe 
-                src="https://www.youtube.com/embed/VTkJDHS9qjw" 
+                src="https://www.youtube.com/embed/zkEA4LouYwQ" 
                 frameborder="0" allowfullscreen>
             </iframe>
         </div>
 
-        <div class="experience-intro">
-            <p>Step into a world where <strong>mechanics meet emotion</strong>. The gameplay is designed around [Core Mechanic, e.g., spatial manipulation], allowing players to interact with the environment in ways previously thought impossible.</p>
-        </div>
-
-        
-        <div class="interest-grid">
-            <div class="interest-card">
-                <div class="icon-box"><i class="fas fa-magic"></i></div>
-                <h4>Immersive Interaction</h4>
-                <p>Utilizing <strong>Hand Tracking</strong> to create a natural "touch" within the virtual space, making every object feel tangible.</p>
+        <div class="about-content">
+                <h3>Gameplay Overview</h3>
+                <p>
+                In The Little Guardian, players engage in fluid melee combat, utilizing a combination of standard strikes and mana-based special area-of-effect (AoE) attacks.
+                The world is filled with environmental puzzles and interactive NPCs. Players must converse with characters to uncover lore, manage their inventory, and solve location-based quests to progress.
+                Precise movement is key, with mechanics such as dash-jumps and portals designed to challenge the player’s navigation through a semi-open 3D world.</p>
+                
+                <h3>Key Gameplay Hightlight</h3>
+                <div class="interest-grid">
+                    <div class="interest-card">
+                        <div class="icon-box"><i class="fas fa-magic"></i></div>
+                        <h4>Branching Narrative</h4>
+                        <p>Features a custom-built dialogue system that allows for immersive storytelling through meaningful character interactions.</p>
+                        
+                    </div>
+                    <div class="interest-card">
+                        <div class="icon-box"><i class="fas fa-puzzle-piece"></i></div>
+                        <h4>Dynamic Quest & Economy</h4>
+                        <p>Integrated a real-time tracking system for gold collection, item management, and multi-stage mission objectives.</p>
+                    </div>
+                    <div class="interest-card">
+                        <div class="icon-box"><i class="fas fa-wind"></i></div>
+                        <h4>Aesthetic World-Building</h4>
+                        <p>A vibrant Low Poly art style combined with dynamic lighting and atmospheric environmental design to create a dreamlike, mystical forest setting.</p>
+                    </div>
+                </div>
                 
             </div>
-            <div class="interest-card">
-                <div class="icon-box"><i class="fas fa-puzzle-piece"></i></div>
-                <h4>Adaptive Puzzles</h4>
-                <p>Challenges that evolve based on user behavior, ensuring the <strong>flow state</strong> is maintained throughout the journey.</p>
-            </div>
-            <div class="interest-card">
-                <div class="icon-box"><i class="fas fa-wind"></i></div>
-                <h4>Atmospheric Feedback</h4>
-                <p>A dynamic environment that reacts to player presence through <strong>real-time lighting and spatial audio</strong>.</p>
-            </div>
-        </div>
-
         <div class="gallery-grid">
                     <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
                     <div class="gallery-item" onclick="openLightbox(this)"><img src="assets/images/image1.jpg" alt="Gallery"></div>
@@ -885,13 +936,13 @@
                         This phase involved extensive brainstorming and market analysis to craft a solid project proposal that balanced creative storytelling with technical feasibility.</p>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(this)" style="cursor: zoom-in;">
-                    <img src="assets/images/image1.jpg" alt="Ideation">
+                    <img src="assets/images/fyp/preproduction.png" alt="Ideation">
                 </div>
                 
             </div>
             <div class="process-grid">
                 <div class="gallery-item" onclick="openLightbox(this)" style="cursor: zoom-in;">
-                    <img src="assets/images/image1.jpg" alt="Ideation">
+                    <img src="assets/images/fyp/stage2.png" alt="PreferenceSurvey">
                 </div>
                 <div>
                     <span class="step-number">02.</span>
@@ -903,42 +954,44 @@
             <div class="process-grid">
                 <div>
                     <span class="step-number">03.</span>
-                    <h3>World Building & Narrative</h3>
-                    <p>I meticulously designed a decaying medieval world where every asset, from the weathered stone bridges to the bioluminescent flora, serves a narrative purpose. 
-                        By using layered fog and dynamic lighting, I created an atmosphere that visually reflects the encroaching curse.</p>
+                    <h3>Level Design & Player Flow</h3>
+                    <p>I prototyped levels to test player pacing and navigation before committing to final art. 
+                        This iterative process allowed me to refine puzzles and platforming challenges based on early playtest feedback.</p>
+                    
                 </div>
                 <div class="gallery-item" onclick="openLightbox(this)" style="cursor: zoom-in;">
-                    <img src="assets/images/image1.jpg" alt="Ideation">
+                    <img src="assets/images/fyp/fypbg.png" alt="Prototyping">
                 </div>
             </div>
             <div class="process-grid">
                 <div class="gallery-item" onclick="openLightbox(this)" style="cursor: zoom-in;">
-                    <img src="assets/images/image1.jpg" alt="Ideation">
+                    <img src="assets/images/fyp/fypbg.png" alt="WorldBuilding">
                 </div>
                 <div>
                     <span class="step-number">04.</span>
-                    <h3>Gameplay Programming & Mechanics</h3>
-                    <p>Using C# and Unity, I developed a responsive 3D side-scrolling movement system. 
-                        I focused on the "feel" of the character—weight, jump arcs, and combat impact—to ensure that the Actual Mechanical Agency 
-                        I was researching was felt directly through the controller.</p>
+                    <h3>World Building & Narrative</h3>
+                    <p>I meticulously designed a decaying medieval world where every asset, from the weathered stone bridges to the bioluminescent flora, serves a narrative purpose. 
+                        By using layered fog and dynamic lighting, I created an atmosphere that visually reflects the encroaching curse.</p>
+                    
                 </div>
             </div>
             <div class="process-grid">
                 <div>
                     <span class="step-number">05.</span>
-                    <h3>Level Design & Player Flow</h3>
-                    <p>I prototyped levels using a "Graybox" method to test player pacing and navigation before committing to final art. 
-                        This iterative process allowed me to refine puzzles and platforming challenges based on early playtest feedback.</p>
+                    <h3>Gameplay Programming & Mechanics</h3>
+                    <p>Using C# and Unity, I developed a responsive 3D side-scrolling movement system. 
+                        I focused on the "feel" of the character—weight, jump arcs, and combat impact—to ensure that the Actual Mechanical Agency 
+                        I was researching was felt directly through the controller.</p>
                 </div>
                 
                     <div class="gallery-item" onclick="openLightbox(this)" style="cursor: zoom-in;">
-                    <img src="assets/images/image1.jpg" alt="Ideation">
+                    <img src="assets/images/fyp/stage4.png" alt="Development">
                 </div>
                 
             </div>
             <div class="process-grid">
                 <div class="gallery-item" onclick="openLightbox(this)" style="cursor: zoom-in;">
-                    <img src="assets/images/image1.jpg" alt="Ideation">
+                    <img src="assets/images/fyp/testing.png" alt="Testing&Execution">
                 </div>
                 <div>
                     <span class="step-number">06.</span>
@@ -1206,7 +1259,7 @@
     </div>
 
     <footer class="footer">
-        <p>&copy; 2026 Lee Wen Tyng. Designed with Care。</p>
+        <p>&copy; 2026 Lee Wen Tyng. Final Year Project</p>
     </footer>
 
     <script>
